@@ -1,0 +1,513 @@
+"use client"
+
+import { useState } from "react"
+import { Menu, X, ArrowRight, LayoutGrid, LineChart, Eye, Truck } from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { Footer } from "@/components/footer"
+
+const navLinks = [
+    { href: "/", label: "Home" },
+    { href: "/products", label: "Products" },
+    { href: "/terms", label: "Terms" },
+]
+
+const faqs = [
+    {
+        question: "What makes Optika lenses different?",
+        answer: "Optika lenses are manufactured in the Czech Republic using cutting-edge digital technology and tested to the highest industry standards. Every lens is customized to meet the specific needs of the wearer, ensuring unmatched visual clarity and comfort.",
+    },
+    {
+        question: "How long does delivery take?",
+        answer: "Most orders are delivered within 48 hours of production completion. We optimize every step of our workflow to ensure your lenses arrive on time and ready to perform.",
+    },
+    {
+        question: "Can I customize my orders?",
+        answer: "Yes. Our digital ordering system allows eye care professionals to customize every aspect of their lens orders. You control the specifications, and we handle the precision manufacturing.",
+    },
+    {
+        question: "What quality standards do you follow?",
+        answer: "Every lens meets global industry standards and passes through rigorous quality controls at every stage of production. We test what matters and deliver what works.",
+    },
+    {
+        question: "Do you offer bulk ordering?",
+        answer: "We serve eye care professionals of all sizes. Our system scales to your needs, whether you are ordering a few lenses or managing high-volume production.",
+    },
+    {
+        question: "Reach out to our team for more information.",
+        answer: "Our lenses combine Czech precision manufacturing with advanced digital technology. Each lens is customized to the wearer's exact specifications and tested rigorously before delivery. You get clarity that performs.",
+    },
+    {
+        question: "What sets Optika apart?",
+        answer: "We handle the ordering through a streamlined digital system designed for eye care professionals. You specify what you need, we manufacture with precision, and delivery happens within 48 hours. The process is built for efficiency.",
+    },
+    {
+        question: "How does ordering work?",
+        answer: "Every lens passes through strict quality controls at every production stage. We test what matters and only ship what meets our standards. Your patients will notice the difference immediately.",
+    },
+]
+
+export default function AboutPage() {
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+    return (
+        <div className="relative min-h-screen w-full bg-white font-inter text-black selection:bg-black selection:text-white">
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                HERO SECTION
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="relative h-screen w-full overflow-hidden">
+                <Image
+                    src="/about-hero.jpg"
+                    alt="Modern office interior"
+                    fill
+                    className="object-cover object-center"
+                    priority
+                />
+                <div className="absolute inset-0 bg-black/60" />
+
+                <header className="absolute top-0 left-0 right-0 z-50">
+                    <nav className="mx-auto flex h-16 w-full max-w-[1920px] items-center justify-between px-6 sm:h-20 sm:px-10 lg:px-16">
+                        <Link href="/" className="text-sm font-bold uppercase tracking-tight text-white sm:text-base">
+                            Optika
+                        </Link>
+
+                        <ul className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-8 md:flex lg:gap-10">
+                            {navLinks.map((link) => (
+                                <li key={link.href}>
+                                    <Link href={link.href} className="text-[13px] font-medium uppercase tracking-wide text-white transition-colors hover:text-white/70">
+                                        {link.label}
+                                    </Link>
+                                </li>
+                            ))}
+                        </ul>
+
+                        <Link href="/partners" className="hidden text-[13px] font-medium uppercase tracking-wide text-white transition-colors hover:text-white/70 md:block">
+                            / For Partners
+                        </Link>
+
+                        <button
+                            type="button"
+                            className="inline-flex items-center justify-center p-2 text-white md:hidden"
+                            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                        >
+                            {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                        </button>
+                    </nav>
+
+                    {/* Mobile Menu */}
+                    <div className={`transform overflow-hidden transition-all duration-300 md:hidden ${mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
+                        <div className="bg-black py-4 px-6">
+                            <ul className="flex flex-col gap-4">
+                                {navLinks.map((link) => (
+                                    <li key={link.href}>
+                                        <Link href={link.href} className="block text-sm uppercase text-white" onClick={() => setMobileMenuOpen(false)}>
+                                            {link.label}
+                                        </Link>
+                                    </li>
+                                ))}
+                                <li className="border-t border-white/20 pt-4">
+                                    <Link href="/partners" className="block text-sm uppercase text-white" onClick={() => setMobileMenuOpen(false)}>
+                                        / For Partners
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </header>
+
+                <div className="relative z-10 flex h-full items-end pb-16 sm:pb-20 md:pb-24">
+                    <div className="w-full px-6 sm:px-10 lg:px-16">
+                        <div className="max-w-[800px]">
+                            <h1 className="mb-4 text-[40px] font-bold uppercase leading-[0.95] tracking-tight text-white sm:text-[60px] md:text-[80px] lg:text-[100px]">
+                                EXCEPTIONAL<br />OPTICAL<br />SOLUTIONS
+                            </h1>
+                            <p className="mb-8 max-w-[400px] text-[14px] leading-[1.6] text-white/80 sm:text-[16px]">
+                                Optika delivers to you Premium Digital Lenses and Solutions manufactured to the highest standards.
+                            </p>
+                            <div className="h-10 w-10 flex items-center justify-center bg-white border-none rounded-none text-black">
+                                <ArrowRight className="h-5 w-5" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+         <section className="w-full bg-[#F3F3F3] px-6 py-16 sm:px-10 md:px-16 md:py-24 lg:px-[120px] lg:py-32">
+
+                {/* Header Section */}
+                <div className="mb-12 flex items-center gap-6 md:mb-16 md:gap-10">
+                    <h2 className="whitespace-nowrap text-[32px] font-bold uppercase tracking-tight text-black md:text-[40px]">
+                        BEHIND OPTIKA
+                    </h2>
+                    <div className="h-px flex-1 bg-[#D1D1D1]" />
+                </div>
+
+                {/* Main Container - 2x2 Grid */}
+                <div className="grid grid-cols-1 gap-px border border-[#D1D1D1] bg-[#D1D1D1] md:grid-cols-2">
+
+                    {/* Top Left: Text */}
+                    <div className="order-1 flex min-h-[60vh] flex-col bg-[#F3F3F3] p-10 md:p-16 lg:min-h-[75vh] lg:p-24 lg:pt-32">
+                        <div className="max-w-[480px]">
+                            <p className="mb-10 text-[12px] tracking-wider text-black">
+                                About<br />Us
+                            </p>
+                            <p className="text-[18px] leading-[1.6] text-black md:text-[20px]">
+                                Optika is a Global Eyewear Solutions Provider and Distributor of Exclusive and advanced Digital Lenses, Eyecare products, and Premium solutions.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Top Right: Image */}
+                    <div className="relative order-2 min-h-[60vh] bg-[#F3F3F3] lg:min-h-[75vh]">
+                        <Image
+                            src="/about-optika.jpg"
+                            alt="Three fashion models looking down at the camera wearing sunglasses against a blue sky"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+
+                    {/* Bottom Left: Image */}
+                    <div className="relative order-4 min-h-[60vh] bg-[#F3F3F3] md:order-3 lg:min-h-[75vh]">
+                        <Image
+                            src="/about-optika2.jpg"
+                            alt="Two models in white polo shirts wearing sunglasses against a white wall"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+
+                    {/* Bottom Right: Text */}
+                    <div className="order-3 flex min-h-[60vh] flex-col bg-[#F3F3F3] p-10 md:order-4 md:p-16 lg:min-h-[75vh] lg:p-24 lg:pt-32">
+                        <div className="max-w-[480px]">
+                            <p className="mb-10 text-[12px] tracking-wider text-black">
+                                Ophthalmic<br />Technology<br />Provider
+                            </p>
+                            <p className="mb-6 text-[18px] leading-[1.6] text-black md:text-[20px]">
+                                Driven by ambition, innovation, Optika supplies eyewear to professionals, hospitals, and users.
+                            </p>
+                            <p className="text-[18px] leading-[1.6] text-black md:text-[20px]">
+                                We deliver variety of high-end lenses which are manufactured in the Czech Republic and tested according to industry best standards with strict quality controls.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                ASPIRATION SECTION
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="w-full bg-black px-6 py-20 sm:px-10 md:py-32 lg:px-16">
+                <div className="mx-auto w-full max-w-[1400px]">
+                    <div className="mb-20 text-center">
+                        <h2 className="mb-6 text-[32px] font-bold uppercase leading-[1.1] tracking-tight text-white sm:text-[40px] md:text-[48px] lg:text-[56px]">
+                            GENUINE ASPIRATION TOWARD<br />EXCELLENCE
+                        </h2>
+                        <p className="mx-auto max-w-[700px] text-[14px] leading-[1.6] text-white/70 sm:text-[16px]">
+                            Optika positions itself with unwavering commitment to industry best practices. We deliver and manufacture what works and we prioritize performance.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-6 lg:gap-10">
+                        {/* Column 1 */}
+                        <div className="flex flex-col">
+                            <div className="relative mb-8 aspect-[3/4] w-full overflow-hidden bg-white/10">
+                                <Image src="/placeholder.svg?height=800&width=600" alt="Person wearing lenses" fill className="object-cover" />
+                            </div>
+                            <h3 className="mb-4 text-[18px] font-bold uppercase tracking-tight text-white sm:text-[20px]">
+                                EXCEPTIONAL<br />PERFORMANCE
+                            </h3>
+                            <p className="text-[14px] leading-[1.6] text-white/70">
+                                Optika&apos;s digital ordering system allows eye care professionals to customize every aspect of their lens orders. You control the specifications, and we handle the precision manufacturing.
+                            </p>
+                        </div>
+                        {/* Column 2 */}
+                        <div className="flex flex-col">
+                            <div className="relative mb-8 aspect-[3/4] w-full overflow-hidden bg-white/10">
+                                <Image src="/placeholder.svg?height=800&width=600" alt="Fashion model with glasses" fill className="object-cover" />
+                            </div>
+                            <h3 className="mb-4 text-[18px] font-bold uppercase tracking-tight text-white sm:text-[20px]">
+                                HIGH STANDARD<br />TESTING
+                            </h3>
+                            <p className="text-[14px] leading-[1.6] text-white/70">
+                                Through our certified laboratories, Optika tests all lenses under varying conditions. To validate optical quality, every lens passes strict quality checks before delivery.
+                            </p>
+                        </div>
+                        {/* Column 3 */}
+                        <div className="flex flex-col">
+                            <div className="relative mb-8 aspect-[3/4] w-full overflow-hidden bg-white/10">
+                                <Image src="/placeholder.svg?height=800&width=600" alt="Person under neon light" fill className="object-cover" />
+                            </div>
+                            <h3 className="mb-4 text-[18px] font-bold uppercase tracking-tight text-white sm:text-[20px]">
+                                CUSTOMISED<br />SOLUTIONS
+                            </h3>
+                            <p className="text-[14px] leading-[1.6] text-white/70">
+                                Optika offers flexibility, integration, and access to world-class solutions. Our advanced professionals increases control, efficiency, and collaboration through technology investments.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                FEATURES SECTION
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="w-full bg-white px-6 py-20 sm:px-10 md:py-32 lg:px-16">
+                <div className="mx-auto w-full max-w-[1400px]">
+                    <div className="mb-20 text-center">
+                        <h2 className="mb-4 text-[32px] font-bold uppercase tracking-tight text-black sm:text-[40px] md:text-[48px] lg:text-[56px]">
+                            EVERYTHING YOU NEED<br />TO SUCCEED
+                        </h2>
+                        <p className="mx-auto max-w-[600px] text-[14px] uppercase tracking-widest text-black/60">
+                            Our integrated platform streamlines every aspect of lens ordering, production, and delivery.
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8 items-center">
+                        {/* Left Column */}
+                        <div className="flex flex-col gap-16 order-2 lg:order-1 items-center lg:items-end text-center lg:text-right">
+                            <div className="max-w-[300px]">
+                                <LayoutGrid className="mx-auto lg:ml-auto lg:mr-0 mb-6 h-8 w-8 text-black" strokeWidth={1.5} />
+                                <h3 className="mb-3 text-[16px] font-bold uppercase text-black">CUSTOM ORDER</h3>
+                                <p className="text-[14px] leading-[1.6] text-black/70">
+                                    Place detailed orders through our advanced digital system with complete customization options.
+                                </p>
+                            </div>
+                            <div className="max-w-[300px]">
+                                <LineChart className="mx-auto lg:ml-auto lg:mr-0 mb-6 h-8 w-8 text-black" strokeWidth={1.5} />
+                                <h3 className="mb-3 text-[16px] font-bold uppercase text-black">PRODUCTION STAGES</h3>
+                                <p className="text-[14px] leading-[1.6] text-black/70">
+                                    Follow your lenses through each production phase with complete visibility and control.
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Center Column: Huge Black Square */}
+                        <div className="flex justify-center order-1 lg:order-2">
+                            <div className="aspect-square w-full max-w-[400px] bg-black rounded-none"></div>
+                        </div>
+
+                        {/* Right Column */}
+                        <div className="flex flex-col gap-16 order-3 items-center lg:items-start text-center lg:text-left">
+                            <div className="max-w-[300px]">
+                                <Eye className="mx-auto lg:ml-0 mb-6 h-8 w-8 text-black" strokeWidth={1.5} />
+                                <h3 className="mb-3 text-[16px] font-bold uppercase text-black">REAL-TIME TRACKING</h3>
+                                <p className="text-[14px] leading-[1.6] text-black/70">
+                                    Monitor your lens production at every stage from manufacturing through quality control.
+                                </p>
+                            </div>
+                            <div className="max-w-[300px]">
+                                <Truck className="mx-auto lg:ml-0 mb-6 h-8 w-8 text-black" strokeWidth={1.5} />
+                                <h3 className="mb-3 text-[16px] font-bold uppercase text-black">DELIVERY MANAGEMENT</h3>
+                                <p className="text-[14px] leading-[1.6] text-black/70">
+                                    Seamless delivery coordination ensures your lenses arrive on time and in perfect condition.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                DIVIDER BANNER
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="relative w-full overflow-hidden py-32 md:py-48">
+                <Image
+                    src="/contact-bg.jpg"
+                    alt="Office workers standing around table"
+                    fill
+                    className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-black/60" />
+                <div className="relative z-10 mx-auto max-w-[1200px] px-6 text-center sm:px-10">
+                    <h2 className="text-[28px] font-bold uppercase leading-[1.1] tracking-tight text-white sm:text-[36px] md:text-[48px] lg:text-[60px]">
+                        DESIGNED TO PERFORM<br />WELL TODAY AND<br />REMAIN ADAPTABLE<br />TOMORROW.
+                    </h2>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                FAQ SECTION
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="w-full bg-white px-6 py-20 sm:px-10 md:py-32 lg:px-16">
+                <div className="mx-auto w-full max-w-[1400px]">
+                    <div className="mb-16 md:mb-24">
+                        <h2 className="text-[48px] font-bold uppercase tracking-tight text-black md:text-[64px]">
+                            FAQ
+                        </h2>
+                        <p className="text-[14px] uppercase tracking-widest text-black/60">
+                            FREQUENTLY ASKED QUESTIONS ABOUT OUR PROCESS
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-x-16 gap-y-12 md:grid-cols-2 lg:gap-y-16">
+                        {faqs.map((faq, index) => (
+                            <div key={index} className="flex flex-col">
+                                <h3 className="mb-4 text-[16px] font-bold uppercase text-black md:text-[18px]">
+                                    {faq.question}
+                                </h3>
+                                <p className="text-[14px] leading-[1.6] text-black/70">
+                                    {faq.answer}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                SECONDARY CTA BANNER
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="relative w-full overflow-hidden py-24 md:py-32">
+                <Image
+                    src="/contact-bg.jpg"
+                    alt="Meeting room team discussion"
+                    fill
+                    className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-black/70" />
+                <div className="relative z-10 px-6 sm:px-10 lg:px-16">
+                    <h2 className="text-[32px] font-bold uppercase text-white sm:text-[40px] md:text-[48px]">
+                        STILL HAVE QUESTIONS?
+                    </h2>
+                    <p className="mt-2 text-[14px] text-white/70 sm:text-[16px]">
+                        Questions about lenses, ordering, or about us? We are here to help.
+                    </p>
+                </div>
+            </section>
+
+            {/* ═══════════════════════════════════════════════════════════════════════════
+                CONTACT / ENQUIRY SECTION
+            ═══════════════════════════════════════════════════════════════════════════ */}
+            <section className="w-full bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-2">
+                    {/* Left Column - Contact */}
+                    <div className="flex flex-col justify-between border-b border-black/10 px-6 py-16 sm:px-10 md:border-b-0 md:border-r lg:px-16 lg:py-24">
+                        <div className="mb-12">
+                            <h3 className="mb-6 text-[24px] font-bold uppercase text-black sm:text-[32px]">CONTACT US</h3>
+                            <div className="space-y-4 text-[14px] leading-[1.6] text-black/70">
+                                <p><strong>Address:</strong> 123 Optika Tower, Business District</p>
+                                <p><strong>Phone:</strong> +1 (555) 000-0000</p>
+                                <p><strong>Email:</strong> contact@optika.com</p>
+                            </div>
+                        </div>
+                        <button className="flex h-12 w-[180px] items-center justify-center rounded-none bg-black text-[13px] font-bold uppercase text-white transition-opacity hover:opacity-80">
+                            CONTACT US
+                        </button>
+                    </div>
+
+                    {/* Right Column - Enquiry */}
+                    <div className="flex flex-col justify-between px-6 py-16 sm:px-10 lg:px-16 lg:py-24">
+                        <div className="mb-12">
+                            <h3 className="mb-6 text-[24px] font-bold uppercase text-black sm:text-[32px]">ENQUIRY FORM</h3>
+                            <p className="max-w-[400px] text-[14px] leading-[1.6] text-black/70">
+                                Fill out our enquiry form to select from predefined categories and specific requirements. We ensure faster, more precise responses.
+                            </p>
+                        </div>
+                        <button className="flex h-12 w-[180px] items-center justify-center rounded-none bg-black text-[13px] font-bold uppercase text-white transition-opacity hover:opacity-80">
+                            FILL FORM
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <Footer />
+        </div>
+    )
+}
+ <section className="w-full bg-white">
+                <div className="grid grid-cols-1 md:grid-cols-3">
+                    {/* Card 1 */}
+                    <div className="relative flex flex-col">
+                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-200">
+                            <Image
+                                src="/placeholder.svg?height=400&width=600"
+                                alt="Person wearing glasses"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute top-4 left-4 rounded bg-black/80 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-white">
+                                ®Lenses
+                            </div>
+                        </div>
+                        <div className="flex flex-1 flex-col justify-between bg-gray-100 p-6 sm:p-8">
+                            <div>
+                                <h3 className="mb-3 text-[14px] font-bold uppercase tracking-wide text-black sm:text-[15px]">
+                                    Exceptional
+                                    <br />
+                                    Performance
+                                </h3>
+                                <p className="text-[11px] leading-[1.6] text-gray-500 sm:text-xs">
+                                    {"Optika's"} digital ordering system allows eye care professionals to customize every aspect of their lens orders. You control the specifications, and we handle the precision manufacturing.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Card 2 */}
+                    <div className="relative flex flex-col">
+                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-200">
+                            <Image
+                                src="/placeholder.svg?height=400&width=600"
+                                alt="Woman wearing stylish sunglasses"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute top-4 left-4 text-[14px] font-bold tracking-tight text-white sm:text-[16px]">
+                                OPTIKA
+                            </div>
+                            <div className="absolute top-4 right-4">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-white">
+                                    <circle cx="12" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                                    <circle cx="20" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="flex flex-1 flex-col justify-between bg-white p-6 sm:p-8">
+                            <div>
+                                <h3 className="mb-3 text-[14px] font-bold uppercase tracking-wide text-black sm:text-[15px]">
+                                    High Standard
+                                    <br />
+                                    Testing
+                                </h3>
+                                <p className="text-[11px] leading-[1.6] text-gray-500 sm:text-xs">
+                                    Through our certified laboratories, Optika tests all lenses under varying conditions. To validate optical quality, every lens passes strict quality checks before delivery.
+                                </p>
+                            </div>
+                            <button className="mt-6 inline-flex w-fit items-center gap-2 border border-black bg-white px-5 py-2.5 text-[11px] font-medium text-black transition-colors hover:bg-black hover:text-white sm:text-xs">
+                                Contact us
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Card 3 */}
+                    <div className="relative flex flex-col">
+                        <div className="relative aspect-[4/3] w-full overflow-hidden bg-gray-200">
+                            <Image
+                                src="/placeholder.svg?height=400&width=600"
+                                alt="Person with premium eyewear"
+                                fill
+                                className="object-cover"
+                            />
+                            <div className="absolute top-4 right-4">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" className="text-white">
+                                    <circle cx="12" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                                    <circle cx="20" cy="16" r="10" stroke="currentColor" strokeWidth="1.5" fill="none" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div className="flex flex-1 flex-col justify-between bg-gray-100 p-6 sm:p-8">
+                            <div>
+                                <h3 className="mb-3 text-[14px] font-bold uppercase tracking-wide text-black sm:text-[15px]">
+                                    Customised
+                                    <br />
+                                    Solutions
+                                </h3>
+                                <p className="text-[11px] leading-[1.6] text-gray-500 sm:text-xs">
+                                    Optikamic offers flexibility, integration, and access to world-class solutions. Our advanced professionals increases control, efficiency, and collaboration through technology investments and pursuit of glory.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>

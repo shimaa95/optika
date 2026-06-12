@@ -1,0 +1,84 @@
+import { MainLayout } from "@/components/main-layout"
+import { LuxuryHero } from "@/components/luxury-hero"
+import { PowerfulLensesSection } from "@/components/transition/powerful-lenses-section"
+import { DiscoverRangeSection } from "@/components/transition/discover-range-section"
+import { BenefitsSection } from "@/components/transition/benefits-section"
+import { OneForAllLightsBanner } from "@/components/transition/one-for-all-lights-banner"
+import { SingleVisionSection } from "@/components/single-vision-section"
+import { PerformanceSection } from "@/components/performance-section"
+import { FaqSection } from "@/components/faq-section"
+import { ContactSection } from "@/components/contact-section"
+import SplitLayoutHero from "@/components/SplitLayoutHero"
+
+const transitionFaqs = [
+    {
+        question: "Are Transitions lenses recommended?",
+        answer: "Yes! Transitions lenses are recommended for anyone looking for the convenience of photochromic technology, offering seamless adaptation to changing light conditions."
+    },
+    {
+        question: "What is photochromic?",
+        answer: "Photochromic lenses contain special molecules that react to UV light, causing the lenses to darken outdoors and return to clear when indoors."
+    },
+    {
+        question: "How do Transitions work?",
+        answer: "Transitions lenses contain photochromic dyes that darken when exposed to ultraviolet (UV) rays from the sun, providing optimal vision and comfort."
+    },
+    {
+        question: "Is there a warranty?",
+        answer: "Yes, our Transitions lenses come with a standard warranty that covers manufacturing defects and guarantees the photochromic performance."
+    },
+    {
+        question: "Are they good for driving?",
+        answer: "Transitions lenses are great for everyday use, and certain ranges like Transitions XTRActive are specially designed to darken even behind the windshield of a car."
+    },
+    {
+        question: "Are Transitions good for kids?",
+        answer: "Absolutely. Children's eyes are more sensitive to UV light, making the 100% UV protection and blue light filtering of Transitions lenses ideal for them."
+    },
+    {
+        question: "What are the benefits?",
+        answer: "They provide 100% UV protection, filter harmful blue-violet light, reduce glare, and eliminate the need to constantly switch between prescription glasses and sunglasses."
+    },
+    {
+        question: "Can I get them in my prescription?",
+        answer: "Yes, Transitions lenses are compatible with most frame styles and can be made in almost any prescription, including single vision and progressives."
+    }
+]
+
+export default function TransitionPage() {
+    return (
+        <MainLayout>
+            <LuxuryHero
+                imageSrc="/eye.jpg"
+                imageAlt="Cinematic close-up of an eye representing Transitions light intelligent lenses"
+                imagePosition="50% 40%"
+                tagline="Our Story" size="lg"
+                title={
+                    <>
+                        TRANSITIONS&reg;
+                        <br />
+                        LIGHT
+                        <br />
+                        INTELLIGENT
+                        <br />
+                        LENSES
+                    </>
+                }
+                description="The world's #1 photochromic lenses"
+            />
+
+            <PowerfulLensesSection />
+            <DiscoverRangeSection imageSrc="/lefteye.jpg" />
+            <BenefitsSection />
+            <OneForAllLightsBanner />
+
+
+            <PerformanceSection />
+            <FaqSection
+                faqs={transitionFaqs}
+                subheading="Find Answers to Questions about the Transitions Lenses"
+            />
+            <ContactSection />
+        </MainLayout>
+    )
+}
