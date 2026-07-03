@@ -47,7 +47,8 @@ export function useLensCategories(categories: LensCategory[]) {
               {
                 clipPath: "inset(100% 0% 0% 0%)",
                 y: 40,
-                scale: 0.9
+                scale: 0.9,
+                willChange: "clip-path, transform",
               },
               {
                 clipPath: "inset(0% 0% 0% 0%)",
@@ -56,6 +57,10 @@ export function useLensCategories(categories: LensCategory[]) {
                 duration: 1.4,
                 ease: "power4.out",
                 stagger: 0.1,
+                onComplete: () => {
+                  // Release compositing layers once the intro animation is done
+                  gsap.set(".lens-image", { clearProps: "willChange,transform" });
+                },
               }
             );
 

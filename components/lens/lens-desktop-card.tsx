@@ -13,7 +13,7 @@ interface LensDesktopCardProps {
 
 export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80' }: LensDesktopCardProps) {
   return (
-    <div className={`relative flex flex-1 flex-col    overflow-hidden border ${border}  backdrop-blur-xl`}>
+    <div className={`relative flex flex-1 flex-col overflow-hidden border ${border}`}>
       {/* Image Container with GSAP clipPath class */}
       <div className="lens-image relative flex-1 min-h-[300px] overflow-hidden cursor-pointer">
         <Image

@@ -245,12 +245,6 @@
 .lens-image {
   -webkit-clip-path: inset(100% 0% 0% 0%);
   clip-path: inset(100% 0% 0% 0%);
-  will-change: clip-path, transform;
-  transform: translateZ(0);
-}
-
-.backdrop-blur-xl {
-  transform: translateZ(0);
 }
 
 

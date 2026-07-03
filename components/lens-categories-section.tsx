@@ -33,8 +33,8 @@ export function LensCategoriesSection({ categories = defaultCategories, titleCla
           DESKTOP: Full-screen height with scroll snap (hidden on mobile/tablet)
       ═════════════════════════════════════════════════════════════════ */}
       <div className="hidden h-dvh lg:block">
-        <div className="h-dvh scroll-smooth  lg:px-26 pb-12 xl:pb-24 xl:px-50 mx-auto ">
-          <div className="flex h-full snap-start items-stretch gap-8">
+        <div className="h-dvh lg:px-26 pb-12 xl:pb-24 xl:px-50 mx-auto ">
+          <div className="flex h-full items-stretch gap-8">
             {categories.map((category) => (
               <LensDesktopCard
                 key={category.id}
