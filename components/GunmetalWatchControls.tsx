@@ -32,7 +32,7 @@ export function GunmetalWatchControls({
   handleNext,
   handlePrev,
   goToSlide,
-  className = "absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-[1300px] 2xl:bottom-[100px] z-[100] flex items-center font-sans px-10",
+  className = "absolute bottom-20 left-1/2 transform -translate-x-1/2 w-full max-w-[1300px] xl:bottom-[100px] z-[100] flex items-center font-sans px-10",
   accentColor,
   theme = 'dark',
 }: Props) {

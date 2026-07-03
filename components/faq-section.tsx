@@ -1,3 +1,10 @@
+import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion";
+
 export const faqs = [
     {
         question: "What makes Optika lenses different?",
@@ -41,12 +48,12 @@ export const faqs = [
     },
 ]
 
-export function FaqSection({faqs = [], subheading}: {faqs?: {question: string, answer: string}[], subheading?: string}) {
+export function FaqSection({ faqs = [], subheading }: { faqs?: { question: string, answer: string }[], subheading?: string }) {
     return (
-        <section className="w-full min-h-screen lg:px-26 2xl:px-50 px-6  bg-white ">
+        <section className="w-full  lg:px-26 xl:px-50 px-6 bg-white ">
             <div className="w-full py-16 sm:py-20 lg:py-24">
                 {/* Header */}
-                <div className="mb-10 sm:mb-12 lg:mb-14">
+                <div className="mb-10 lg:mb-16 ">
                     <h2 className="mb-2 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
                         FAQ
                     </h2>
@@ -55,18 +62,42 @@ export function FaqSection({faqs = [], subheading}: {faqs?: {question: string, a
                     </p>
                 </div>
 
-                {/* Two-column grid */}
-                <div className="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2 lg:gap-x-16 lg:gap-y-10 xl:gap-x-20">
-                    {faqs.map((faq, index) => (
-                        <div key={index} className="border-t border-gray-200 pt-6">
-                            <h3 className="mb-2 text-sm font-semibold text-black sm:text-base">
-                                {faq.question}
-                            </h3>
-                            <p className="text-xs leading-relaxed text-gray-600 sm:text-sm text-justify">
-                                {faq.answer}
-                            </p>
-                        </div>
-                    ))}
+                {/* Collapsible Accordion - Two Columns */}
+                <div className="grid grid-cols-1 md:grid-cols-2 md:gap-x-54">
+                    {/* Left column */}
+                    <Accordion type="single" collapsible className="w-full">
+                        {faqs.slice(0, Math.ceil(faqs.length / 2)).map((faq, index) => (
+                            <AccordionItem
+                                key={index}
+                                value={`item-${index}`}
+                                className="border-b border-gray-200 py-4"
+                            >
+                                <AccordionTrigger className="text-sm font-semibold text-black sm:text-base hover:no-underline py-2">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-xs leading-relaxed text-gray-600 sm:text-sm text-justify">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
+                    {/* Right column */}
+                    <Accordion type="single" collapsible className="w-full">
+                        {faqs.slice(Math.ceil(faqs.length / 2)).map((faq, index) => (
+                            <AccordionItem
+                                key={index}
+                                value={`item-right-${index}`}
+                                className="border-b border-gray-200 py-4"
+                            >
+                                <AccordionTrigger className="text-sm font-semibold text-black sm:text-base hover:no-underline py-2">
+                                    {faq.question}
+                                </AccordionTrigger>
+                                <AccordionContent className="text-xs leading-relaxed text-gray-600 sm:text-sm text-justify">
+                                    {faq.answer}
+                                </AccordionContent>
+                            </AccordionItem>
+                        ))}
+                    </Accordion>
                 </div>
             </div>
         </section>

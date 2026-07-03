@@ -14,8 +14,8 @@ interface Props {
 
 // Map size presets to responsive font-size classes across device tiers
 const sizeMap: Record<DescriptionSize, string> = {
-  sm: 'text-[13px] md:text-[14px] 2xl:text-[14px]',
-  md: 'text-[14px] md:text-[16px] 2xl:text-[18px]',
+  sm: 'text-[13px] md:text-[14px] xl:text-[14px]',
+  md: 'text-[14px] md:text-[16px] xl:text-[18px]',
 };
 
 const Description = ({

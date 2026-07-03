@@ -30,7 +30,7 @@ const items = [
     id: "single-vision",
     title: "Single Vision Lenses",
     desc: "Innovative single vision lenses engineered for pure, distortion-free clarity. Advanced optical geometry meets precision surfacing technology to deliver edge-to-edge visual perfection.",
-    image: "/single-vision.jpg",
+    image: "/single-vision.jpeg",
     meta: "SINGLE VISION / INNOVATIVE DESIGN",
     tag: "03",
     sub: "Innovative Single Vision Lenses",
@@ -129,17 +129,17 @@ export default function DiscoverLensesSection() {
       </div>
 
       {/* Right Column: The Luxury Interactive Editorial Panel */}
-      <div className="w-full lg:w-1/2 flex  flex-col justify-center px-8 md:px-16 lg:px-20 xl:px-24 2xl:px-32 py-20 lg:py-0 relative z-10">
-        <div className="max-w-xl 2xl:max-w-2xl w-full mx-auto py-10 2xl:py-0">
+      <div className="w-full lg:w-1/2 flex  flex-col justify-center px-8 md:px-16 lg:px-20 xl:px-24 xl:px-32 py-20 lg:py-0 relative z-10">
+        <div className="max-w-xl xl:max-w-2xl w-full mx-auto py-10 xl:py-0">
 
           {/* Eyebrow Branding */}
           <div className="mb-6 flex items-center gap-3">
             <span className="h-[0.5px] w-6 bg-[#C5A880]/40" />
-            <span className="text-[10px] 2xl:text-[11px] tracking-[0.3em] font-medium text-[#C5A880] uppercase">Discover Our Lenses</span>
+            <span className="text-[10px] xl:text-[11px] tracking-[0.3em] font-medium text-[#C5A880] uppercase">Discover Our Lenses</span>
           </div>
 
           {/* Section Heading */}
-          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl 2xl:text-7xl font-extralight tracking-tight leading-[1.1] text-white mb-16 2xl:mb-24">
+          <h2 className="font-playfair text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extralight tracking-tight leading-[1.1] text-white mb-16 xl:mb-24">
             Discover <br />
             <span className="italic text-[#C5A880]">Lenses.</span>
           </h2>
@@ -154,7 +154,7 @@ export default function DiscoverLensesSection() {
                 switch (item.id) {
                   case "refractive":
                     return (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 2xl:w-6 2xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 xl:w-6 xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
                         <circle cx="12" cy="12" r="9" />
                         <circle cx="12" cy="12" r="4" strokeDasharray="2 2" />
                         <path d="M12 2v20M2 12h20" />
@@ -163,7 +163,7 @@ export default function DiscoverLensesSection() {
                     );
                   case "single-vision":
                     return (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 2xl:w-6 2xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 xl:w-6 xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
                         <polygon points="12,4 3,19 21,19" />
                         <path d="M1 12h7" />
                         <path d="M8 12l4-2l9-2" />
@@ -173,7 +173,7 @@ export default function DiscoverLensesSection() {
                     );
                   case "progressive":
                     return (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 2xl:w-6 2xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 xl:w-6 xl:h-6 transition-colors duration-500" style={{ strokeWidth: 0.75 }}>
                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" />
                         <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z" />
                         <path d="M12 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
@@ -192,18 +192,18 @@ export default function DiscoverLensesSection() {
                     if (item.href) router.push(item.href);
                   }}
                   onMouseEnter={() => setActiveItem(item.id)}
-                  className="group relative cursor-pointer py-8 lg:py-10 2xl:py-12 border-t border-white/5 transition-all duration-700 ease-out"
+                  className="group relative cursor-pointer py-8 lg:py-10 xl:py-12 border-t border-white/5 transition-all duration-700 ease-out"
                 >
-                  <div className="flex items-start gap-6 lg:gap-8 2xl:gap-10 relative z-10">
+                  <div className="flex items-start gap-6 lg:gap-8 xl:gap-10 relative z-10">
 
                     {/* Large Classical Numeric Tag */}
-                    <span className={`font-playfair text-2xl lg:text-3xl 2xl:text-4xl font-extralight transition-colors duration-500 ${isActive ? "text-[#C5A880]" : "text-[#C5A880]/30"}`}>
+                    <span className={`font-playfair text-2xl lg:text-3xl xl:text-4xl font-extralight transition-colors duration-500 ${isActive ? "text-[#C5A880]" : "text-[#C5A880]/30"}`}>
                       {item.tag}
                     </span>
 
                     {/* Headline and Expandable Body */}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-4 2xl:gap-5">
+                      <div className="flex items-center gap-4 xl:gap-5">
 
                         {/* Custom Fine-Line Icon Container */}
                         <div className={`transition-all duration-500 ${isActive ? "text-[#C5A880] scale-100 rotate-0" : "text-zinc-600 scale-90 -rotate-6 group-hover:text-zinc-400"}`}>
@@ -211,20 +211,20 @@ export default function DiscoverLensesSection() {
                         </div>
 
                         {/* Heading */}
-                        <h3 className={`font-playfair text-xl md:text-2xl 2xl:text-3xl font-light tracking-wide transition-colors duration-500 ${isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300"}`}>
+                        <h3 className={`font-playfair text-xl md:text-2xl xl:text-3xl font-light tracking-wide transition-colors duration-500 ${isActive ? "text-white" : "text-zinc-500 group-hover:text-zinc-300"}`}>
                           {item.title}
                         </h3>
                       </div>
 
                       {/* Fluid Height Reveal of Luxury Description */}
-                      <div className={`grid transition-all duration-700 ease-in-out ${isActive ? "grid-rows-[1fr] opacity-100 mt-4 2xl:mt-6" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}>
+                      <div className={`grid transition-all duration-700 ease-in-out ${isActive ? "grid-rows-[1fr] opacity-100 mt-4 xl:mt-6" : "grid-rows-[0fr] opacity-0 pointer-events-none"}`}>
                         <div className="overflow-hidden">
-                          <p className="text-sm 2xl:text-base text-zinc-400 font-light leading-relaxed tracking-wide font-sans">
+                          <p className="text-sm xl:text-base text-zinc-400 font-light leading-relaxed tracking-wide font-sans">
                             {item.desc}
                           </p>
 
                           {/* Fine telemetric tag footer inside active state */}
-                          <div className="flex items-center gap-4 mt-6 pt-4 2xl:mt-8 2xl:pt-6 border-t border-white/5 text-[9px] 2xl:text-[10px] font-mono tracking-widest text-[#C5A880]/50 uppercase">
+                          <div className="flex items-center gap-4 mt-6 pt-4 xl:mt-8 xl:pt-6 border-t border-white/5 text-[9px] xl:text-[10px] font-mono tracking-widest text-[#C5A880]/50 uppercase">
                             <span>Acutus Series</span>
                             <span className="w-[1px] h-2 bg-[#C5A880]/20" />
                             <span>Optika Exclusive</span>
@@ -234,8 +234,8 @@ export default function DiscoverLensesSection() {
                     </div>
 
                     {/* Minimal Circular Bullet Active Indicator */}
-                    <div className="mt-2.5 2xl:mt-3">
-                      <span className={`block w-1.5 h-1.5 2xl:w-2 2xl:h-2 rounded-full transition-all duration-700 ${isActive ? "bg-[#C5A880] scale-150 shadow-[0_0_10px_#C5A880]" : "bg-transparent border border-zinc-700"}`} />
+                    <div className="mt-2.5 xl:mt-3">
+                      <span className={`block w-1.5 h-1.5 xl:w-2 xl:h-2 rounded-full transition-all duration-700 ${isActive ? "bg-[#C5A880] scale-150 shadow-[0_0_10px_#C5A880]" : "bg-transparent border border-zinc-700"}`} />
                     </div>
 
                   </div>

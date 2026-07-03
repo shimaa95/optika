@@ -4,6 +4,7 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Navigation } from '@/components/navigation';
 import AssistlyChatWidget from '@/components/AssistlyChatWidget';
+import { CustomCursor } from '@/components/custom-cursor';
 import { ASSISTLY } from '@/lib/assistly';
 
 
@@ -27,15 +28,15 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/icon-light-32x32.png',
+        url: '/icon-ico',
         media: '(prefers-color-scheme: light)',
       },
       {
-        url: '/icon-dark-32x32.png',
+        url: '/icon-ico',
         media: '(prefers-color-scheme: dark)',
       },
       {
-        url: '/icon.svg',
+        url: '/icon.ico',
         type: 'image/svg+xml',
       },
     ],
@@ -66,6 +67,7 @@ export default function RootLayout({
       </head>
       {/* Apply the font variables to the body so they can be accessed anywhere */}
       <body className={`${inter.className}  ${playfair.variable} antialiased`} suppressHydrationWarning>
+        <CustomCursor />
         <Navigation />
         {children}
         <AssistlyChatWidget

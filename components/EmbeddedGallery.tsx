@@ -58,7 +58,7 @@ const GALLERY_PLANES = [
     label: { word: 'ACUTUS DRIVE', pms: 'POLARIZED SUN RX', desc: 'Glare-controlled outdoor lens with faithful colour perception behind the wheel.', color: '#f0fdf4' },
   },
   {
-    textureSrc: '/transition.jpg',
+    textureSrc: '/transition.jpeg',
     fallbackColor: '#f97316',
     accentColor: '#f97316',
     position: { x: -0.9, y: 0 },
@@ -98,7 +98,7 @@ const GALLERY_PLANES = [
     label: { word: 'ACUTUS READ', pms: 'NEAR-VISION BOOST', desc: 'Dedicated enhancement for sustained reading and fine-detail tasks at close range.', color: '#f5f5f4' },
   },
   {
-    textureSrc: '/transition.jpg',
+    textureSrc: '/transition.jpeg',
     fallbackColor: '#94a3b8',
     accentColor: '#94a3b8',
     position: { x: -0.9, y: 0 },

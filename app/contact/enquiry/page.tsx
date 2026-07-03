@@ -6,19 +6,14 @@ import { Menu } from "lucide-react"
 
 export default function EnquiryFormPage() {
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row">
+    <section className="flex flex-col lg:flex-row min-h-[calc(100vh-50px)] xl:min-h-[calc(100vh-75px)]">
       {/* Left Side - Dark Background with Form */}
-      <div className="bg-[#1f1f1f] text-white lg:w-1/2 p-8 md:p-12 lg:p-16 flex flex-col justify-between min-h-screen relative">
+      <div className="bg-[#131313] text-white lg:w-1/2 flex flex-col justify-between pl-6 lg:pl-26 2xl:pl-50 pr-6 lg:pr-20 pt-14 pb-4 relative min-h-[calc(100vh-50px)] xl:min-h-[calc(100vh-75px)]">
 
-        {/* Top Logo */}
-        <div>
-          <Link href="/" className="text-lg font-semibold tracking-wide">
-            Optika
-          </Link>
-        </div>
+
 
         {/* Form Container */}
-        <div className="max-w-[480px] w-full my-auto py-12">
+        <div className="max-w-[480px] w-full my-auto ">
           <h1 className="text-4xl md:text-[42px] lg:text-[48px] font-bold tracking-tight mb-2 uppercase leading-tight">
             ENQUIRY FORM
           </h1>
@@ -131,7 +126,7 @@ export default function EnquiryFormPage() {
       </div>
 
       {/* Right Side - Image Background */}
-      <div className="relative min-h-[45vh] lg:sticky lg:top-0 lg:h-screen lg:w-1/2">
+      <div className="relative h-[40vh] lg:h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] lg:sticky lg:top-[50px] xl:top-[75px] overflow-hidden shrink-0 lg:w-1/2">
         <Image
           src="/form.png"
           alt="Models wearing Optika eyewear"
@@ -140,11 +135,8 @@ export default function EnquiryFormPage() {
           className="object-cover object-center"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
-        {/* Hamburger Menu Icon */}
-        <button className="absolute top-8 right-8 text-white z-10 hover:opacity-70 transition-opacity">
-          <Menu className="w-8 h-8" strokeWidth={1} />
-        </button>
+
       </div>
-    </div>
+    </section>
   )
 }

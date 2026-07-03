@@ -21,5 +21,6 @@ export interface HeroProps {
     sectionClassName?: string;
     overlayClassName?: string;
     showOverlay?: boolean;
+    showScrollIndicator?: boolean;
     theme?: 'light' | 'dark'; TaglineclassaName?: string, size?: HeadlineSize
 }

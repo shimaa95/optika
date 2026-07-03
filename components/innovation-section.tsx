@@ -11,22 +11,22 @@ export function InnovationSection({ onComplete }: { onComplete?: () => void }) {
 
         <div className="reel-stage-copy lg:ml-10 reel-stage-copy--start max-w-2xl relative z-1000">
           <p
-            className="gs-scene-3-sub text-gray-100  2xl:mb-8 mb-4 font-playfair 2xl:text-[20px] text-[16px] font-medium uppercase leading-[1.36] tracking-[0.11em]"
+            className="gs-scene-3-sub text-gray-100  xl:mb-8 mb-4 font-playfair xl:text-[20px] text-[16px] font-medium uppercase leading-[1.36] tracking-[0.11em]"
           >
             Our Value
           </p>
           <h2
-            className="gs-scene-3-title gs-dynamic-text  2xl:mb-8 mb-4 font-inter !text-white 2xl:text-[64px]  lg:text-[48px] text-[32px]  font-bold uppercase leading-[1.2] tracking-[-0.04em]"
+            className="gs-scene-3-title gs-dynamic-text  xl:mb-8 mb-4 font-inter !text-white xl:text-[64px]  lg:text-[48px] text-[32px]  font-bold uppercase leading-[1.2] tracking-[-0.04em]"
 
           >
             Commitment to Excellence
           </h2>
           <p
-            className="gs-scene-3-p text-gray-200 max-w-xl  2xl:mb-16 mb-8 max-w-[40ch] font-inter 2xl:text-[20px] text-[16px] font-medium leading-[1.5] tracking-[0.02em]"
+            className="gs-scene-3-p text-gray-200 max-w-xl  xl:mb-16 mb-8 max-w-[40ch] font-inter xl:text-[20px] text-[16px] font-medium leading-[1.5] tracking-[0.02em]"
             style={{ color: "#d0c4b7" }}
           >
-           To Standout We provide lenses that define standers,
-for those who demand Nothing but Excellence
+            To Standout We provide lenses that define standers,
+            for those who demand Nothing but Excellence
           </p>
           <button
             type="button"

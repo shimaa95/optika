@@ -118,7 +118,7 @@ export function HowItWorks({
         handlePrev={handlePrev}
         goToSlide={goToSlide}
         theme={backgroundColor.toLowerCase() === "#000000" || backgroundColor.toLowerCase() === "#000" || textColor === "text-white" ? "dark" : "light"}
-        className="absolute bottom-4 2xl:bottom-10  left-1/2 transform -translate-x-1/2 w-full max-w-[1300px] z-[100] flex items-center font-sans px-10"
+        className="absolute bottom-4 xl:bottom-10  left-1/2 transform -translate-x-1/2 w-full max-w-[1300px] z-[100] flex items-center font-sans px-10"
       />
     </section >
   );

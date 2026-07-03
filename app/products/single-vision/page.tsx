@@ -1,7 +1,6 @@
 import { MainLayout } from "@/components/main-layout"
 import { LuxuryHero } from "@/components/luxury-hero"
 import { PowerfulLensesSection } from "@/components/transition/powerful-lenses-section"
-import { DiscoverRangeSection } from "@/components/transition/discover-range-section"
 import { BenefitsSection } from "@/components/transition/benefits-section"
 import { OneForAllLightsBanner } from "@/components/transition/one-for-all-lights-banner"
 import { SingleVisionSection } from "@/components/single-vision-section"
@@ -9,6 +8,9 @@ import { PerformanceSection } from "@/components/performance-section"
 import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import SplitLayoutHero from "@/components/SplitLayoutHero"
+import { DiscoverRangeSection } from "@/components/transition/DiscoverRangeSection"
+import { Footer } from "@/components/footer"
+import { SolutionsGridSection } from "@/components/SolutionsDetailSection"
 
 const transitionFaqs = [
     {
@@ -47,7 +49,7 @@ const transitionFaqs = [
 
 export default function TransitionPage() {
     return (
-        <MainLayout>
+        <>
             <LuxuryHero
                 imageSrc="/eye.jpg"
                 imageAlt="Cinematic close-up of an eye representing Transitions light intelligent lenses"
@@ -67,18 +69,16 @@ export default function TransitionPage() {
                 description="The world's #1 photochromic lenses"
             />
 
-            <PowerfulLensesSection />
-            <DiscoverRangeSection imageSrc="/lefteye.jpg" />
+            <PowerfulLensesSection /> <DiscoverRangeSection imageSrc="/acutusplus.jpeg" />
             <BenefitsSection />
             <OneForAllLightsBanner />
 
-
-            <PerformanceSection />
+            <SolutionsGridSection />
             <FaqSection
                 faqs={transitionFaqs}
                 subheading="Find Answers to Questions about the Transitions Lenses"
             />
-            <ContactSection />
-        </MainLayout>
+            <ContactSection /> <Footer />
+        </>
     )
 }

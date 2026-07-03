@@ -39,7 +39,7 @@ export function TransitionSection() {
 
             {/* CTA Button */}
             <button className="bg-[#6b21a8] text-white text-xs py-2.5 px-5 flex items-center gap-2 hover:bg-[#581c87] transition-colors">
-              <ArrowRight className="w-3 h-3" />
+              <ArrowRight className="h-4 w-4" />
               <span>Lens Specification</span>
             </button>
           </div>

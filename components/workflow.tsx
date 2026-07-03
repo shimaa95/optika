@@ -21,8 +21,8 @@ export function WorkflowSection() {
                 </div>
 
                 {/* Right Side - Content Area */}
-                <div className="flex flex-col items-center justify-center bg-[#F5F5F5] px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 lg:py-0 xl:px-20 2xl:px-28">
-                    <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl 2xl:max-w-2xl text-left">
+                <div className="flex flex-col items-center justify-center bg-[#F5F5F5] px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 lg:py-0 xl:px-20 xl:px-28">
+                    <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl xl:max-w-2xl text-left">
                         {/* Tagline */}
                         <p
                             className="mb-6 sm:mb-6 lg:mb-6 text-black/70 text-[9px] sm:text-[10px] lg:text-xs tracking-[0.11em] leading-[135%] font-playfair font-normal uppercase"
@@ -56,7 +56,7 @@ export function WorkflowSection() {
                             style={{ fontFamily: "var(--font-inter)" }}
                         >
                             <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
-                                <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+                                <ArrowRight className="h-4 w-4" />
                             </span>
                             <span>Contact Us</span>
                         </button>

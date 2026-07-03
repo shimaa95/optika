@@ -40,12 +40,14 @@ export function NextProductFooter({
         <div className="absolute inset-0 bg-black/60" aria-hidden />
         <AnimateInView className="relative z-10 flex min-h-[clamp(320px,48vw,520px)] flex-col items-center justify-center px-6 py-20 text-center sm:px-8">
           <p className="text-[14px] tracking-[0.2em] text-white">— {sequenceNumber} —</p>
-          <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] font-bold uppercase leading-[1.05] tracking-[0.03em] text-white">
-            {displayName}
-          </h2>
-          <p className="mt-2 text-[12px] font-medium uppercase tracking-[0.22em] text-white sm:text-[13px]">
-            {displaySubtitle}
-          </p>
+          <Link href={discoverHref} className="flex flex-col items-center group">
+            <h2 className="mt-4 text-[clamp(1.75rem,4vw,2.75rem)] font-bold uppercase leading-[1.05] tracking-[0.03em] text-white transition-opacity group-hover:opacity-75">
+              {displayName}
+            </h2>
+            <p className="mt-2 text-[12px] font-medium uppercase tracking-[0.22em] text-white transition-opacity group-hover:opacity-75 sm:text-[13px]">
+              {displaySubtitle}
+            </p>
+          </Link>
           <Link
             href={discoverHref}
             className="mt-6 text-[13px] text-white underline underline-offset-4 transition-opacity hover:opacity-75 sm:text-[14px]"

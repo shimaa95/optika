@@ -29,7 +29,7 @@ export function ContactGrid({ contact }: ContactGridProps) {
             </div>
             <Link
               href={column.href}
-              className="mt-8 inline-flex w-fit items-center gap-3 bg-black px-6 py-3 text-[13px] font-medium text-white transition-opacity hover:opacity-85 sm:text-[14px]"
+              className="mt-8 inline-flex w-fit items-center justify-center gap-3 bg-black border border-transparent px-[28px] py-[14px] text-[14px] font-medium tracking-[0.01em] text-white rounded-[4px] transition-all duration-300 ease-in-out hover:bg-transparent hover:text-black hover:border-black/80"
             >
               {column.buttonLabel}
               <ArrowIcon />

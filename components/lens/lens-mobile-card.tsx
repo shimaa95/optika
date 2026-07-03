@@ -4,6 +4,8 @@ import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LensCategory } from "@/lib/lens-categories.config";
 
+import { PrimaryButton } from "../PrimaryButton";
+
 interface LensMobileCardProps {
   category: LensCategory;
   transformStyle: React.CSSProperties;
@@ -72,15 +74,13 @@ export function LensMobileCard({ category, transformStyle, index, isCompactTitle
             {category.description}
           </p>
           {category.link && (
-            <Link
-              href={category.link}
-              className="group mt-8 flex items-center gap-3 text-xs font-semibold tracking-widest uppercase text-white/60 transition-colors hover:text-white"
+            <PrimaryButton 
+              onClick={category.link} 
+              bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
+              className="mt-8"
             >
-              <span className="flex h-8 w-8 items-center justify-center bg-white/5 text-white border border-white/10 transition-all group-hover:bg-white group-hover:text-[#111111]">
-                <ArrowRight className="h-4 w-4" />
-              </span>
-              <span>View Lenses</span>
-            </Link>
+              View Lenses
+            </PrimaryButton>
           )}
         </div>
       </div>

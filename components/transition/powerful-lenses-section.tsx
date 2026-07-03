@@ -1,13 +1,28 @@
-export function PowerfulLensesSection() {
+import React from 'react';
+
+interface PowerfulLensesSectionProps {
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+}
+
+export function PowerfulLensesSection({
+  title = (
+    <>
+      Engineered for modern visual performance,
+      <br />
+      Acutus Single Vision
+    </>
+  ),
+  description = "Acutus Single Vision lenses deliver exceptional clarity, precise focus, and seamless visual comfort throughout the day.",
+}: PowerfulLensesSectionProps) {
   return (
-    <section className="bg-[#f5f5f5] w-full py-16  lg:py-32">
-      <div className="mx-auto max-w-3xl px-6 text-center">
-        <h2 className="text-2xl font-bold uppercase tracking-tight text-black  lg:text-4xl 2xl:text-5xl">
-          Powerful Lenses
+    <section className="w-full pt-16 lg:pt-24 bg-white">
+      <div className="w-full px-6 lg:px-26 xl:px-50">
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 lg:text-4xl xl:text-5xl leading-tight">
+          {title}
         </h2>
-        <p className="mx-auto 2xl:mt-8 mt-4 max-w-lg text-xs leading-relaxed text-black/60 lg:text-[16px] 2xl:text-[20px]">
-          Optika provide to it clients and partners the exceptional photochromic lenses. To experience the
-          convenience power to adapt to changing light conditions.
+        <p className="mt-4 xl:mt-8 max-w-lg text-sm md:text-base leading-relaxed text-gray-500  xl:text-lg">
+          {description}
         </p>
       </div>
     </section>

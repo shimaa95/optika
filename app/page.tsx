@@ -7,17 +7,19 @@ import { ReelIntro } from "@/components/reel-intro";
 import { probeWebGL } from "@/lib/webgl-capable";
 import { MainLayout } from "@/components/main-layout";
 import { HeroSection } from "@/components/hero-section";
-import { AboutSection } from "@/components/about-section";
-import { DifferenceSection } from "@/components/difference-section";
-import { PartnersSection } from "@/components/partners-section";
+
 import { useStickySections } from "@/hooks/use-sticky-sections";
 import { faqs } from "@/components/faq-section";
 import { Skeleton } from "@/components/ui/skeleton";
-
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { BackgroundDecor } from '@/components/optika/background-decor'
+import { WhatWeDo } from '@/components/optika/what-we-do'
+import { GroupBanner } from '@/components/optika/group-banner'
+import { PartnersSection } from '@/components/optika/partners-section'
 const SectionSkeleton = () => <Skeleton className="w-full h-[50vh] rounded-none bg-zinc-900/50" />;
 
 const heroSectionConfig = {
-  imageSrc: "/hero.jpg",
+  imageSrc: "/Lens-1.png",
   imageAlt: "Premium optical lenses showcasing modern eyecare technology",
   imagePosition: "50% 25%",
   eyebrowText: "Exceptional Optical Solutions",
@@ -33,13 +35,10 @@ const heroSectionConfig = {
     </>
   ),
   description: "Optika delivers to you Premium Digital Lenses and Solutions manufactured to the highest standards.",
-  ctaText: "Learn More",
-  ctaHref: "#about",
+
   alignLeft: false,
-
+  showScrollIndicator: true,
 };
-
-
 
 const LensCategoriesSection = dynamic(() =>
   import("@/components/lens-categories-section").then(
@@ -67,6 +66,7 @@ const ContactSection = dynamic(() =>
   import("@/components/contact-section").then((mod) => mod.ContactSection),
   { loading: SectionSkeleton }
 );
+
 export default function Home() {
   const [step, setStep] = useState<
     "checking" | "loader-only" | "reel" | "fading-out" | "fading-in" | "hero"
@@ -96,15 +96,12 @@ export default function Home() {
   }, []);
 
   const handleComplete = () => {
-    // 1. Fade the screen to black
     setStep("fading-out");
 
     setTimeout(() => {
-      // 2. While screen is black, swap components and reset scroll
       window.scrollTo(0, 0);
       setStep("fading-in");
 
-      // 3. Very brief delay to allow React to mount the Hero DOM, then reveal
       setTimeout(() => {
         setStep("hero");
       }, 50);
@@ -116,7 +113,6 @@ export default function Home() {
       {step !== "hero" && (
         <style dangerouslySetInnerHTML={{ __html: `header { display: none !important; }` }} />
       )}
-      {/* Cinematic Fade Overlay */}
       <div
         className={`pointer-events-none fixed inset-0 z-[100] bg-black transition-opacity
           ${step === "fading-out" || step === "fading-in" || step === "checking" ? "opacity-100" : "opacity-0"}
@@ -127,21 +123,36 @@ export default function Home() {
         <ReelIntro onComplete={handleComplete} />
       )}
 
-      {/* {step === "loader-only" && <Loader onComplete={() => setStep("hero")} />} */}
-
       {(step === "loader-only" || step === "fading-in" || step === "hero") && (
-        <MainLayout>
-          <HeroSection config={heroSectionConfig} />
-          <AboutSection />
-          <DifferenceSection />
-          <PartnersSection />
-          <LensCategoriesSection />
+        <SmoothScroll>
+          <MainLayout>
+            <HeroSection config={heroSectionConfig} />
 
-          <Solutions className="px-6 lg:px-26 2xl:px-50" />
-          <PerformanceSection />
-          <FaqSection faqs={faqs} />
-          <ContactSection />
-        </MainLayout>
+            <main className="relative min-h-screen overflow-hidden bg-black text-white">
+              <BackgroundDecor />
+
+              <div className="relative z-10 flex flex-col gap-20 lg:gap-28 ">
+                {/* Hero section breaks flush to the top-left corner */}
+                <WhatWeDo />
+
+                {/* Remaining sections keep their padding (right padding clears the wordmark) */}
+                <div className="flex flex-col gap-20  ">
+                  <GroupBanner />
+                  <PartnersSection />
+                </div>
+              </div>
+            </main>
+            <LensCategoriesSection />
+
+
+
+
+            <Solutions className="px-6 lg:px-26 xl:px-50" />
+            <PerformanceSection />
+            <FaqSection faqs={faqs} />
+            <ContactSection />
+          </MainLayout>
+        </SmoothScroll>
       )}
     </>
   );

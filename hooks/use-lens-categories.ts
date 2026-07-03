@@ -6,6 +6,10 @@ import { STACK_OFFSETS, VISIBLE_BEHIND, type LensCategory } from "@/lib/lens-cat
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
+ScrollTrigger.config({
+  ignoreMobileResize: true,
+});
+
 export function useLensCategories(categories: LensCategory[]) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [hasCompletedCarousel, setHasCompletedCarousel] = useState(false);
@@ -28,30 +32,6 @@ export function useLensCategories(categories: LensCategory[]) {
       return next;
     });
   }, [total]);
-
-  // Handle scroll locking on mobile/tablet until carousel is completed
-  useEffect(() => {
-    const handleWheel = (e: WheelEvent) => {
-      if (window.innerWidth >= 1024) return;
-      if (hasCompletedCarousel) return;
-      if (!sectionRef.current) return;
-
-      const rect = sectionRef.current.getBoundingClientRect();
-      const isInSection = rect.top <= 100 && rect.bottom >= window.innerHeight / 2;
-
-      if (isInSection && !hasCompletedCarousel) {
-        e.preventDefault();
-        if (e.deltaY > 0) {
-          goToNext();
-        } else if (e.deltaY < 0) {
-          goToPrevious();
-        }
-      }
-    };
-
-    window.addEventListener("wheel", handleWheel, { passive: false });
-    return () => window.removeEventListener("wheel", handleWheel);
-  }, [hasCompletedCarousel, goToNext, goToPrevious]);
 
   useGSAP(
     () => {

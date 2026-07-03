@@ -201,11 +201,11 @@ export default function AssistlyChatWidget({
         <div
           style={{
             position: "fixed",
-            right: 0,
-            bottom: 0,
+            right: 40,
+            bottom: 30,
             zIndex: 10000,
-            width: 200,
-            height: 200,
+            width: 50,
+            height: 50,
             pointerEvents: "none",
           }}
         >
@@ -231,10 +231,10 @@ export default function AssistlyChatWidget({
             }}
           >
             <Image
-              src="/chatbot-bubble.png"
+              src="/1Chat.svg"
               alt="Chat with us"
-              width={200}
-              height={200}
+              width={50}
+              height={50}
               unoptimized
               style={{
                 objectFit: "contain",

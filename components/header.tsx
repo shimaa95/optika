@@ -24,7 +24,7 @@ export function Header({ className }: { className?: string }) {
           </Link>
         </nav>
 
-        <Link href="/partners" className="text-sm transition-opacity hover:opacity-70">
+        <Link href="/https://rx.optikalenses.com/auth" className="text-sm transition-opacity hover:opacity-70">
           / For Partners
         </Link>
       </div>

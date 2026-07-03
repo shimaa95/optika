@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export function PerformanceSection() {
   return (
-    <section className="relative h-[50vh] min-h-[50vh]  lg:min-h-screen lg:max-h-screen w-full overflow-hidden flex items-center justify-center bg-black">
+    <section className="relative h-[60vh]   w-full overflow-hidden flex items-center justify-center bg-black">
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0">
         <Image
@@ -20,7 +20,7 @@ export function PerformanceSection() {
       <div className="hidden lg:block relative z-10 w-full max-w-[30%] lg:max-w-[60%]  text-center   px-8">
         <h2
           className="text-white font-inter  uppercase tracking-normal font-inter 
-                     text-[20px] sm:text-[35px] md:text-[40px] lg:text-[45px] xl:text-[50px] 2xl:text-[55px]  font-bold
+                     text-[20px] sm:text-[35px] md:text-[40px] lg:text-[45px] xl:text-[50px] xl:text-[55px]  font-bold
                      leading-[.1] md:leading-[1.05]"
           style={{ textShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
         >

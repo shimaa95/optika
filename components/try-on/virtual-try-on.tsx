@@ -12,19 +12,19 @@ export function VirtualTryOn() {
   const swatch = getSwatch(swatchId)
 
   return (
-    <div className="vto-root grid min-h-screen grid-cols-1 bg-white lg:grid-cols-2">
-      <div className="relative min-h-[45vh] lg:sticky lg:top-0 lg:h-screen">
+    <div className="vto-root flex flex-col bg-white px-6 lg:pl-26 xl:pl-50 lg:flex-row h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] lg:overflow-hidden">
+      <div className="relative min-h-[45vh] w-full lg:w-1/2 lg:h-full shrink-0">
         <Image
-          src="/model1.png"
+          src="/tryon.jpeg"
           alt="Model wearing Optika eyewear"
           fill
           priority
-          className="object-cover object-center"
+          className="object-cover  object-center"
           sizes="(max-width: 1024px) 100vw, 50vw"
         />
       </div>
 
-      <div className="flex flex-col justify-center px-6 py-10 sm:px-10 sm:py-12 lg:px-14 lg:py-16 xl:px-16">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center lg:justify-start px-6 pt-5  pb-0  xl:px-16 lg:h-full lg:overflow-hidden">
         <div className="mx-auto w-full max-w-[440px]">
           <CameraContainer swatch={swatch} className="h-[60vh] w-full" showFaceBadge />
 
@@ -34,7 +34,7 @@ export function VirtualTryOn() {
             selectedSwatch={swatch}
           />
 
-          <Link
+          {/* <Link
             href="/products"
             className="vto-serif mt-10 block text-center text-[13px] text-neutral-400 underline-offset-2 transition-colors hover:text-neutral-600 hover:underline"
           >
@@ -58,7 +58,7 @@ export function VirtualTryOn() {
             >
               Learn More
             </Link>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

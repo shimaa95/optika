@@ -2,6 +2,7 @@ import Description from "@/components/Description";
 import Tagline from "@/components/Tagline";
 import Headline from "@/components/Headline";
 import Link from "next/link";
+import Image from "next/image";
 import { SolutionFeatureCard } from "./solution-feature-card";
 import type { LensCategory } from "@/lib/lens-categories.config";
 
@@ -42,6 +43,8 @@ interface SolutionsIntroSectionProps {
   description?: string;
   ctaText?: string;
   ctaHref?: string;
+  cards?: boolean;
+  bottomImage?: boolean;
 }
 
 export function SolutionsIntroSection({
@@ -50,11 +53,13 @@ export function SolutionsIntroSection({
   description = "Optika equips clinics and independent stores with personalised lenses and an ordering flow designed to reduce remakes and improve patient outcomes.",
   ctaText = "Download your Copy",
   ctaHref = "#",
+  cards = true,
+  bottomImage = false,
 }: SolutionsIntroSectionProps) {
   return (
     <section
       aria-label="Solutions introduction"
-      className="w-full bg-[#F3F3F3] px-6 lg:px-26 2xl:px-50 pt-16 pb-20 lg:pt-24 lg:pb-28 flex flex-col items-center text-center"
+      className="w-full   bg-[#f4f6f8] px-6 lg:px-26 xl:px-50 pt-16  lg:pt-24  flex flex-col items-center text-center"
     >
       {/* Tagline */}
       {tagline && (
@@ -81,13 +86,29 @@ export function SolutionsIntroSection({
           className="text-center mx-auto leading-[1.8]"
         />
       )}
-
-      {/* CTA link */}
-      {ctaText && ctaHref && (
+      {!cards && !bottomImage && ctaText && ctaHref && (
         <Link
           href={ctaHref}
           className="
-            mt-2 mb-14 lg:mb-20 inline-flex items-center gap-2
+            mt-2 mb-16 inline-flex items-center gap-2
+            font-inter text-[12px] lg:text-[13px]
+            font-semibold tracking-[0.12em] uppercase
+            text-[#1a1a1a]
+            border-b border-[#1a1a1a]/40 pb-0.5
+            transition-all duration-300
+            hover:border-[#1a1a1a] hover:opacity-70
+          "
+          aria-label={ctaText}
+        >
+          {ctaText}
+        </Link>
+      )}
+      {/* CTA link */}
+      {cards || bottomImage && ctaText && ctaHref && (
+        <Link
+          href={ctaHref}
+          className="
+            mt-2 inline-flex items-center gap-2
             font-inter text-[12px] lg:text-[13px]
             font-semibold tracking-[0.12em] uppercase
             text-[#1a1a1a]
@@ -101,12 +122,25 @@ export function SolutionsIntroSection({
         </Link>
       )}
 
-      {/* ── 3-column feature cards ──────────────── */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-full">
-        {SOLUTION_CARDS.map((card) => (
-          <SolutionFeatureCard key={card.id} category={card} />
-        ))}
-      </div>
+      {cards && (
+        <div className="grid mt-14 pb-20 lg:pb-28 lg:mt-20 grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-full">
+          {SOLUTION_CARDS.map((card) => (
+            <SolutionFeatureCard key={card.id} category={card} />
+          ))}
+        </div>
+      )}
+
+      {bottomImage && (
+        <div className="mt-16 w-full flex justify-center pointer-events-none">
+          <Image
+            src="/white.svg"
+            alt="1WRK 920"
+            width={920}
+            height={200}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+      )}
     </section>
   );
 }

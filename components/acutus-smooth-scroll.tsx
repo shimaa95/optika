@@ -1,6 +1,8 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { cardsData } from '@/app/products/acutus/series-section';
@@ -15,61 +17,62 @@ export function AcutusSmoothScroll() {
   useEffect(() => {
     if (!containerRef.current || !scrollWrapperRef.current) return;
 
-    const container = containerRef.current;
-    const wrapper = scrollWrapperRef.current;
-    const imgContainers = gsap.utils.toArray('.gallery__item-img') as HTMLElement[];
-    const images = gsap.utils.toArray('.gallery__item-imginner') as HTMLElement[];
-    const texts = gsap.utils.toArray('.gallery__text-inner') as HTMLElement[];
-    const numbers = gsap.utils.toArray('.gallery__item-number') as HTMLElement[];
-    const titles = gsap.utils.toArray('.gallery__item-title') as HTMLElement[];
+    const ctx = gsap.context(() => {
+      const container = containerRef.current;
+      const wrapper = scrollWrapperRef.current;
+      if (!container || !wrapper) return;
 
-    // Total horizontal scroll distance
-    const totalScrollWidth = wrapper.scrollWidth - window.innerWidth;
+      // Select the previous section (SolutionsIntroSection) to pin it as well
+      const previousSection = container.previousElementSibling as HTMLElement;
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: container,
-        pin: true,
-        scrub: 0.3,
-        start: 'top top',
-        end: () => '+=' + wrapper.scrollWidth * 0.28,
-      },
-    });
+      const imgContainers = gsap.utils.toArray('.gallery__item-img') as HTMLElement[];
+      const images = gsap.utils.toArray('.gallery__item-imginner') as HTMLElement[];
+      const texts = gsap.utils.toArray('.gallery__text-inner') as HTMLElement[];
+      const numbers = gsap.utils.toArray('.gallery__item-number') as HTMLElement[];
+      const titles = gsap.utils.toArray('.gallery__item-title') as HTMLElement[];
 
-    tl.to(wrapper, { x: -totalScrollWidth, ease: 'none' });
+      // Make scroll amount a function for responsiveness
+      const getScrollAmount = () => wrapper.scrollWidth - window.innerWidth;
 
-    // Parallax on images
-    images.forEach((img, i) => {
-      const trigger = imgContainers[i];
-      gsap.fromTo(
-        img,
-        { x: '-5vw' },
-        {
-          x: '5vw',
-          ease: 'none',
-          scrollTrigger: {
-            trigger: trigger,
-            containerAnimation: tl,
-            start: 'left right',
-            end: 'right left',
-            scrub: true,
-          },
-        }
-      );
-    });
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: container,
+          pin: true,
+          scrub: 0.3,
+          start: 'top 18%',
+          end: () => '+=' + getScrollAmount(),
+          invalidateOnRefresh: true,
+        },
+      });
 
-    const setupParallax = (elements: HTMLElement[], multiplier: number) => {
-      elements.forEach((el) => {
-        const speed = parseFloat(el.getAttribute('data-scroll-speed') || '1');
-        const distance = window.innerWidth * 0.03 * speed * multiplier;
+      // Pin the previous section so it doesn't scroll out of view (leaving a black gap)
+      if (previousSection) {
+        ScrollTrigger.create({
+          trigger: container,
+          start: 'top 18%',
+          end: () => '+=' + getScrollAmount(),
+          pin: previousSection,
+          pinSpacing: false,
+          invalidateOnRefresh: true,
+        });
+      }
+
+      tl.to(wrapper, {
+        x: () => -getScrollAmount(),
+        ease: 'none'
+      });
+
+      // Parallax on images
+      images.forEach((img, i) => {
+        const trigger = imgContainers[i];
         gsap.fromTo(
-          el,
-          { x: distance },
+          img,
+          { x: '-5vw' },
           {
-            x: -distance,
+            x: '5vw',
             ease: 'none',
             scrollTrigger: {
-              trigger: el,
+              trigger: trigger,
               containerAnimation: tl,
               start: 'left right',
               end: 'right left',
@@ -78,21 +81,42 @@ export function AcutusSmoothScroll() {
           }
         );
       });
-    };
 
-    setupParallax(texts, 2);
-    setupParallax(titles, 1.0);
-    setupParallax(numbers, 1.2);
+      const setupParallax = (elements: HTMLElement[], multiplier: number) => {
+        elements.forEach((el) => {
+          const speed = parseFloat(el.getAttribute('data-scroll-speed') || '1');
 
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
+          gsap.fromTo(
+            el,
+            { x: () => window.innerWidth * 0.03 * speed * multiplier },
+            {
+              x: () => -(window.innerWidth * 0.03 * speed * multiplier),
+              ease: 'none',
+              scrollTrigger: {
+                trigger: el,
+                containerAnimation: tl,
+                start: 'left right',
+                end: 'right left',
+                scrub: true,
+              },
+            }
+          );
+        });
+      };
+
+      setupParallax(texts, 2);
+      setupParallax(titles, 1.0);
+      setupParallax(numbers, 1.2);
+
+    }, containerRef); // Scope GSAP selector to the container
+
+    return () => ctx.revert(); // Proper cleanup for React Strict Mode
   }, []);
 
   return (
     <section
       ref={containerRef}
-      className="acutus-scroll-section h-screen w-full relative overflow-hidden"
+      className="acutus-scroll-section w-full relative overflow-hidden"
     >
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="rotate h-full">
@@ -100,10 +124,21 @@ export function AcutusSmoothScroll() {
             <div className="gallery">
 
               {/* ── Outline text — beginning of the gallery ── */}
-              <div className="gallery__text">
-                <span className="gallery__text-inner" data-scroll-speed="1">Precision</span>
-                <span className="gallery__text-inner" data-scroll-speed="3">Optics</span>
-              </div>
+              {/* <div className="gallery__text">
+                <Image
+                  src="/MARK1920.svg"
+                  alt="Acutus"
+                  width={600}
+                  height={400}
+                  className="object-contain"
+                  style={{
+                    height: 'calc(18vw * 2 * 0.82)',
+                    width: '100vw',
+                    flexShrink: 0,
+                  }}
+                  priority
+                />
+              </div> */}
 
               {cardsData.map((card, idx) => {
                 // "ACUTUS SMART" → "Auctus Smart"
@@ -161,16 +196,22 @@ export function AcutusSmoothScroll() {
                         </div>
 
                         {/* CTA */}
-                        <a className="gallery__item-link">
-                          View Lens Details
-                        </a>
+                        {(() => {
+                          const slug = card.title.toLowerCase().replace(/\s+/g, '-');
+                          const finalSlug = slug === 'acutus-plus' ? 'actus-due-plus' : slug;
+                          return (
+                            <Link href={`/products/acutus/${finalSlug}`} className="gallery__item-link">
+                              View Lens Details
+                            </Link>
+                          );
+                        })()}
 
                       </figcaption>
 
                       {/* RIGHT: image panel */}
-                      <div className="gallery__item-img">
+                      <div className="gallery__item-img  pb-20 ">
                         <div
-                          className="gallery__item-imginner"
+                          className="gallery__item-imginner aspect-4/5 "
                           style={{ backgroundImage: `url(${card.image})` }}
                         />
                       </div>

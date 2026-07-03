@@ -1,16 +1,18 @@
 "use client"
 
 import Image from "next/image"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
-const slides = [
+const tabs = [
   {
     id: "smooth-optics",
     label: "SMOOTH OPTICS",
     logo: "/46.png",
     image: "/builtin.jpg",
-    characteristics: "EyePower is an extension of the EyeView principles, where the unique and comprehensive raytracing analysis considers the patient’s parameters and individual’s choice of frame (back vertex distance, pantoscopic tilt and face wrap) to compensate the prescription.",
-    functionality: "EyePower provides an excellent visual experience, sharper vision and higher resolution thanks to the maximum individualization of the wearer's parameters. This built-in technology combines the demands of individual vision needs and everyday habits.",
+    characteristics:
+      "EyePower is an extension of the EyeView principles, where the unique and comprehensive raytracing analysis considers the patient's parameters and individual's choice of frame (back vertex distance, pantoscopic tilt and face wrap) to compensate the prescription.",
+    functionality:
+      "EyePower provides an excellent visual experience, sharper vision and higher resolution thanks to the maximum individualization of the wearer's parameters. This built-in technology combines the demands of individual vision needs and everyday habits.",
     benefits: [
       "The best solution for everyday needs.",
       "Ideal for sports and fashion wrap frames.",
@@ -22,8 +24,10 @@ const slides = [
     label: "CUSTOM FORM",
     logo: "/46.png",
     image: "/custom-form.png",
-    characteristics: "Custom Form lenses are tailored to your unique prescription requirements, using advanced surfacing technology to provide optimal visual clarity across the entire lens surface.",
-    functionality: "Custom Form technology analyses frame geometry and facial parameters to produce lenses with personalised curvature, delivering superior optics and minimised aberrations.",
+    characteristics:
+      "Custom Form lenses are tailored to your unique prescription requirements, using advanced surfacing technology to provide optimal visual clarity across the entire lens surface.",
+    functionality:
+      "Custom Form technology analyses frame geometry and facial parameters to produce lenses with personalised curvature, delivering superior optics and minimised aberrations.",
     benefits: [
       "Precision-surfaced for your exact prescription.",
       "Reduced peripheral distortion.",
@@ -35,8 +39,10 @@ const slides = [
     label: "EYE VIEW",
     logo: "/46.png",
     image: "/eye-view.png",
-    characteristics: "EyeView technology expands the usable visual field by mapping the relationship between the eye and lens in real time, ensuring consistent clarity at every gaze angle.",
-    functionality: "By combining biometric data with frame measurements, EyeView calculates the optimal optical design that maintains sharpness through the entire field of view.",
+    characteristics:
+      "EyeView technology expands the usable visual field by mapping the relationship between the eye and lens in real time, ensuring consistent clarity at every gaze angle.",
+    functionality:
+      "By combining biometric data with frame measurements, EyeView calculates the optimal optical design that maintains sharpness through the entire field of view.",
     benefits: [
       "Wider, distortion-free field of vision.",
       "Seamless transition across gaze angles.",
@@ -48,8 +54,10 @@ const slides = [
     label: "EYE POWER",
     logo: "/46.png",
     image: "/eye-power.png",
-    characteristics: "EyePower harnesses advanced raytracing to model every patient's unique visual pathway, compensating for high prescriptions with unmatched accuracy.",
-    functionality: "Engineered for high-power prescriptions, EyePower technology reduces unwanted prismatic effects and delivers razor-sharp central vision even at extreme powers.",
+    characteristics:
+      "EyePower harnesses advanced raytracing to model every patient's unique visual pathway, compensating for high prescriptions with unmatched accuracy.",
+    functionality:
+      "Engineered for high-power prescriptions, EyePower technology reduces unwanted prismatic effects and delivers razor-sharp central vision even at extreme powers.",
     benefits: [
       "Ideal for high prescriptions.",
       "Minimises magnification and swim effects.",
@@ -62,131 +70,138 @@ export function BuiltInTechnologies() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
-  // Auto-play slides every 5 seconds
-  useEffect(() => {
-    const timer = setInterval(() => {
-      handleNext()
-    }, 5000)
-    return () => clearInterval(timer)
-  }, [activeIndex])
-
-  const handleNext = () => {
-    setIsTransitioning(true)
-    setTimeout(() => {
-      setActiveIndex((prev) => (prev + 1) % slides.length)
-      setIsTransitioning(false)
-    }, 300)
-  }
-
-  const selectSlide = (index: number) => {
+  const selectTab = (index: number) => {
     if (index === activeIndex) return
     setIsTransitioning(true)
     setTimeout(() => {
       setActiveIndex(index)
       setIsTransitioning(false)
-    }, 300)
+    }, 200)
   }
 
-  const currentSlide = slides[activeIndex]
+  const current = tabs[activeIndex]
 
   return (
-    <section className="w-full bg-[#f4f6f8] py-16  ">
-      {/* Centered Top Headers */}
+    <section className="w-full bg-[#f4f6f8] py-16">
+      {/* Section heading */}
       <div className="text-center mb-10 md:mb-16">
-        <h2 className="text-[40px] 2xl:text-[64px] font-bold text-black tracking-tight font-inter">
+        <h2 className="text-[40px] xl:text-[64px] font-bold text-black tracking-tight font-inter">
           Built-In Technologies
         </h2>
-        <p className="text-[16px] 2xl:text-[20px]  text-black mt-4 2xl:mt-8 font-inter">
-          Optika equips lenses with and advanced Built-In technologies
+        <p className="text-[16px] xl:text-[20px] text-black mt-4 xl:mt-8 font-inter">
+          Optika equips lenses with advanced Built-In technologies
         </p>
       </div>
 
-      {/* Main Card Container */}
-      <div className="mx-auto bg-white lg:mx-26 border border-gray-100 overflow-hidden 2xl:mx-50 flex flex-col md:flex-row min-h-[560px] md:min-h-[680px]">
-        {/* Left Side: Copy */}
-        <div className="flex-1 p-8  md:p-20 flex flex-col bg-white text-black">
+      {/* Card + Tabs container */}
+      <div className="mx-auto lg:mx-26 xl:mx-50 border border-gray-100 overflow-hidden bg-white">
 
-          {/* Dynamic Content Area with Fade Animation */}
-          <div className={`flex flex-col h-full transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-
-            {/* Logo at the top */}
-            {currentSlide.logo && (
-              <div className="mb-8 ">
-                <Image
-                  src={currentSlide.logo}
-                  alt={currentSlide.label}
-                  width={250}
-                  height={250}
-                  className="h-10 md:h-12 sm:ml-[-25px]  w-52 object-contain pointer-events-none"
-                />
-              </div>
-            )}
-
-            {/* Characteristics */}
-            <div className="mb-8">
-              <h4 className="text-[20px] font-bold font-inter text-black mb-2">
-                Characteristics
-              </h4>
-              <p className="text-gray-600 text-[16px]  2xl:text-[20px] leading-relaxed font-inter max-w-sm">
-                {currentSlide.characteristics}
-              </p>
-            </div>
-
-            {/* Functionality */}
-            <div className="mb-8">
-              <h4 className="text-[20px] font-bold font-inter text-black mb-2">
-                Functionality
-              </h4>
-              <p className="text-gray-600 text-[16px]  2xl:text-[20px] leading-relaxed font-inter max-w-sm">
-                {currentSlide.functionality}
-              </p>
-            </div>
-
-            {/* Benefits */}
-            <div>
-              <h4 className="text-[20px] font-bold font-inter text-black mb-2">
-                Benefits
-              </h4>
-              <ul className="list-disc list-inside space-y-1">
-                {currentSlide.benefits.map((b, i) => (
-                  <li key={i} className="text-gray-600 text-[16px]  2xl:text-[20px] leading-relaxed font-inter">
-                    {b}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        {/* ── Tab Bar ── */}
+        <div className="flex justify-center border-b border-gray-200 overflow-x-auto scrollbar-none">
+          {tabs.map((tab, idx) => (
+            <button
+              key={tab.id}
+              onClick={() => selectTab(idx)}
+              className={`
+                relative shrink-0 px-8 py-5 text-[13px] font-semibold tracking-[0.14em] uppercase
+                font-inter transition-colors duration-200 focus:outline-none
+                ${idx === activeIndex
+                  ? "text-black"
+                  : "text-black/40 hover:text-black/70"
+                }
+              `}
+              aria-selected={idx === activeIndex}
+              role="tab"
+            >
+              {tab.label}
+              {/* Active underline */}
+              <span
+                className={`
+                  absolute bottom-0 left-0 w-full h-[2px] bg-black
+                  transition-opacity duration-200
+                  ${idx === activeIndex ? "opacity-100" : "opacity-0"}
+                `}
+              />
+            </button>
+          ))}
         </div>
 
-        {/* Right Side: Image */}
-        <div className="flex-1 relative overflow-hidden min-h-[300px] md:min-h-auto">
-          <div className={`w-full h-full transition-opacity duration-300 ${isTransitioning ? "opacity-0" : "opacity-100"}`}>
-            <img
-              src={currentSlide.image}
-              alt={currentSlide.label}
-              className="w-full h-full object-cover pointer-events-none"
-            />
-          </div>
-        </div>
-      </div>
+        {/* ── Tab Panel ── */}
+        <div className="flex flex-col md:flex-row min-h-[500px] xl:min-h-[620px]">
 
-      {/* Pagination Indicators at Bottom */}
-      <div className="mt-2  flex items-center justify-center gap-3">
-        {slides.map((slide, idx) => (
-          <button
-            key={slide.id}
-            onClick={() => selectSlide(idx)}
-            className="group py-2 flex items-center focus:outline-none"
-            aria-label={`Go to slide ${idx + 1}`}
-          >
+          {/* Left: image */}
+          <div className="w-full md:w-1/2 relative overflow-hidden min-h-[300px]">
             <div
-              className={`h-[3px] transition-all duration-500 rounded-full ${idx === activeIndex
-                ? "w-16 bg-[#3b82f6]"
-                : "w-8 bg-gray-300 group-hover:bg-gray-400"
+              className={`w-full h-full transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"
                 }`}
-            />
-          </button>
-        ))}
+            >
+              <img
+                src={current.image}
+                alt={current.label}
+
+                className="w-full h-full object-cover p-[60.5px]  pointer-events-none"
+              />
+            </div>
+          </div>
+
+          {/* Right: copy */}
+          <div className="w-full md:w-1/2 pt-13  md:pl-10 flex flex-col bg-white text-black">
+            <div
+              className={`flex flex-col h-full transition-opacity duration-200 ${isTransitioning ? "opacity-0" : "opacity-100"
+                }`}
+            >
+              {/* Logo */}
+              {/* {current.logo && (
+                <div className="mb-8">
+                  <Image
+                    src={current.logo}
+                    alt={current.label}
+                    width={250}
+                    height={250}
+                    className="h-10 md:h-12 sm:ml-[-25px] w-52 object-contain pointer-events-none"
+                  />
+                </div>
+              )} */}
+
+              {/* Characteristics */}
+              <div className="mb-8">
+                <h4 className="text-[20px] font-bold font-inter text-black mb-2">
+                  Characteristics
+                </h4>
+                <p className="text-gray-600 text-[14px] xl:text-[18px] leading-relaxed font-inter max-w-sm">
+                  {current.characteristics}
+                </p>
+              </div>
+
+              {/* Functionality */}
+              <div className="mb-8">
+                <h4 className="text-[20px] font-bold font-inter text-black mb-2">
+                  Functionality
+                </h4>
+                <p className="text-gray-600 text-[14px] xl:text-[18px] leading-relaxed font-inter max-w-sm">
+                  {current.functionality}
+                </p>
+              </div>
+
+              {/* Benefits */}
+              <div>
+                <h4 className="text-[20px] font-bold font-inter text-black mb-2">
+                  Benefits
+                </h4>
+                <ul className="list-disc list-inside space-y-1">
+                  {current.benefits.map((b, i) => (
+                    <li
+                      key={i}
+                      className="text-gray-600 text-[14px] xl:text-[18px] leading-relaxed font-inter"
+                    >
+                      {b}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )

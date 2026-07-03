@@ -4,9 +4,9 @@ import { ArrowRight, Sparkles, LayoutGrid, Globe } from "lucide-react"
 export function SolutionsSection() {
   return (
     <section className="w-full bg-[#f5f5f5]">
-      <div className="grid min-h-[50vh] lg:min-h-screen grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:px-26 2xl:px-50 ">
+      <div className="grid min-h-[50vh] lg:min-h-screen grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:px-26 xl:px-50 ">
         {/* Left Content Area */}
-        <div className="flex flex-col items-center lg:items-end justify-center px-6 xl:py-12 py-4 sm:px-8 sm:py-20 md:px-12 lg:px-10 xl:px-16 2xl:px-24">
+        <div className="flex flex-col items-center lg:items-end justify-center px-6 xl:py-12 py-4 sm:px-8 sm:py-20 md:px-12 lg:px-10 xl:px-16 xl:px-24">
           <div className="w-full max-w-md lg:max-w-[480px] xl:max-w-[540px]">
             {/* Tagline */}
             <p
@@ -61,7 +61,7 @@ export function SolutionsSection() {
               style={{ fontFamily: "var(--font-inter)" }}
             >
               <span className="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
-                <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <ArrowRight className="h-4 w-4" />
               </span>
               <span>Become Partner</span>
             </button>

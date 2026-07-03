@@ -28,10 +28,10 @@ const Headline = ({
 
 
   // 1. Typography block ordered: Font Family -> Font Size -> Font Weight -> Line Height -> Letter Spacing -> Text Transform
-  const typographyClasses = `font-inter text-[32px] md:text-[40px] 2xl:text-[64px] font-bold leading-[0.98] tracking-[-0.03em] uppercase`;
+  const typographyClasses = `font-inter text-[28px] md:text-[36px] xl:text-[64px] font-bold leading-[0.98] tracking-[-0.03em] uppercase`;
 
   // 2. Functional layout/spacing classes
-  const spacingClasses = 'mb-4 2xl:mb-6 relative z-10';
+  const spacingClasses = 'mb-4 xl:mb-6 relative z-10';
 
   // 3. Decoupled Theme classes handling theme variations safely
   const themeClasses = theme === 'dark'

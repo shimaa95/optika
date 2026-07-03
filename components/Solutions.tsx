@@ -25,7 +25,7 @@ const DEFAULT_CONTENT: SolutionsBlock[] = [
     eyebrow: "Solutions for partners",
     title: (
       <>
-        STREAMLINED<br /> WORKFLOWS
+        STREAMLINED WORKFLOWS
       </>
     ),
     description: "We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style.",
@@ -55,8 +55,8 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
     if (!text) return null
     const buttonContent = (
       <span className="group cursor-pointer inline-flex w-fit items-center gap-3 text-sm font-medium text-black transition-colors hover:text-black/80 sm:text-base lg:text-[16px]" style={{ fontFamily: "var(--font-inter)" }}>
-        <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
-          <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4" />
+        <span className="flex h-6 w-6 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
+          <ArrowRight className="h-4 w-4" />
         </span>
         <span>{text}</span>
       </span>
@@ -77,60 +77,81 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
     )
   }
 
+  const items = content;
+
   return (
-    <section className={`w-full bg-[#F3F3F3] py-16 ${className || ''} lg:py-32 `}>
-      {/* Main Container - 2x2 Grid */}
-      <div className="grid grid-cols-1 gap-px border border-[#D1D1D1] bg-[#F3F3F3] md:grid-cols-2">
-        {content.map((block, index) => {
-          const isEven = index % 2 === 0
-          const orderBase = index * 2
-          const textOrderClass = isEven ? `order-${orderBase + 1}` : `order-${orderBase + 1} md:order-${orderBase + 2}`
-          const imageOrderClass = isEven ? `order-${orderBase + 2}` : `order-${orderBase + 2} md:order-${orderBase + 1}`
-
-          return (
-            <React.Fragment key={block.id || index}>
-              {/* Text Block */}
-              <div className={`flex min-h-[60vh] flex-col bg-[#F3F3F3] p-10 md:p-16 lg:min-h-[75vh] lg:p-24 lg:pt-32 ${textOrderClass} ${isEven ? '2xl:ml-18' : ''}`}>
-                <div className="flex max-w-[480px] gap-5">
-                  {/* Vertical black accent line */}
-                  <div className={`w-[1px] shrink-0 self-stretch bg-black ${isEven ? 'ml-0 lg:ml-[-22px] lg:mr-4 2xl:ml-0' : 'lg:mr-4'}`} />
-                  <div className="flex-1">
-                    {block.eyebrow && (
-                      <p className="mb-8 text-[11px] max-w-[20px] font-medium uppercase tracking-[0.2em] text-black/50">
-                        {block.eyebrow}
-                      </p>
-                    )}
-                    {block.title && (
-                      <h2 className="mb-8 text-[24px] font-bold leading-[1.3] text-black md:text-[28px]">
-                        {block.title}
-                      </h2>
-                    )}
-                    {block.description && (
-                      <p className="text-[18px] mb-12 leading-[1.7] text-black md:text-[20px] lg:pr-8 2xl:pr-0">
-                        {block.description}
-                      </p>
-                    )}
-                    {renderButton(block.ctaLabel, block.ctaHref)}
-                  </div>
+    <section className={`w-full bg-[#f4f6f8] py-16 md:py-24 lg:py-32 ${className || ''}`}>
+      <div className="grid grid-cols-1 md:grid-cols-2 border border-black/10 w-full">
+        {/* Top Left - Text */}
+        <div className="flex flex-col justify-center p-8 md:p-12 lg:p-20 xl:p-32 border-b md:border-b border-black/10 md:border-r">
+          <div className="flex max-w-[480px] gap-5">
+            <div className="flex-1 lg:pl-12">
+              <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] leading-snug font-medium text-black/50">
+                Solutions for partners
+              </div>
+              <h2 className="mb-4 xl:mb-6 text-xl lg:text-2xl font-bold uppercase tracking-tight text-black">Streamlined Workflows</h2>
+              <p className="mb-6 xl:mb-10 max-w-[200px] lg:max-w-[390px] text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed text-black/90">
+                We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style              </p>
+              <Link href="#">
+                <div className="flex items-center gap-3 text-sm font-medium text-black transition-colors hover:text-black/80 sm:text-base lg:text-[16px]" style={{ fontFamily: "var(--font-inter)" }}>
+                  <span className="flex h-6 w-6 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                  <span>Become a Partner</span>
                 </div>
-              </div>
+              </Link>
+            </div>
+          </div>
+        </div>
 
-              {/* Image Block */}
-              <div className={`relative min-h-[60vh] bg-[#F3F3F3] lg:min-h-[75vh] ${imageOrderClass}`}>
-                {block.imageSrc && (
-                  <Image
-                    src={block.imageSrc}
-                    alt={block.imageAlt || ''}
-                    fill
-                    className="object-cover"
-                    sizes={isEven ? undefined : "33vw"}
-                  />
-                )}
+        {/* Top Right - Image */}
+        <div className="relative flex flex-col items-center justify-center p-8 md:p-12 lg:p-20 xl:p-24 border-b border-black/10">
+          <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-square">
+            <Image
+              src="/about-optika.jpg"
+              alt="Group of models wearing premium eyewear"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Bottom Left - Image */}
+        <div className="relative p-8 md:p-12 lg:p-20 xl:p-24 border-b md:border-b-0 md:border-r border-black/10">
+          <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-square">
+            <Image
+              src="/about-optika2.jpg"
+              alt="Models in white polo shirts wearing sunglasses"
+              fill
+              className="object-cover"
+            />
+          </div>
+        </div>
+
+        {/* Bottom Right - Text */}
+        <div className="flex flex-col justify-center p-8 md:p-12 lg:p-20 xl:p-32">
+          <div className="flex max-w-[480px] gap-5">
+            <div className="flex-1 lg:pl-12">
+              <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] font-medium text-black/50">
+                A connected system
               </div>
-            </React.Fragment>
-          )
-        })}
+              <h2 className="text-2xl xl:text-3xl mb-4 xl:mb-6 font-bold tracking-tight text-black">SCALE WITHOUT <br /> LOSING CONSISTENCY</h2>
+
+              <p className="text-[14px] md:text-[14px] mb-6 xl:mb-10 lg:text-[20px] leading-relaxed text-black/90 max-w-[200] lg:max-w-[390px]">
+                We operate as an integrated system for partners to creates a stable foundation for growth, operational clarity, and a more consistent experience across every touch-point.              </p>
+              <Link href="#">
+                <div className="flex items-center gap-3 text-sm font-medium text-black transition-colors hover:text-black/80 sm:text-base lg:text-[16px]" style={{ fontFamily: "var(--font-inter)" }}>
+                  <span className="flex h-6 w-6 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
+                    <ArrowRight className="h-4 w-4" />
+                  </span>
+                  <span>Learn More</span>
+                </div>
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
+
     </section>
   )
 }

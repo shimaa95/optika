@@ -1,8 +1,7 @@
 import Image from "next/image";
-import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { LensCategory } from "@/lib/lens-categories.config";
+import { PrimaryButton } from "../PrimaryButton";
 
 interface LensDesktopCardProps {
   category: LensCategory;
@@ -14,9 +13,9 @@ interface LensDesktopCardProps {
 
 export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80' }: LensDesktopCardProps) {
   return (
-    <div className={`relative flex flex-1 flex-col   rounded-[16px] overflow-hidden border ${border}  backdrop-blur-xl`}>
+    <div className={`relative flex flex-1 flex-col    overflow-hidden border ${border}  backdrop-blur-xl`}>
       {/* Image Container with GSAP clipPath class */}
-      <div className="lens-image relative flex-1 min-h-[250px] overflow-hidden cursor-pointer">
+      <div className="lens-image relative flex-1 min-h-[300px] overflow-hidden cursor-pointer">
         <Image
           src={category.image}
           alt={category.imageAlt}
@@ -28,7 +27,7 @@ export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleCla
 
       {/* Content - fixed height at bottom. Using Gary UI 8px grid rules */}
       <div className={`${bgCards} ${cardsHover} flex flex-col items-center  px-8 py-10 text-center cursor-pointer`}>
-        <div className="2xl:h-16 h-12 w-auto relative mb-4">
+        <div className="xl:h-16 h-12 w-auto relative  ">
           {category.logo ? (
             <Image
               src={category.logo}
@@ -41,7 +40,7 @@ export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleCla
             <h3 className="flex items-baseline">
               <span
                 className={cn(
-                  isCompactTitle ? "text-lg xl:text-xl" : "text-3xl xl:text-4xl",
+                  isCompactTitle ? "text-lg xl:text-xl" : "text-2xl xl:text-3xl ",
                   "font-black tracking-tighter text-white",
                   category.isItalic && "italic",
                   category.titleClassName,
@@ -59,19 +58,27 @@ export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleCla
             </h3>
           )}
         </div>
-        <p className={cn("mt-2 text-sm font-light tracking-wide text-white/50", category.descriptionClassName)}>
+        <p className={cn(" text-sm font-light tracking-wide text-white/50", category.descriptionClassName)}>
           {category.description}
         </p>
         {category.link && (
-          <Link
-            href={category.link}
-            className="group mt-8 flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-white/60 transition-colors hover:text-white"
+          // <Link
+          //   href={category.link}
+          //   className="group mt-8 flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-white/60 transition-colors hover:text-white"
+          // >
+          //   <span className="flex h-8 w-8 items-center justify-center bg-white/5 text-white border border-white/10 transition-all group-hover:bg-white group-hover:text-[#111111]">
+          //     <ArrowRight className="h-4 w-4" />
+          //   </span>
+          //   <span>View Lenses</span>
+          // </Link> 
+          <PrimaryButton
+            onClick={category.link}
+            bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
+            className="mt-6"
           >
-            <span className="flex h-8 w-8 items-center justify-center bg-white/5 text-white border border-white/10 transition-all group-hover:bg-white group-hover:text-[#111111]">
-              <ArrowRight className="h-4 w-4" />
-            </span>
-            <span>View Lenses</span>
-          </Link>
+            View Lenses
+          </PrimaryButton>
+
         )}
       </div>
     </div>

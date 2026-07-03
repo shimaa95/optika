@@ -34,9 +34,9 @@ export function SolutionsHero({
   ctaHref = "#details",
 }: SolutionsHeroProps) {
   return (
-    <section className="lg:px-26 2xl:px-50 relative min-h-screen 2xl:min-h-[70vh] 2xl:h-[70vh] w-full">
+    <section className="lg:px-26 xl:px-50 relative min-h-screen xl:min-h-[70vh] xl:h-[70vh] w-full">
       {/* Hero Image */}
-      <div className="absolute inset-0 min-h-screen 2xl:h-[70vh] 2xl:min-h-[70vh]">
+      <div className="absolute inset-0 min-h-screen xl:h-[70vh] xl:min-h-[70vh]">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -50,7 +50,7 @@ export function SolutionsHero({
       </div>
 
       {/* Content Container - Mirrored from Home Hero */}
-      <div className="relative mx-auto flex min-h-screen 2xl:min-h-[70vh] 2xl:h-[70vh] items-end 2xl:items-center 2xl:pt-40 ml-4 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 2xl:px-20" style={{ bottom: '15vh' }}>
+      <div className="relative mx-auto flex min-h-screen xl:min-h-[70vh] xl:h-[70vh] items-end xl:items-center xl:pt-40 ml-4 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 xl:px-20" style={{ bottom: '15vh' }}>
         <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
           {/* Spacer for layout balance on large screens */}
           <div className="hidden lg:block" />
@@ -99,7 +99,7 @@ export function SolutionsHero({
                 style={{ fontFamily: "var(--font-inter)" }}
               >
                 <span className="flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center bg-white text-black transition-colors group-hover:bg-gray-200">
-                  <ArrowDown className="h-3 w-3 sm:h-4 sm:w-4" />
+                  <ArrowDown className="h-4 w-4 animate-scroll-down" />
                 </span>
                 <span>{ctaText}</span>
               </Link>

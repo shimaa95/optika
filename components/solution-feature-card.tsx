@@ -9,9 +9,9 @@ interface SolutionFeatureCardProps {
 
 export function SolutionFeatureCard({ category }: SolutionFeatureCardProps) {
   return (
-    <div className="group flex flex-col bg-white  overflow-hidden transition-all duration-500">
+    <div className="group flex flex-col h-full bg-white overflow-hidden transition-all duration-500">
       {/* Image Container */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden">
+      <div className="relative aspect-[4/3] w-full overflow-hidden shrink-0">
         <Image
           src={category.image}
           alt={category.imageAlt}
@@ -22,7 +22,7 @@ export function SolutionFeatureCard({ category }: SolutionFeatureCardProps) {
       </div>
 
       {/* Content Area */}
-      <div className="flex flex-col p-8 lg:p-10">
+      <div className="flex flex-col p-8 lg:p-10 flex-grow">
         <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#1a1a1a] mb-4 leading-tight">
           {category.logoText}
         </h3>

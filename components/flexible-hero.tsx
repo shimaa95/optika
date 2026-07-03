@@ -109,7 +109,7 @@ export function FlexibleHero({
             className="group inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider hover:opacity-80 transition-opacity"
           >
             <span className="flex h-8 w-8 items-center justify-center bg-white text-black rounded-full transition-transform group-hover:scale-110">
-              <ArrowDown className="h-4 w-4" />
+              <ArrowDown className="h-4 w-4 animate-scroll-down" />
             </span>
             <span>{ctaText}</span>
           </Link>

@@ -14,6 +14,7 @@ export interface ProductDetailData {
   name: string
   subtitle: string
   sequenceNumber: number
+  themeColor: string
   hero: {
     eyebrow: string
     headline: string
@@ -67,22 +68,23 @@ export function getAcutusProductPath(slug: string): string {
 
 const actusDuePlus: ProductDetailData = {
   slug: ACUTUS_PRODUCT_DETAIL_SLUG,
-  name: "ACTUS DUE PLUS",
+  name: "ACUTUS PLUS",
   subtitle: "ORGANIC RX PROGRESSIVE",
-  sequenceNumber: 5,
+  sequenceNumber: 1,
+  themeColor: "#2b64e3",
   hero: {
     eyebrow: "We do our best",
     headline: "SO YOU NEVER MISS A MOMENT",
-    backgroundSrc: "/acutus-plus.jpg",
+    backgroundSrc: "/acutusplus.jpeg",
     backgroundAlt: "Person reading a book in warm light",
-    backgroundPosition: "center 32%",
+    backgroundPosition: "center 65%",
   },
   lensGraphic: {
-    imageSrc: "/lens.png",
+    imageSrc: "/Lens1.png",
     imageAlt: "Acutus Plus lens graphic with landscape and phone wireframe",
   },
   idealFor:
-    "Duo+ is a premium individual progressive lens designed for all demanding wearers who require quick adaptation and maximum visual performance.",
+    "ACUTUS PLUS is a premium, highly personalised progressive lens.",
   characteristics:
     "The individual modern design and premium quality of ExactDS Duo+ progressive lenses is based on the revolutionary Camber technology. This innovative progressive lens provides an above standard comfort zone at all distances, near, far and medium distance vision.",
   meters: [
@@ -102,18 +104,17 @@ const actusDuePlus: ProductDetailData = {
     { label: "Addition", value: "0.50-4.00 / 0.25", variant: "white" },
     { label: "Variable inset", value: "0-4 mm, step 0.5", variant: "green" },
   ],
-  whyTitle: "Why Acutus DUE+",
+  whyTitle: "Why ACUTUS PLUS",
   whyPoints: [
-    "Instant adaptation to Maximise visual acuity",
-    "Natural Curvature Principle (top to bottom increases)",
-    "Widest possible reading zone with instant focus",
-    "No distortion, swimming or jumping of images. In all directions of view (including side views)",
+    "Dynamic vision",
+    "Wide distance fields",
+    "Ideal for outdoor activities",
   ],
   brochureUrl: "#",
   questions: {
     title: "Still have questions?",
     subtitle: "Questions about lenses or ordering or even about us?",
-    imageSrc: "/actushero.png",
+    imageSrc: "/acutushero.jpeg",
     imageAlt: "Team members in a professional meeting",
   },
   contact: {
@@ -129,7 +130,7 @@ const actusDuePlus: ProductDetailData = {
       description:
         "Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.",
       buttonLabel: "Fill Form",
-      href: "/contact",
+      href: "/contact/enquiry",
     },
   },
   footer: {
@@ -138,16 +139,120 @@ const actusDuePlus: ProductDetailData = {
     discoverNextHref: "/products",
     backToProductsHref: "/products",
   },
-  nextProduct: {
-    slug: "actus-due-plus",
-    name: "ACTUS DUE PLUS",
-    subtitle: "ORGANIC RX PROGRESSIVE",
-  },
 }
 
-const products: Record<string, ProductDetailData> = {
-  [ACUTUS_PRODUCT_DETAIL_SLUG]: actusDuePlus,
-}
+const otherProductsData = [
+  {
+    slug: "acutus-smart",
+    name: "ACUTUS SMART",
+    subtitle: "DIGITAL SINGLE VISION",
+    themeColor: "#1e40af",
+    idealFor: "Precision surfacing for crisp everyday clarity with minimal peripheral distortion.",
+    whyPoints: ["Sharp central vision", "Thin profile options", "Fast adaptation"],
+  },
+  {
+    slug: "acutus-elite",
+    name: "ACUTUS ELITE",
+    subtitle: "HIGH-INDEX VARIFOCAL",
+    themeColor: "#0369a1",
+    idealFor: "Advanced corridor design balancing near and intermediate zones for demanding lifestyles.",
+    whyPoints: ["Smooth transitions", "Stable reading zone", "Premium coatings"],
+  },
+  {
+    slug: "acutus-air",
+    name: "ACUTUS AIR",
+    subtitle: "ULTRA-LIGHT ORGANIC",
+    themeColor: "#0d9488",
+    idealFor: "Featherweight blanks engineered for comfort without compromising optical performance.",
+    whyPoints: ["Reduced edge thickness", "Comfortable all-day wear", "Modern aesthetics"],
+  },
+  {
+    slug: "acutus-sharp",
+    name: "ACUTUS SHARP",
+    subtitle: "OFFICE PROGRESSIVE",
+    themeColor: "#b45309",
+    idealFor: "Optimised intermediate and near zones for screens, desks, and collaborative workspaces.",
+    whyPoints: ["Wide intermediate band", "Reduced neck tilt", "Screen clarity"],
+  },
+  {
+    slug: "acutus-drive",
+    name: "ACUTUS DRIVE",
+    subtitle: "POLARIZED SUN RX",
+    themeColor: "#be123c",
+    idealFor: "Glare-controlled outdoor lens with faithful colour perception behind the wheel.",
+    whyPoints: ["Glare reduction", "True colour perception", "Durability outdoors"],
+  },
+  {
+    slug: "acutus-kids",
+    name: "ACUTUS KIDS",
+    subtitle: "IMPACT-SAFE ORGANIC",
+    themeColor: "#a21caf",
+    idealFor: "Tough yet light lenses tailored for active younger wearers and everyday safety.",
+    whyPoints: ["Impact-minded materials", "Easy-care surfaces", "Stable vision"],
+  },
+  {
+    slug: "acutus-night",
+    name: "ACUTUS NIGHT",
+    subtitle: "BLUE-LIGHT OPTIMIZED",
+    themeColor: "#4338ca",
+    idealFor: "Designed for evening screen sessions with tuned transmission for visual comfort.",
+    whyPoints: ["Comfort under LEDs", "Reduced stray glare", "Balanced contrast"],
+  },
+  {
+    slug: "acutus-sport",
+    name: "ACUTUS SPORT",
+    subtitle: "WRAP OPTIMIZED RX",
+    themeColor: "#047857",
+    idealFor: "Compensation geometry for curved frames so motion stays sharp at every angle.",
+    whyPoints: ["Stable gaze during motion", "Wide field wrap", "Secure peripheral cues"],
+  },
+  {
+    slug: "acutus-read",
+    name: "ACUTUS READ",
+    subtitle: "NEAR-VISION BOOST",
+    themeColor: "#0f766e",
+    idealFor: "Dedicated enhancement for sustained reading and fine-detail tasks at close range.",
+    whyPoints: ["Expanded near zone", "Comfortable posture", "Crisp small print"],
+  },
+  {
+    slug: "acutus-custom",
+    name: "ACUTUS CUSTOM",
+    subtitle: "FREEFORM DIGITAL",
+    themeColor: "#1d4ed8",
+    idealFor: "Fully personalised freeform computation mapped to frame fit and wearing posture.",
+    whyPoints: ["Individual optimisation", "Predictable performance", "Premium finishing"],
+  }
+]
+
+const productsList: ProductDetailData[] = [
+  actusDuePlus,
+  ...otherProductsData.map((data, index) => ({
+    ...actusDuePlus,
+    slug: data.slug,
+    name: data.name,
+    subtitle: data.subtitle,
+    themeColor: data.themeColor,
+    idealFor: data.idealFor,
+    whyTitle: `Why ${data.name}`,
+    whyPoints: data.whyPoints,
+    sequenceNumber: index + 2,
+  }))
+]
+
+// Link nextProducts in a loop
+productsList.forEach((product, i) => {
+  const nextP = productsList[(i + 1) % productsList.length]
+  product.nextProduct = {
+    slug: nextP.slug,
+    name: nextP.name,
+    subtitle: nextP.subtitle,
+  }
+})
+
+const products: Record<string, ProductDetailData> = {}
+productsList.forEach(p => {
+  products[p.slug] = p
+})
 
 export function getProductBySlug(slug: string): ProductDetailData | undefined {
   return products[slug]

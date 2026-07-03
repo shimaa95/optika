@@ -159,15 +159,35 @@
   --animate-second: moveInCircle 20s reverse infinite;
   --animate-third: moveInCircle 40s linear infinite;
   --animate-fourth: moveHorizontal 40s ease infinite;
-  --animate-fifth: moveInCircle 20s ease infinite;
+  --animate-scroll-down: scroll-down 1.8s ease-in-out infinite;
 
   /* ... your existing theme variables ... */
   /* Default values are shown below, you can change them to whatever you need */
-  --breakpoint-lg: 1024px;
-  --breakpoint-xl: 1280px;
-  --breakpoint-2xl: 1440px;
+  --breakpoint-lg: 1280px;
+  --breakpoint-xl: 1440px;
+  --breakpoint-2xl: 1728px;
   --breakpoint-bt: 1366px;
 
+}
+
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-4px);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-4px);
+    opacity: 0.6;
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 1.8s ease-in-out infinite;
+  display: inline-block !important;
 }
 
 @keyframes moveHorizontal {
@@ -220,6 +240,17 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.lens-image {
+  -webkit-clip-path: inset(100% 0% 0% 0%);
+  clip-path: inset(100% 0% 0% 0%);
+  will-change: clip-path, transform;
+  transform: translateZ(0);
+}
+
+.backdrop-blur-xl {
+  transform: translateZ(0);
 }
 
 
@@ -438,12 +469,10 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: radial-gradient(
-    circle at 32% 32%,
-    #60a5fa 0%,
-    #3b82f6 50%,
-    #2563eb 100%
-  );
+  background: radial-gradient(circle at 32% 32%,
+      #60a5fa 0%,
+      #3b82f6 50%,
+      #2563eb 100%);
   position: relative;
   transform: scaleX(1);
   transition: transform 0.52s cubic-bezier(0.22, 1, 0.36, 1);
@@ -464,7 +493,8 @@
   background: #0a0a0b;
 }
 
-@media (hover: none), (pointer: coarse) {
+@media (hover: none),
+(pointer: coarse) {
   .iris-cursor {
     display: none !important;
   }

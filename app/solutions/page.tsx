@@ -6,10 +6,11 @@ import { BuiltInTechnologies } from "@/components/built-in-technologies"
 import { ProductsRangeSection } from "@/components/products-range-section"
 import { InnovativeToolsBanner } from "@/components/innovative-tools-banner"
 import { HowItWorks } from "@/components/HowItWorks"
-import { SolutionsDetailSection } from "@/components/SolutionsDetailSection"
+import { SolutionsDetailSection, SolutionsGridSection } from "@/components/SolutionsDetailSection"
 import { faqs, FaqSection } from "@/components/faq-section"
 import { PartnersSection } from "@/components/partners-section"
 import { PerformanceSection } from "@/components/performance-section"
+import FilterLensesSection from "@/components/filter-lenses-section"
 
 const SHOWCASE_SLIDES = [
   {
@@ -35,7 +36,7 @@ const SHOWCASE_SLIDES = [
     description:
       "Reliable, optically pure single-vision lenses engineered for everyday comfort and clarity with minimal distortion across the entire surface.",
     sizes: ["1.50", "1.60", "1.67"],
-    image: "/single-vision.jpg",
+    image: "/single-vision.jpeg",
     imageAlt: "Single vision lens product photography",
   },
   {
@@ -81,15 +82,17 @@ export default function SolutionsPage() {
       />
 
       <BuiltInTechnologies />
+      <FilterLensesSection />
 
-      <ProductsRangeSection />
+      <Solutions className="px-6 lg:px-26 xl:px-50" />
 
       <InnovativeToolsBanner />
 
 
-      <PartnersSection />
 
-      <SolutionsDetailSection />          <PerformanceSection />
+      <SolutionsGridSection />
+      <SolutionsDetailSection />
+      <PerformanceSection />
 
       <FaqSection faqs={faqs} />
     </MainLayout>

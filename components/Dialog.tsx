@@ -43,11 +43,11 @@ const LENS_IMAGES = [
   "/acutus-plus.png",
   "/actushero.png",
   "/about-optika.jpg",
-  "/transition.jpg",
+  "/transition.jpeg",
   "/model1.png",
   "/about-optika.jpg",
   "/hero.jpg",
-  "/transition.jpg",
+  "/transition.jpeg",
 ] as const
 
 function buildLensCards(): LensCardData[] {
@@ -503,9 +503,9 @@ export default function ExpandableCardsSection() {
         <ShaderAnimation />
       </div>
 
-      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[1920px] flex-1 flex-col px-5 pt-14 pb-10 sm:px-8 sm:pt-16 sm:pb-12 md:flex-1 md:justify-center md:gap-5 md:pt-0 md:pb-[min(20vh,5rem)] lg:gap-6 lg:px-10 lg:pb-[min(8vh,4.5rem)] 2xl:justify-start 2xl:gap-[15vh] 2xl:px-12 2xl:pb-[min(8vh,4rem)] 2xl:pt-[40vh]">
+      <div className="relative z-10 mx-auto flex h-full min-h-0 w-full max-w-[1920px] flex-1 flex-col px-5 pt-14 pb-10 sm:px-8 sm:pt-16 sm:pb-12 md:flex-1 md:justify-center md:gap-5 md:pt-0 md:pb-[min(20vh,5rem)] lg:gap-6 lg:px-10 lg:pb-[min(8vh,4.5rem)] xl:justify-start xl:gap-[15vh] xl:px-12 xl:pb-[min(8vh,4rem)] xl:pt-[40vh]">
 
-        <div className="flex shrink-0 flex-col items-center text-center my-16 2xl:mb-10">
+        <div className="flex shrink-0 flex-col items-center text-center my-16 xl:mb-10">
           <h2
             className={`${acutusDisplay.className} text-[clamp(2.75rem,9.5vw,6.25rem)] font-extrabold uppercase leading-[0.92] tracking-[0.04em] text-white`}
           >
@@ -521,7 +521,7 @@ export default function ExpandableCardsSection() {
 
 
         {/* Desktop — coverflow carousel */}
-        <div className="relative hidden min-h-[min(56vh,620px)] w-full flex-col md:flex md:min-h-[min(50vh,580px)] xl:min-h-[min(46vh,520px)] 2xl:min-h-[min(42vh,480px)]">
+        <div className="relative hidden min-h-[min(56vh,620px)] w-full flex-col md:flex md:min-h-[min(50vh,580px)] xl:min-h-[min(46vh,520px)] xl:min-h-[min(42vh,480px)]">
           <button
             type="button"
             className={cn(
@@ -551,7 +551,7 @@ export default function ExpandableCardsSection() {
             className="relative mx-auto mt-6 flex min-h-0 flex-1 items-center justify-center overflow-visible px-12 sm:px-16 md:mt-10 md:px-20 lg:px-24"
             style={{ perspective: 1500, perspectiveOrigin: "50% 50%" }}
           >
-            <div className="relative h-[min(54vh,600px)] w-full max-w-[1500px] md:h-[min(48vh,560px)] xl:h-[min(44vh,500px)] 2xl:h-[min(40vh,460px)]">
+            <div className="relative h-[min(54vh,600px)] w-full max-w-[1500px] md:h-[min(48vh,560px)] xl:h-[min(44vh,500px)] xl:h-[min(40vh,460px)]">
               {cardsData.map((card, index) => {
                 const cv = getCoverflowStyle(activeIndex, index)
                 const transform = `translate(-50%, -50%) translateX(${cv.translateX}px) rotateY(${cv.rotateY}deg) scale(${cv.scale})`
@@ -655,7 +655,7 @@ export default function ExpandableCardsSection() {
       >
         <DialogContent
           className={cn(
-            "fixed left-1/2 top-1/2 z-[1000] flex max-h-[min(92dvh,100vh)] w-[calc(100vw-1rem)]  max-w-[calc(100vw-1rem)] -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col gap-0 overflow-hidden rounded-sm border border-neutral-800 bg-transparent p-0 shadow-xl isolate sm:w-[calc(100vw-2rem)] sm:max-w-[calc(100vw-2rem)] md:h-auto md:w-[70vw] md:max-w-[70vw] 2xl:w-[50vw] 2xl:max-w-[50vw]",
+            "fixed left-1/2 top-1/2 z-[1000] flex max-h-[min(92dvh,100vh)] w-[calc(100vw-1rem)]  max-w-[calc(100vw-1rem)] -translate-x-1/2 -translate-y-1/2 cursor-pointer flex-col gap-0 overflow-hidden rounded-sm border border-neutral-800 bg-transparent p-0 shadow-xl isolate sm:w-[calc(100vw-2rem)] sm:max-w-[calc(100vw-2rem)] md:h-auto md:w-[70vw] md:max-w-[70vw] xl:w-[50vw] xl:max-w-[50vw]",
             "md:max-h-[100vh]",
             "duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out",
           )}

@@ -45,7 +45,7 @@ export function TransitionSection() {
               <span
                 className="flex items-center justify-center border border-black/30 w-[28px] h-[28px] group-hover:border-black transition-colors"
               >
-                <ArrowRight className="w-3 h-3 text-black" />
+                <ArrowRight className="h-4 w-4 text-black" />
               </span>
               <span
                 className="text-[10px] text-black uppercase"

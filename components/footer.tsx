@@ -1,8 +1,6 @@
 'use client'
 import Link from "next/link"
 import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react"
-import { Logo } from "./logo"
-import { useRef } from "react"
 
 // Custom X (Twitter) icon
 function XIcon({ className }: { className?: string }) {
@@ -26,52 +24,85 @@ const socialLinks = [
     { icon: Youtube, href: "https://youtube.com", label: "YouTube" },
 ]
 
-const navLinksColumn1 = [
-    { label: "About us", href: "/about" },
-    { label: "Our lenses", href: "/lenses" },
-    { label: "How it works", href: "/how-it-works" },
-    { label: "Order system", href: "/order-system" },
-    { label: "Quality standards", href: "/quality" },
-]
-
-const navLinksColumn2 = [
-    { label: "Manufacturing", href: "/manufacturing" },
-    { label: "Support", href: "/support" },
-    { label: "Contact us", href: "/contact" },
-    { label: "Resources", href: "/resources" },
-    { label: "Blog", href: "/blog" },
+const navLinks = [
+    {
+        title: "About Us",
+        href: "/about",
+        links: [
+            { label: "Our Story", href: "/about" },
+            { label: "Behind Optika", href: "/about#behind" },
+            { label: "Our Mission", href: "/about#mission" },
+            { label: "How It Works", href: "/about#how-it-works" },
+            { label: "Quality Standards", href: "/about#quality" },
+            { label: "Contact Us", href: "/contact" },
+        ]
+    },
+    {
+        title: "Products",
+        href: "/products",
+        links: [
+            { label: "Acutus Lens Family", href: "/products/acutus" },
+            { label: "Acutus Plus", href: "/products/acutus" },
+            { label: "Acutus Smart", href: "/products/acutus" },
+            { label: "Acutus Elite", href: "/products/acutus" },
+            { label: "Single Vision Lenses", href: "/products/single-vision" },
+            { label: "Transitions®", href: "/products/transition" },
+        ]
+    },
+    {
+        title: "Solutions",
+        href: "/solutions",
+        links: [
+            { label: "Solutions Overview", href: "/solutions" },
+            { label: "Streamlined Workflows", href: "/solutions#workflows" },
+            { label: "For Partners", href: "/partners" },
+            { label: "Connected System", href: "/solutions#connected" },
+            { label: "Order System", href: "/solutions#order" },
+            { label: "Support", href: "/contact" },
+        ]
+    },
+    {
+        title: "Explore",
+        href: "#",
+        links: [
+            { label: "Downloads", href: "/downloads" },
+            { label: "Articles", href: "/articles" },
+            { label: "Try-On", href: "/try-on" },
+            { label: "Privacy Policy", href: "/privacy" },
+            { label: "Terms of Service", href: "/terms" },
+        ]
+    },
 ]
 
 export function Footer() {
-    const logoRef = useRef<SVGSVGElement>(null)
     return (
-        <footer className="relative pt-5  px-4 z-100  md:pt-0 bg-black content-end-safe lg:px-25 2xl:px-48">
+        <footer className="relative pt-5  px-4 z-100  md:pt-0 bg-black content-end-safe lg:px-25 xl:px-48">
             {/* Main footer content */}
             <div className="w-full pb-10 lg:pb-12 lg:pt-20  content-end-safe">
                 <div className="flex flex-col gap-12 lg:flex-row lg:justify-between lg:gap-20">
                     {/* Left Side - Logo, Address, Contact, Social */}
                     <div className="space-y-8">
                         {/* Logo */}
-                       <Link
-          href="/"
-          style={{
-            fontFamily: "var(--font-inter)",
-            fontWeight: 700, fontOpticalSizing: "auto",
-          }}
-          className={`text-lg font-bold tracking-tight mb-4  sm:text-xl transition-opacity hover:opacity-70 `}
-        >
-          Optika
-        </Link>
+                        <Link
+                            href="/"
+                            style={{
+                                fontFamily: "var(--font-inter)",
+                                fontWeight: 700, fontOpticalSizing: "auto",
+                            }}
+                            className="text-lg font-bold tracking-tight text-white mb-4 sm:text-xl transition-opacity hover:opacity-70"
+                        >
+                            Optika
+                        </Link>
 
                         {/* Address */}
                         <div>
-                            <p className="text-sm font-semibold text-white">Address</p>
-                            <p className="mt-1 text-sm text-white">Prague, Czech Republic</p>
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-1">Address</p>
+                            <p className="text-sm text-white">Prague, Czech Republic</p>
                         </div>
 
                         {/* Contact */}
                         <div>
-                            <p className="text-sm font-semibold text-white">Contact</p>
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 mb-1">Contact</p>
                             <div className="mt-1 space-y-0.5">
                                 <Link
                                     href="tel:+420257311111"
@@ -106,34 +137,28 @@ export function Footer() {
                     </div>
 
                     {/* Right Side - Navigation Columns */}
-                    <nav aria-label="Footer navigation" className="flex items-end gap-16 sm:gap-24 2xl:mr-4 lg:gap-28">
-                        {/* Column 1 */}
-                        <ul className="space-y-4">
-                            {navLinksColumn1.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm font-medium text-white transition-opacity hover:opacity-80"
-                                    >
-                                        {link.label}
+                    <nav aria-label="Footer navigation" className="grid grid-cols-2 gap-8 sm:grid-cols-4 sm:gap-12">
+                        {navLinks.map((section) => (
+                            <div key={section.title} className="space-y-4">
+                                <h3 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/40 transition-opacity hover:opacity-80">
+                                    <Link href={section.href}>
+                                        {section.title}
                                     </Link>
-                                </li>
-                            ))}
-                        </ul>
-
-                        {/* Column 2 */}
-                        <ul className="space-y-4">
-                            {navLinksColumn2.map((link) => (
-                                <li key={link.label}>
-                                    <Link
-                                        href={link.href}
-                                        className="text-sm font-medium text-white transition-opacity hover:opacity-80"
-                                    >
-                                        {link.label}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
+                                </h3>
+                                <ul className="space-y-3">
+                                    {section.links.map((link) => (
+                                        <li key={link.label}>
+                                            <Link
+                                                href={link.href}
+                                                className="text-sm text-white transition-opacity hover:opacity-80"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        ))}
                     </nav>
                 </div>
             </div >
@@ -162,12 +187,10 @@ export function Footer() {
                         >
                             Terms of service
                         </Link>
-                        <Link
-                            href="/cookies"
-                            className="text-sm text-white underline transition-opacity hover:opacity-80"
-                        >
-                            Cookies settings
-                        </Link>
+                        <span className="text-sm text-white/40">
+                            Built by{" "}
+                            <span className="text-white font-medium tracking-wide">smoedesign</span>
+                        </span>
                     </nav>
                 </div>
             </div >

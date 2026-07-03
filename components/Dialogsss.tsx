@@ -33,7 +33,7 @@ const LENS_IMAGES = [
   "/model1.png",
   "/about-optika.jpg",
   "/hero.jpg",
-  "/transition.jpg",
+  "/transition.jpeg",
 ] as const
 
 function buildLensCards(): LensCardData[] {
@@ -916,11 +916,11 @@ export default function ExpandableCardsSection() {
     >
       <div className="mx-auto flex w-full max-w-[85vw] flex-1 flex-col justify-center">
         {/* Desktop — paged accordion: 4 cards per viewport */}
-        <div className="relative hidden min-h-screen w-full flex-col md:flex md:min-h-[110svh] 2xl:min-h-screen justify-center align-center">
+        <div className="relative hidden min-h-screen w-full flex-col md:flex md:min-h-[110svh] xl:min-h-screen justify-center align-center">
           <div className="mx-auto flex w-full max-w-[80vw] flex-1 flex-col items-center lg:max-h-[95vh] justify-center gap-3 px-1 pb-2 md:px-2 lg:px-4">
             <div className="mx-auto flex min-h-0 w-full flex-1 flex-col gap-3 sm:gap-4">
               <div className="mx-auto flex w-full flex-col overflow-hidden rounded-sm border-4 border-[#d4d4d4] bg-white p-2">
-                <div className="min-h-0 w-full lg:h-[min(85vh,900px)] lg:max-h-[85vh] 2xl:h-[min(60vh,720px)] 2xl:max-h-[60vh]">
+                <div className="min-h-0 w-full lg:h-[min(85vh,900px)] lg:max-h-[85vh] xl:h-[min(60vh,720px)] xl:max-h-[60vh]">
                   <LensAccordionDesktopRow
                     cards={visibleCards}
                     expandedCardId={expandedCardId}
@@ -1029,8 +1029,8 @@ export default function ExpandableCardsSection() {
       >
         <DialogContent
           className={cn(
-            "fixed left-1/2 top-1/2 z-50 flex h-auto max-h-[90vh] w-[calc(100vw-2rem)] cursor-pointer max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-0 overflow-hidden rounded-sm border border-neutral-200 bg-white p-0 shadow-xl md:w-[70vw] md:max-w-[70vw] 2xl:w-[50vw] 2xl:max-w-[50vw]",
-            "lg:h-[95vh] lg:max-h-[95vh] 2xl:h-[80vh] 2xl:max-h-[80vh]",
+            "fixed left-1/2 top-1/2 z-50 flex h-auto max-h-[90vh] w-[calc(100vw-2rem)] cursor-pointer max-w-[calc(100vw-2rem)] -translate-x-1/2 -translate-y-1/2 flex-col gap-0 overflow-hidden rounded-sm border border-neutral-200 bg-white p-0 shadow-xl md:w-[70vw] md:max-w-[70vw] xl:w-[50vw] xl:max-w-[50vw]",
+            "lg:h-[95vh] lg:max-h-[95vh] xl:h-[80vh] xl:max-h-[80vh]",
             "duration-300 data-[state=open]:animate-in data-[state=closed]:animate-out",
           )}
           showCloseButton

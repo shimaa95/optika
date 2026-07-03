@@ -1,14 +1,19 @@
 import { MainLayout } from "@/components/main-layout"
 import { LuxuryHero } from "@/components/luxury-hero"
 import { PowerfulLensesSection } from "@/components/transition/powerful-lenses-section"
-import { DiscoverRangeSection } from "@/components/transition/discover-range-section"
 import { BenefitsSection } from "@/components/transition/benefits-section"
-import { OneForAllLightsBanner } from "@/components/transition/one-for-all-lights-banner"
+import { TransitionsBannerGrid } from "@/components/transition/transitions-banner-grid"
 import { SingleVisionSection } from "@/components/single-vision-section"
 import { PerformanceSection } from "@/components/performance-section"
 import { FaqSection } from "@/components/faq-section"
 import { ContactSection } from "@/components/contact-section"
 import SplitLayoutHero from "@/components/SplitLayoutHero"
+import Succeed from "@/components/Succeed"
+import { Eye, LayoutGrid, Sun, Palette } from "lucide-react"
+import { DiscoverRangeSection } from "@/components/transition/DiscoverRangeSection"
+import { Footer } from "@/components/footer"
+import { SolutionsGridSection } from "@/components/SolutionsDetailSection"
+
 
 const transitionFaqs = [
   {
@@ -47,7 +52,7 @@ const transitionFaqs = [
 
 export default function TransitionPage() {
   return (
-    <MainLayout>
+    <>
       <LuxuryHero
         imageSrc="/eye.jpg"
         imageAlt="Cinematic close-up of an eye representing Transitions light intelligent lenses"
@@ -66,24 +71,43 @@ export default function TransitionPage() {
         }
         description="The world's #1 photochromic lenses"
       />
+      <PowerfulLensesSection title="Light Intelligent Lenses" description=" Light-responsive lenses that adapt naturally to changing environments. Transition lenses help deliver effortless comfort indoors and outdoors, with powerful performance throughout the day."
+      />
+      <Succeed
+        videoUrl="/transition2.mp4"
+        SucceedHeader={false}
+        boxes={[
+          {
+            icon: Eye,
+            title: "Light Intelligent",
+            description: "Automatically adjust to changing light conditions for optimal vision."
+          },
+          {
+            icon: LayoutGrid,
+            title: "Seamlessly adaptation",
+            description: "Quickly fade back to clear indoors and darken outdoors."
+          },
+          {
+            icon: Sun,
+            title: "Block 100% of UVA and UVB",
+            description: "Complete protection against harmful ultraviolet rays in all lighting."
+          },
+          {
+            icon: Palette,
+            title: "Personal style wide colour choices",
+            description: "Available in multiple stylish colors to match your favorite frames."
+          }
+        ]}
+      />
 
-      <PowerfulLensesSection />
-      <DiscoverRangeSection videoUrl="/transition.mp4" />
-      <BenefitsSection />
-      <OneForAllLightsBanner />
-      <SplitLayoutHero theme="light"
-        imageSrc="/model1.png" className="bg-white lg:px-26 2xl:px-50 2xl:py-50 py-32 " contentClassName="bg-white" reverseLayout={true}
-        imageAlt=""
-        tagline="Specialised LINE" subHeading="Advanced technology for all visions"
-        heading="Single Vision Lenses"
-        description="Our single vision lens delivers optimal visual clarity at one focal distance. Engineered on a digital aspheric platform, it is compatible with the complete Optoka coating system and available across all major index values"
-        buttonLabel="Lens Specification " />
-      <PerformanceSection />
+      <DiscoverRangeSection description="your eyes from UV and filtering blue-violet light, Transitions® lenses darken outdoors and clear indoors. Transitions® adapt naturally to changing environments." />
+      <TransitionsBannerGrid />
+      <SolutionsGridSection />
       <FaqSection
         faqs={transitionFaqs}
         subheading="Find Answers to Questions about the Transitions Lenses"
       />
-      <ContactSection />
-    </MainLayout>
+      <ContactSection /> <Footer />
+    </>
   )
 }

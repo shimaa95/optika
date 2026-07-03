@@ -27,7 +27,7 @@ const LENS_IMAGES = [
   "/model1.png",
   "/about-optika.jpg",
   "/hero.jpg",
-  "/transition.jpg",
+  "/transition.jpeg",
 ] as const
 
 function buildLensCards(): LensCardData[] {
@@ -163,7 +163,7 @@ export default function ExpandableCards() {
     <section className="flex min-h-screen h-screen flex-1  flex-col bg-white px-4 py-6 md:h-screen md:min-h-screen md:px-6 md:py-8 lg:px-8 lg:py-10">
       <div className="mx-auto flex  min-h-screen w-full max-w-[1680px] flex-1 flex-col justify-start h-screen min-h-screen md:justify-center">
         {/* Desktop — vertically centered in viewport; fixed height accordion */}
-        <div className="hidden lg:w-[93vw] 2xl:w-full mb-10   mx-auto flex-col overflow-hidden rounded-sm border-4 border-[#d4d4d4] bg-white p-2 md:flex lg:h-[85vh] md:p-2 2xl:h-[60vh]">
+        <div className="hidden lg:w-[93vw] xl:w-full mb-10   mx-auto flex-col overflow-hidden rounded-sm border-4 border-[#d4d4d4] bg-white p-2 md:flex lg:h-[85vh] md:p-2 xl:h-[60vh]">
           <div className="flex h-full min-h-0 w-full min-w-0 flex-1  gap-2 overflow-hidden ">
             {cardsData.map((card) => {
               const isActive = activeCard === card.id
@@ -250,12 +250,12 @@ export default function ExpandableCards() {
                             <h3 className="shrink-0 font-sans text-[clamp(2rem,3vw,3.2rem)] font-extrabold tracking-tight text-black leading-none">
                               {card.title.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').replace(/^Acutus/i, 'Auctus')}
                             </h3>
-                            
+
                             {/* Subtitle e.g. ORGANIC RX PROGRESSIVE LENS */}
                             <p className="shrink-0 font-sans text-[11px] font-bold uppercase tracking-[0.2em] text-neutral-500">
                               {card.productType.toUpperCase()} LENS
                             </p>
-                            
+
                             {/* Description */}
                             <p className="shrink-0 font-sans text-[14px] font-normal leading-[1.65] text-neutral-600 max-w-[400px]">
                               {card.description}
@@ -283,7 +283,7 @@ export default function ExpandableCards() {
                                 type="button"
                                 data-lens-explore
                                 data-lens-id={card.id}
-                                className="bg-black text-white px-8 py-3.5 font-sans text-[13px] font-bold tracking-wide hover:bg-neutral-800 transition-colors uppercase border-none outline-none cursor-pointer"
+                                className="bg-black text-white w-[210px] h-[48px] flex items-center justify-center font-sans text-[13px] font-bold tracking-wide hover:bg-neutral-800 transition-colors uppercase border-none outline-none cursor-pointer"
                               >
                                 View Lens Details
                               </button>
@@ -417,7 +417,7 @@ export default function ExpandableCards() {
                         type="button"
                         data-lens-explore
                         data-lens-id={card.id}
-                        className="bg-black text-white px-6 py-3 w-full font-sans text-[13px] font-bold tracking-wide hover:bg-neutral-800 transition-colors uppercase border-none outline-none cursor-pointer text-center"
+                        className="bg-black text-white w-full h-[48px] flex items-center justify-center font-sans text-[13px] font-bold tracking-wide hover:bg-neutral-800 transition-colors uppercase border-none outline-none cursor-pointer text-center"
                       >
                         View Lens Details
                       </button>
