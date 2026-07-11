@@ -64,7 +64,7 @@ export default function TransitionPage() {
                         INTELLIGENT
                         <br />
                         LENSES
-                    </>
+                    </> 
                 }
                 description="The world's #1 photochromic lenses"
             />

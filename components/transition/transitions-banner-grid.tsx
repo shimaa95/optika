@@ -65,7 +65,7 @@ export function TransitionsBannerGrid({
     bottomRightBanner = defaultBottomRight
 }: TransitionsBannerGridProps) {
     return (
-        <section className="bg-white px-6 lg:px-26 xl:px-50 w-full py-16">
+        <section className="bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 w-full py-16">
             <div className="mx-auto w-full flex flex-col gap-4">
                 {/* Row 1: Full width banner */}
                 <div className="relative w-full aspect-[16/9] lg:aspect-[21/9] xl:aspect-[3/1] bg-gray-200 overflow-hidden group">

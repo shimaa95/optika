@@ -9,10 +9,11 @@ import { getSwatch, type TryOnSwatchId } from "@/lib/try-on/swatches"
 
 export function VirtualTryOn() {
   const [swatchId, setSwatchId] = useState<TryOnSwatchId>("purple")
+  const [cameraActive, setCameraActive] = useState(false)
   const swatch = getSwatch(swatchId)
 
   return (
-    <div className="vto-root flex flex-col bg-white px-6 lg:pl-26 xl:pl-50 lg:flex-row h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] lg:overflow-hidden">
+    <div className="vto-root flex flex-col bg-white px-6 lg:px-0 lg:flex-row h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] lg:overflow-hidden">
       <div className="relative min-h-[45vh] w-full lg:w-1/2 lg:h-full shrink-0">
         <Image
           src="/tryon.jpeg"
@@ -25,14 +26,25 @@ export function VirtualTryOn() {
       </div>
 
       <div className="w-full lg:w-1/2 flex flex-col justify-center lg:justify-start px-6 pt-5  pb-0  xl:px-16 lg:h-full lg:overflow-hidden">
-        <div className="mx-auto w-full max-w-[440px]">
-          <CameraContainer swatch={swatch} className="h-[60vh] w-full" showFaceBadge />
-
-          <LensSwatchPicker
-            selectedId={swatchId}
-            onSelect={setSwatchId}
-            selectedSwatch={swatch}
+        <div className="relative mx-auto w-full max-w-[440px] h-[70vh] lg:h-[80vh]">
+          <CameraContainer
+            swatch={swatch}
+            className="absolute inset-0 h-full w-full"
+            showFaceBadge
+            onCameraActive={setCameraActive}
           />
+
+          {cameraActive && (
+            <div className="pointer-events-none absolute bottom-4 left-0 right-0 z-30 flex flex-col items-center">
+              <div className="pointer-events-auto">
+                <LensSwatchPicker
+                  selectedId={swatchId}
+                  onSelect={setSwatchId}
+                  selectedSwatch={swatch}
+                />
+              </div>
+            </div>
+          )}
 
           {/* <Link
             href="/products"

@@ -5,10 +5,10 @@ import Image from 'next/image'
 
 export default function BehindOptika() {
   return (
-    <section className="w-full bg-[#f4f6f8]  px-6 py-16 md:py-24 lg:px-26 xl:px-50 lg:py-32">
+    <section className="w-full bg-[#f4f6f8]  px-6 py-16 md:py-24 lg:px-20 xl:px-24 2xl:px-50 lg:py-32">
       {/* Header Section */}
       <div className="flex items-center gap-6 mb-12 md:mb-16 lg:mb-20">
-        <h2 className="text-xl md:text-4xl font-bold uppercase tracking-tight text-black whitespace-nowrap">
+        <h2 className="text-[32px] font-bold uppercase tracking-tight text-black whitespace-nowrap">
           Behind Optika
         </h2>
         <div className="flex-1 h-px bg-black/20" />

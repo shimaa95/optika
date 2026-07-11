@@ -41,7 +41,7 @@ const SplitLayoutHero = ({
 }: Props) => {
   const router = useRouter();
 
-  const defaultSpacing = "lg:ml-[58px] px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20";
+  const defaultSpacing = "lg:ml-[58px] px-6 sm:px-8 md:px-12 lg:px-20 xl:px-20";
   const wrapperClass = contentClassName || defaultSpacing;
 
   return (

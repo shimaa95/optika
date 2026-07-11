@@ -17,15 +17,15 @@ interface LensMobileCardProps {
 export function LensMobileCard({ category, transformStyle, index, isCompactTitle, titleClassName }: LensMobileCardProps) {
   return (
     <div
-      className="absolute left-1/2 top-1/2 transition-all duration-500 ease-out"
+      className="absolute left-1/2 top-1/2 transition-transform transition-opacity duration-500 ease-out will-change-transform"
       style={{
         width: "min(90%, 320px)",
         ...transformStyle,
       }}
     >
-      {/* Card with Gary UI glassmorphism/minimalism */}
-      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#111111]/80 backdrop-blur-xl shadow-[0_16px_64px_rgba(0,0,0,0.6)]">
-        {/* Image with GSAP clipPath target */}
+      {/* Card with solid translucent fill (no backdrop blur — perf) */}
+      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#111111]/80 shadow-[0_16px_64px_rgba(0,0,0,0.6)]">
+        {/* Image — composited entrance animation, no clipPath */}
         <div className="lens-image relative w-full overflow-hidden" style={{ aspectRatio: "6/7" }}>
           <Image
             src={category.image}

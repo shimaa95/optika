@@ -3,14 +3,12 @@
 import { useEffect, useRef, useLayoutEffect, type RefObject } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ensureGsap } from "@/lib/gsap"
 
 // SSR-safe useLayoutEffect
 const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect
 
-// Register ScrollTrigger plugin once on client
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger)
-}
+ensureGsap()
 
 /**
  * Hook for creating GSAP animations with proper cleanup
@@ -60,9 +58,6 @@ export function useScrollAnimation<T extends Element>(
 
   useIsomorphicLayoutEffect(() => {
     if (!elementRef.current) return
-
-    // Refresh ScrollTrigger
-    ScrollTrigger.refresh()
 
     const animation = callback(elementRef.current, ScrollTrigger)
 

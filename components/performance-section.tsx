@@ -6,7 +6,7 @@ export function PerformanceSection() {
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0">
         <Image
-          src="/pr.png"
+          src="/pr.jpeg"
           alt="Professional team in a modern office boardroom"
           fill
           sizes="100vw"
@@ -19,9 +19,9 @@ export function PerformanceSection() {
       {/* Centered Content */}
       <div className="hidden lg:block relative z-10 w-full max-w-[30%] lg:max-w-[60%]  text-center   px-8">
         <h2
-          className="text-white font-inter  uppercase tracking-normal font-inter 
-                     text-[20px] sm:text-[35px] md:text-[40px] lg:text-[45px] xl:text-[50px] xl:text-[55px]  font-bold
-                     leading-[.1] md:leading-[1.05]"
+          className="text-white font-inter  uppercase tracking-normal font-inter
+                     text-[32px]  font-bold
+                     leading-[1.1]"
           style={{ textShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
         >
           Designed to perform
@@ -37,8 +37,8 @@ export function PerformanceSection() {
       {/* Mobile Content */}
       <div className="lg:hidden relative z-10 w-full max-w-[90%] text-center px-4">
         <h2
-          className="text-white font-inter uppercase tracking-normal font-inter 
-                     text-[24px] sm:text-[28px] md:text-[32px] font-bold
+          className="text-white font-inter uppercase tracking-normal font-inter
+                     text-[32px] font-bold
                      leading-[1.1]"
           style={{ textShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
         >

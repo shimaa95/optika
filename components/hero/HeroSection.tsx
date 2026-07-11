@@ -34,7 +34,7 @@ export function HeroSection({
   return (
     <section className={cn("w-full py-20 md:py-32", className)}>
       {/* Gary UI Style: Responsive Margin Alignment mirroring global site navigation */}
-      <div className="mx-auto px-4 md:px-8 lg:px-16 w-full max-w-7xl">
+      <div className="mx-auto px-4 md:px-8 lg:px-20 w-full max-w-7xl">
         <div className={cn("flex flex-col", alignmentClasses[align], contentClassName)}>
           <HeroSubheading subheading={subheading} />
           <HeroHeadline headline={headline} />

@@ -205,7 +205,7 @@ function LensDialogTitleBlock({ card }: { card: LensCardData }) {
 function LensDialogScrollBlock({ card }: { card: LensCardData }) {
   return (
     <div className="flex flex-col gap-5 text-left">
-      <h3 className="font-inter text-xl font-bold uppercase leading-tight tracking-tight text-black sm:text-2xl">
+      <h3 className="font-inter font-bold uppercase leading-[28px] tracking-[0.1em] text-black text-[20px]">
         {card.title}
       </h3>
       <p className="font-inter text-[10px] font-medium uppercase tracking-[0.2em] text-black">
@@ -333,7 +333,7 @@ function LensAccordionDesktopRow({
                       </p>
                     </div>
 
-                    <h3 className="shrink-0 font-inter text-[clamp(1.65rem,2.4vw,2.35rem)] font-bold uppercase leading-[1.05] tracking-[-0.02em] text-black">
+                    <h3 className="shrink-0 font-inter font-bold uppercase leading-[28px] tracking-[0.1em] text-black text-[20px]">
                       {card.title}
                     </h3>
                     <p className="shrink-0 font-inter text-[10px] font-medium uppercase tracking-[0.2em] text-black lg:text-[11px]">
@@ -489,7 +489,7 @@ function LensAccordionMobileStack({
                       {card.seriesLine}
                     </p>
                   </div>
-                  <h3 className="font-inter text-[1.35rem] font-bold uppercase leading-tight tracking-tight text-black">
+                  <h3 className="font-inter font-bold uppercase leading-[28px] tracking-[0.1em] text-black text-[20px]">
                     {card.title}
                   </h3>
                   <p className="font-inter text-[10px] font-medium uppercase tracking-[0.2em] text-black">

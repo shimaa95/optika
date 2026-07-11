@@ -16,7 +16,7 @@ export function ProductHeader({ name, subtitle }: ProductHeaderProps) {
         }}
       >
         <div className="px-6 py-10 sm:px-10 lg:px-[120px] lg:py-12">
-          <h2 className="text-[clamp(1.85rem,3.8vw,3rem)] font-bold uppercase leading-[1.02] tracking-[0.03em] text-white">
+          <h2 className="text-[32px] font-bold uppercase leading-[1.02] tracking-[0.03em] text-white">
             {name}
           </h2>
           <p className="mt-2 text-[11px] font-medium uppercase tracking-[0.24em] text-white sm:text-[12px]">

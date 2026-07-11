@@ -89,11 +89,11 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
               <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] leading-snug font-medium text-black/50">
                 Solutions for partners
               </div>
-              <h2 className="mb-4 xl:mb-6 text-xl lg:text-2xl font-bold uppercase tracking-tight text-black">Streamlined Workflows</h2>
+              <h2 className="mb-4 xl:mb-6 font-bold uppercase text-black text-[20px] tracking-[0.1em] leading-[28px]">Streamlined Workflows</h2>
               <p className="mb-6 xl:mb-10 max-w-[200px] lg:max-w-[390px] text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed text-black/90">
                 We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style              </p>
               <Link href="#">
-                <div className="flex items-center gap-3 text-sm font-medium text-black transition-colors hover:text-black/80 sm:text-base lg:text-[16px]" style={{ fontFamily: "var(--font-inter)" }}>
+                <div className="flex items-center gap-3 text-[16px] font-normal text-black transition-colors hover:text-black/80" style={{ fontFamily: "var(--font-inter)" }}>
                   <span className="flex h-6 w-6 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
                     <ArrowRight className="h-4 w-4" />
                   </span>
@@ -105,7 +105,7 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
         </div>
 
         {/* Top Right - Image */}
-        <div className="relative flex flex-col items-center justify-center p-8 md:p-12 lg:p-20 xl:p-24 border-b border-black/10">
+        <div className="relative flex flex-col items-center justify-center  border-b border-black/10">
           <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-square">
             <Image
               src="/about-optika.jpg"
@@ -117,7 +117,7 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
         </div>
 
         {/* Bottom Left - Image */}
-        <div className="relative p-8 md:p-12 lg:p-20 xl:p-24 border-b md:border-b-0 md:border-r border-black/10">
+        <div className="relative  border-b md:border-b-0 md:border-r border-black/10">
           <div className="relative w-full aspect-[4/5] sm:aspect-square md:aspect-square">
             <Image
               src="/about-optika2.jpg"
@@ -135,12 +135,12 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
               <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] font-medium text-black/50">
                 A connected system
               </div>
-              <h2 className="text-2xl xl:text-3xl mb-4 xl:mb-6 font-bold tracking-tight text-black">SCALE WITHOUT <br /> LOSING CONSISTENCY</h2>
+              <h2 className="mb-4 xl:mb-6 font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]">SCALE WITHOUT <br /> LOSING CONSISTENCY</h2>
 
               <p className="text-[14px] md:text-[14px] mb-6 xl:mb-10 lg:text-[20px] leading-relaxed text-black/90 max-w-[200] lg:max-w-[390px]">
                 We operate as an integrated system for partners to creates a stable foundation for growth, operational clarity, and a more consistent experience across every touch-point.              </p>
               <Link href="#">
-                <div className="flex items-center gap-3 text-sm font-medium text-black transition-colors hover:text-black/80 sm:text-base lg:text-[16px]" style={{ fontFamily: "var(--font-inter)" }}>
+                <div className="flex items-center gap-3 text-[16px] font-normal text-black transition-colors hover:text-black/80" style={{ fontFamily: "var(--font-inter)" }}>
                   <span className="flex h-6 w-6 sm:h-6 sm:w-6 items-center justify-center border border-black/30 transition-all group-hover:border-black group-hover:bg-black group-hover:text-white">
                     <ArrowRight className="h-4 w-4" />
                   </span>

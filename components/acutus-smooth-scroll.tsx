@@ -1,21 +1,62 @@
 'use client';
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ensureGsap } from '@/lib/gsap';
 import { cardsData } from '@/app/products/acutus/series-section';
 import './acutus-smooth-scroll.css';
 
-gsap.registerPlugin(ScrollTrigger);
+ensureGsap();
+
+const useIsomorphicLayoutEffect =
+  typeof window !== 'undefined' ? useLayoutEffect : useEffect;
 
 export function AcutusSmoothScroll() {
   const containerRef = useRef<HTMLDivElement>(null);
   const scrollWrapperRef = useRef<HTMLDivElement>(null);
 
+  useIsomorphicLayoutEffect(() => {
+    const wrapper = scrollWrapperRef.current;
+    if (!wrapper) return;
+
+    // Disable the browser's scroll restoration for the duration of this page.
+    // When the user refreshes mid-animation, the restored scroll position can
+    // leave the horizontal carousel translated partway through its timeline,
+    // showing a clipped logo and a non-zero starting slide. Forcing the page
+    // back to the top before GSAP initialises eliminates that flash.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual';
+    }
+    if (window.scrollY > 0) {
+      // Use the legacy 2-arg form so it bypasses any `scroll-behavior: smooth`
+      // CSS rule on <html.gallery-html>. The options form would otherwise
+      // animate the scroll over ~300ms, leaving the page rendered at the
+      // wrong vertical position during that window.
+      window.scrollTo(0, 0);
+    }
+
+    // Defensive: pin the wrapper to x: 0 before the timeline runs, so the
+    // first paint is always the un-translated start of the gallery. Without
+    // this, on the very first frame the wrapper inherits whatever transform
+    // the previous render left behind (e.g. after a soft refresh mid-scroll).
+    gsap.set(wrapper, { x: 0, force3D: true });
+  }, []);
+
   useEffect(() => {
     if (!containerRef.current || !scrollWrapperRef.current) return;
+
+    const wrapper = scrollWrapperRef.current!;
+
+    // Wait for the next frame so the layout (and any restored scroll) has
+    // settled, then ask ScrollTrigger to recompute. Without this, the trigger
+    // can measure against a scrollWidth that hasn't yet included all images
+    // and the resulting `end` value is wrong on the first refresh.
+    const rafId = requestAnimationFrame(() => {
+      ScrollTrigger.refresh();
+    });
 
     const ctx = gsap.context(() => {
       const container = containerRef.current;
@@ -110,7 +151,14 @@ export function AcutusSmoothScroll() {
 
     }, containerRef); // Scope GSAP selector to the container
 
-    return () => ctx.revert(); // Proper cleanup for React Strict Mode
+    return () => {
+      cancelAnimationFrame(rafId);
+      ctx.revert();
+      // Restore the browser default for other pages.
+      if ('scrollRestoration' in window.history) {
+        window.history.scrollRestoration = 'auto';
+      }
+    };
   }, []);
 
   return (

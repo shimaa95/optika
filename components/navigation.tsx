@@ -67,7 +67,7 @@ export function Navigation({ bgColorClass = 'bg-white ', textColorClass = "text-
 
   return (
     <header ref={megaMenuRef} className={`sticky top-0 left-0 right-0 z-100 transition-colors duration-500 ${bgColorClass}`}>
-      <nav className={`flex h-[50px] xl:h-[75px] items-center justify-between text-[#333436] px-6 lg:px-26 xl:px-50`}>
+      <nav className={`flex h-[50px] xl:h-[75px] items-center justify-between text-[#333436] px-6 lg:px-20 xl:px-24 2xl:px-50`}>
         {/* Logo */}
         <Link href="/" className="transition-opacity hover:opacity-70 flex items-center">
           <span className={` xl:text-[16px] font-medium tracking-tight ${textColorClass}`}>
@@ -144,7 +144,7 @@ export function Navigation({ bgColorClass = 'bg-white ', textColorClass = "text-
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
             className="overflow-hidden w-full text-black hidden md:block border-t border-black/10 bg-[#f4f6f8]"
           >
-            <div className="py-10 grid grid-cols-12 gap-8 px-6 lg:px-26 xl:px-50">
+            <div className="py-10 grid grid-cols-12 gap-8 px-6 lg:px-20 xl:px-24 2xl:px-50">
               {/* Left Column — "Lenses for you" + contact/address */}
               <div className="col-span-3 flex flex-col justify-between min-h-[200px]">
                 <div>
@@ -209,7 +209,7 @@ export function Navigation({ bgColorClass = 'bg-white ', textColorClass = "text-
             <div className="border-t border-black/10" />
 
             {/* Bottom bar — copyright + legal links */}
-            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 py-4 px-6 lg:px-26 xl:px-50 text-[11px] font-inter text-black/50">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 py-4 px-6 lg:px-20 xl:px-24 2xl:px-50 text-[11px] font-inter text-black/50">
               <p>© {new Date().getFullYear()} Optika. All rights reserved.</p>
               <nav className="flex items-center gap-5">
                 <Link href="/privacy" className="hover:text-black transition-colors underline">Privacy policy</Link>

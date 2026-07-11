@@ -6,7 +6,7 @@ interface OneForAllLightsBannerProps {
 
 export function OneForAllLightsBanner({ imageSrc = "/tranimage.png" }: OneForAllLightsBannerProps) {
   return (
-    <section className="bg-white px-6 lg:px-26 xl:px-50 w-full h-screen">
+    <section className="bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 w-full h-screen">
       <div className="mx-auto relative h-full w-full ">
         <Image
           src={imageSrc}

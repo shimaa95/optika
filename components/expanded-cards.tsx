@@ -247,7 +247,7 @@ export default function ExpandableCards() {
                             </div>
 
                             {/* Title e.g. Auctus Smart */}
-                            <h3 className="shrink-0 font-sans text-[clamp(2rem,3vw,3.2rem)] font-extrabold tracking-tight text-black leading-none">
+                            <h3 className="shrink-0 font-sans font-bold tracking-[0.1em] text-black text-[20px] leading-[28px]">
                               {card.title.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').replace(/^Acutus/i, 'Auctus')}
                             </h3>
 
@@ -372,7 +372,7 @@ export default function ExpandableCards() {
                       </div>
 
                       {/* Title Case Header */}
-                      <h3 className="font-sans text-[1.6rem] font-extrabold tracking-tight text-black leading-none">
+                      <h3 className="font-sans font-bold tracking-[0.1em] text-black text-[20px] leading-[28px]">
                         {card.title.toLowerCase().split(' ').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ').replace(/^Acutus/i, 'Acutus')}
                       </h3>
 

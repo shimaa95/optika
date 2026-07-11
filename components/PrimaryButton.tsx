@@ -55,7 +55,7 @@ export function PrimaryButton({
     <button
       style={animatedStyle}
       className={cn(
-        " w-[180px] h-[40px] cursor-pointer inline-flex items-center justify-center gap-3 border text-[14px] font-medium tracking-[0.01em] rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2",
+        " w-[180px] h-[40px] cursor-pointer inline-flex items-center justify-center gap-3 border text-[16px] font-normal tracking-[0.01em] rounded-[4px] focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2",
         bgColor,
         className
       )}

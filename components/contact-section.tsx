@@ -13,9 +13,9 @@ interface ContactSectionProps {
 export function ContactSection({ imageSrc = "/contact.jpg", themeColor }: ContactSectionProps) {
     const router = useRouter()
     return (
-        <section className="flex w-full min-h-[70vh] z-100 bg-white flex-col relative">
+        <section className="flex w-full min-h-[70vh] z-1 bg-white flex-col relative">
             {/* ── Part 1: Banner with dark overlay ── */}
-            <div className="relative w-full flex-1 mb-5 overflow-hidden " style={{ minHeight: "clamp(180px, 28vw, 340px)", backgroundColor: themeColor }}>
+            <div className="relative w-full flex-1 mb-5 overflow-hidden px-6 py-10 lg:px-20  xl:px-26 2xl:px-50 " style={{ minHeight: "clamp(180px, 28vw, 340px)", backgroundColor: themeColor }}>
                 {/* Background photo */}
                 {!themeColor && (
                     <>
@@ -33,11 +33,11 @@ export function ContactSection({ imageSrc = "/contact.jpg", themeColor }: Contac
                 )}
 
                 {/* Text content */}
-                <div className="relative z-10 flex h-full flex-col justify-end px-6 py-10 sm:px-10 lg:mx-[65px] xl:mx-40"
+                <div className="relative z-10 flex h-full flex-col justify-end "
                     style={{ minHeight: "clamp(180px, 28vw, 340px)" }}>
                     <h2
                         className="text-balance font-bold text-white"
-                        style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", lineHeight: 1.25 }}
+                        style={{ fontSize: "32px", lineHeight: 1.25 }}
                     >
                         Still have questions?
                     </h2>
@@ -51,16 +51,15 @@ export function ContactSection({ imageSrc = "/contact.jpg", themeColor }: Contac
             </div>
 
             {/* ── Part 2: Two-column CTA row ── */}
-            <div className="grid w-full grid-cols-1 sm:grid-cols-2 lg:pl-6 lg:pr-2 xl:px-26  bg-white">
+            <div className="grid w-full grid-cols-1 sm:grid-cols-2  bg-white">
                 {/* Contact us */}
                 <div
-                    className="flex flex-col justify-between px-6 py-10 sm:px-10 md:px-16 lg:mx-[19px]  xl:mx-[30px]"
+                    className="flex flex-col justify-between px-6 py-10 lg:px-20   xl:px-24 2xl:px-50"
                     style={{ borderRight: "1px solid #e5e7eb" }}
                 >
                     <div>
                         <h3
-                            className="font-bold text-black"
-                            style={{ fontSize: "clamp(1.125rem, 1.8vw, 1.5rem)" }}
+                            className="font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]"
                         >
                             Contact us
                         </h3>
@@ -79,8 +78,7 @@ export function ContactSection({ imageSrc = "/contact.jpg", themeColor }: Contac
                 <div className="flex flex-col justify-between px-6 py-10 sm:px-10 md:px-16 lg:px-24 xl:px-24 ">
                     <div>
                         <h3
-                            className="font-bold text-black"
-                            style={{ fontSize: "clamp(1.125rem, 1.8vw, 1.5rem)" }}
+                            className="font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]"
                         >
                             Enquiry Form
                         </h3>

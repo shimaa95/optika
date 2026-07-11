@@ -50,11 +50,11 @@ export const faqs = [
 
 export function FaqSection({ faqs = [], subheading }: { faqs?: { question: string, answer: string }[], subheading?: string }) {
     return (
-        <section className="w-full  lg:px-26 xl:px-50 px-6 bg-white ">
+        <section className="w-full  lg:px-20 xl:px-24 2xl:px-50 px-6 bg-white ">
             <div className="w-full py-16 sm:py-20 lg:py-24">
                 {/* Header */}
                 <div className="mb-10 lg:mb-16 ">
-                    <h2 className="mb-2 text-3xl font-bold tracking-tight text-black sm:text-4xl lg:text-5xl">
+                    <h2 className="mb-2 text-[32px] font-bold tracking-tight text-black">
                         FAQ
                     </h2>
                     <p className="text-sm text-gray-500 sm:text-base">

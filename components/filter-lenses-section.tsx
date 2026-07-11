@@ -30,11 +30,11 @@ export default function FilterLensesSection() {
         />
       </div> */}
 
-      <div className="relative z-10 w-full  mx-auto px-6  lg:px-26 xl:px-50 flex flex-col justify-center min-h-[400px]">
+      <div className="relative z-10 w-full  mx-auto px-6  lg:px-20 xl:px-24 2xl:px-50 flex flex-col justify-center min-h-[400px]">
         {/* Texts */}
         <div className="mb-12 mt-auto mx-auto ">
           <p className="text-black/80 text-lg mb-2 font-light tracking-wide text-center">Find your right Lens</p>
-          <h2 className="text-black/80 text-[32px] xl:text-[64px] font-bold  leading-[1.1] tracking-tight">
+          <h2 className="text-black/80 text-[32px] font-bold  leading-[1.1] tracking-tight">
             Filter Lenses Using Built-in Technologies          </h2>
         </div>
         <div className="h-[.1px] w-full bg-black/20 mx-auto mb-12" />

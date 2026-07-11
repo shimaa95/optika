@@ -9,24 +9,52 @@ interface LensDesktopCardProps {
   titleClassName?: string;
   bgCards?: string;
   cardsHover?: string; border?: string;
+  /**
+   * 'original' — image stretches to fill remaining row height
+   *   (different image heights per card). Used by the home page.
+   * 'constrained' — image locked to 4:3 aspect ratio, content area
+   *   fills the rest, descriptions clamp to 4 lines, button pinned
+   *   to the bottom. Used by the about page.
+   */
+  variant?: 'original' | 'constrained';
+  /**
+   * Fixed minimum height for the image in the 'original' variant.
+   * Tailwind min-height class, e.g. 'min-h-[500px]'. Ignored when
+   * variant is 'constrained'.
+   */
+  imageMinHeight?: string;
 }
 
-export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80' }: LensDesktopCardProps) {
-  return (
-    <div className={`relative flex flex-1 flex-col    overflow-hidden border ${border}  backdrop-blur-xl`}>
-      {/* Image Container with GSAP clipPath class */}
-      <div className="lens-image relative flex-1 min-h-[300px] overflow-hidden cursor-pointer">
-        <Image
-          src={category.image}
-          alt={category.imageAlt}
-          fill
-          className="object-cover"
-          sizes="33vw" style={{ objectPosition: '50% 30%' }}
-        />
-      </div>
+export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80', variant = 'original', imageMinHeight = 'min-h-[300px]' }: LensDesktopCardProps) {
+  const isConstrained = variant === 'constrained';
 
-      {/* Content - fixed height at bottom. Using Gary UI 8px grid rules */}
-      <div className={`${bgCards} ${cardsHover} flex flex-col items-center  px-8 py-10 text-center cursor-pointer`}>
+  return (
+    <div className={`relative flex flex-1  flex-col overflow-hidden border ${border}`}>
+      {/* Image Container */}
+      {isConstrained ? (
+        <div className="lens-image relative w-full aspect-[11/12] overflow-hidden cursor-pointer shrink-0">
+          <Image
+            src={category.image}
+            alt={category.imageAlt}
+            fill
+            className="object-cover"
+            sizes="33vw" style={{ objectPosition: '50% 30%' }}
+          />
+        </div>
+      ) : (
+        <div className={`lens-image relative flex-1 ${imageMinHeight} overflow-hidden cursor-pointer`}>
+          <Image
+            src={category.image}
+            alt={category.imageAlt}
+            fill
+            className="object-cover"
+            sizes="33vw" style={{ objectPosition: '50% 30%' }}
+          />
+        </div>
+      )}
+
+      {/* Content */}
+      <div className={`${bgCards} ${cardsHover} flex ${isConstrained ? 'flex-1 py-6 flex-col' : 'flex-col py-10'} items-center px-8  text-center cursor-pointer`}>
         <div className="xl:h-16 h-12 w-auto relative  ">
           {category.logo ? (
             <Image
@@ -58,27 +86,28 @@ export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleCla
             </h3>
           )}
         </div>
-        <p className={cn(" text-sm font-light tracking-wide text-white/50", category.descriptionClassName)}>
+        <p className={cn(isConstrained ? 'line-clamp-4' : '', " text-sm font-light tracking-wide text-white/50", category.descriptionClassName)}>
           {category.description}
         </p>
         {category.link && (
-          // <Link
-          //   href={category.link}
-          //   className="group mt-8 flex items-center gap-4 text-xs font-semibold tracking-widest uppercase text-white/60 transition-colors hover:text-white"
-          // >
-          //   <span className="flex h-8 w-8 items-center justify-center bg-white/5 text-white border border-white/10 transition-all group-hover:bg-white group-hover:text-[#111111]">
-          //     <ArrowRight className="h-4 w-4" />
-          //   </span>
-          //   <span>View Lenses</span>
-          // </Link> 
-          <PrimaryButton
-            onClick={category.link}
-            bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
-            className="mt-6"
-          >
-            View Lenses
-          </PrimaryButton>
-
+          isConstrained ? (
+            <div className="mt-auto pt-6">
+              <PrimaryButton
+                onClick={category.link}
+                bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
+              >
+                View Lenses
+              </PrimaryButton>
+            </div>
+          ) : (
+            <PrimaryButton
+              onClick={category.link}
+              bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
+              className="mt-6"
+            >
+              View Lenses
+            </PrimaryButton>
+          )
         )}
       </div>
     </div>

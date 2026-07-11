@@ -4,11 +4,12 @@ import { useEffect, useRef } from "react";
 import styles from "../app/stacked/Stickycolumns.module.css";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import { ensureGsap } from "@/lib/gsap";
 
 
 export default function StickyColumns() {
     const sectionRef = useRef(null);
-    gsap.registerPlugin(ScrollTrigger);
+    ensureGsap();
 
     useEffect(() => {
 
@@ -38,10 +39,11 @@ export default function StickyColumns() {
             scrollTrigger: {
                 trigger: section,
                 start: "top top",
-                end: `+=${window.innerHeight * 4}px`,
+                end: () => `+=${window.innerHeight * 4}px`,
                 pin: true,
                 pinSpacing: true,
                 scrub: 1,
+                invalidateOnRefresh: true,
                 snap: {
                     snapTo: [0, 0.375, 0.875, 1], // [0, 1.5/4, 3.5/4, 1]
                     duration: { min: 0.4, max: 0.8 },
@@ -74,8 +76,8 @@ export default function StickyColumns() {
             .addLabel("end");
 
         return () => {
+            tl.scrollTrigger?.kill();
             tl.kill();
-            ScrollTrigger.getAll().forEach((t) => t.kill());
         };
     }, []);
 
@@ -93,7 +95,7 @@ export default function StickyColumns() {
                                     <div className="flex flex-col items-start gap-2 ml-7">
                                         <img src="/logocard.svg" alt="Smooth Optics" className="w-[160px] h-auto object-contain" />
                                         <div className="flex flex-col gap-2">
-                                            <h3 className="text-lg mt-3" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
+                                            <h3 className="mt-3 font-bold text-[20px] leading-[28px] tracking-[0.1em]" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
                                         </div>
                                         <div className="flex flex-col gap-4 text-[1.05rem] leading-[1.6] text-[var(--sc-fg-100)] opacity-90">
                                             <p className="m-0">Smooth Optics is the stand out innovation in the lens sector. The process for creating Smooth Optics designs starts by defining the lens surface in terms of its optical properties.</p>
@@ -132,7 +134,7 @@ export default function StickyColumns() {
                                     <div className="flex flex-col items-start gap-2 ml-7">
                                         <img src="/logocard.svg" alt="Smooth Optics" className="w-[160px] h-auto object-contain" />
                                         <div className="flex flex-col gap-2">
-                                            <h3 className="text-lg mt-3" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
+                                            <h3 className="mt-3 font-bold text-[20px] leading-[28px] tracking-[0.1em]" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
                                         </div>
                                         <div className="flex flex-col gap-4 text-[1.05rem] leading-[1.6] text-[var(--sc-fg-100)] opacity-90">
                                             <p className="m-0">Smooth Optics is the stand out innovation in the lens sector. The process for creating Smooth Optics designs starts by defining the lens surface in terms of its optical properties.</p>
@@ -148,7 +150,7 @@ export default function StickyColumns() {
                                     <div className="flex flex-col items-start gap-2 ml-7">
                                         <img src="/logocard.svg" alt="Smooth Optics" className="w-[160px] h-auto object-contain" />
                                         <div className="flex flex-col gap-2">
-                                            <h3 className="text-lg mt-3" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
+                                            <h3 className="mt-3 font-bold text-[20px] leading-[28px] tracking-[0.1em]" style={{ color: 'var(--sc-fg-200)' }}>Characteristics</h3>
                                         </div>
                                         <div className="flex flex-col gap-4 text-[1.05rem] leading-[1.6] text-[var(--sc-fg-100)] opacity-90">
                                             <p className="m-0">Smooth Optics is the stand out innovation in the lens sector. The process for creating Smooth Optics designs starts by defining the lens surface in terms of its optical properties.</p>

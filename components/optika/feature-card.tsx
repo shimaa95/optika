@@ -19,7 +19,7 @@ export function FeatureCard({ image, title, description }: FeatureCardProps) {
         />
       </div>
       <div className="flex flex-1 flex-col gap-3 p-5 bg-white">
-        <h3 className="font-heading text-base  xl:text-lg font-bold leading-tight text-balance text-black">{title}</h3>
+        <h3 className="font-heading font-bold text-balance text-black text-[20px] tracking-[0.1em] leading-[28px]">{title}</h3>
         <p className="text-[13px] xl:text-sm leading-relaxed  text-black/60">{description}</p>
       </div>
     </article>

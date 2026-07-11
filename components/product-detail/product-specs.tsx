@@ -35,13 +35,13 @@ export function ProductSpecs({
                   className={cn(
                     "w-[42%] px-4 py-3 font-semibold sm:px-5 sm:py-3.5",
                     row.variant === "green"
-                      ? "border-r border-white/15"
+                      ? "border-r border-white/15 tracking-[-0.03em]"
                       : "border-r border-neutral-200",
                   )}
                 >
                   {row.label}
                 </th>
-                <td className="px-4 py-3 font-normal sm:px-5 sm:py-3.5">
+                <td className={cn("px-4 py-3 font-normal sm:px-5 sm:py-3.5", row.variant === "green" && "tracking-[-0.03em]")}>
                   {row.value}
                 </td>
               </tr>
@@ -51,10 +51,10 @@ export function ProductSpecs({
       </div>
 
       <div className="mt-10 sm:mt-12">
-        <h3 className="text-[15px] font-bold text-text-dark sm:text-[20px]">
+        <h3 className="font-inter text-[20px] font-bold tracking-[0.1em] leading-[28px] text-text-dark">
           {whyTitle}
         </h3>
-        <ul className="mt-4 list-disc space-y-2 pl-5 text-[14px] leading-[1.5] text-text-dark sm:text-[15px]">
+        <ul className="mt-4 list-disc space-y-2 pl-5 font-inter text-[14px] xl:text-[16px]  text-text-dark">
           {whyPoints.map((point) => (
             <li key={point}>{point}</li>
           ))}

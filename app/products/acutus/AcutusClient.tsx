@@ -9,6 +9,7 @@ import { Footer } from "@/components/footer"
 import { IrisCursor } from '@/components/gallery/iris-cursor'
 import { GalleryScene } from "@/components/gallery/gallery-scene"
 import { AcutusSmoothScroll } from "@/components/acutus-smooth-scroll"
+import { AcutusLensesCarousel } from "@/components/acutus-lenses-carousel"
 import { SolutionsIntroSection } from "@/components/solutions-intro-section"
 
 
@@ -29,18 +30,11 @@ export default function AcutusClient() {
 
     <div className="relative min-h-screen bg-black text-white">
       <AcutusHeroSection />
-      <SolutionsIntroSection
-        tagline="Tools for clinics that demand clinical accuracy"
-        description="Optika equips clinics and independent stores with personalised lenses and an ordering flow designed to reduce remakes and improve patient outcomes."
-        ctaText="Download your Copy"
-        ctaHref="#"
-        cards={false} bottomImage={true}
-      />
-      <AcutusSmoothScroll />
+   
+      <AcutusLensesCarousel />
 
 
-      <ContactSection />
-      <Footer />
+      <ContactSection /><Footer />
     </div></>
   )
 }

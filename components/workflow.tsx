@@ -21,7 +21,7 @@ export function WorkflowSection() {
                 </div>
 
                 {/* Right Side - Content Area */}
-                <div className="flex flex-col items-center justify-center bg-[#F5F5F5] px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-16 lg:py-0 xl:px-20 xl:px-28">
+                <div className="flex flex-col items-center justify-center bg-[#F5F5F5] px-6 py-16 sm:px-8 sm:py-20 md:px-12 md:py-24 lg:px-20 lg:py-0 xl:px-20 xl:px-28">
                     <div className="w-full max-w-md lg:max-w-lg xl:max-w-xl xl:max-w-2xl text-left">
                         {/* Tagline */}
                         <p

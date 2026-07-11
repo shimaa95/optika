@@ -23,8 +23,8 @@ export function BenefitsSection({
 }: BenefitsSectionProps) {
   return (
     <section className="bg-white w-full py-16 sm:py-20 lg:py-28">
-      <div className="mx-auto max-w-6xl px-6 lg:px-12">
-        <h2 className="mx-auto mb-12 max-w-xl text-center text-2xl font-bold uppercase leading-tight tracking-tight text-black sm:text-3xl lg:mb-16 lg:text-4xl">
+      <div className="mx-auto max-w-6xl px-6 lg:px-20">
+        <h2 className="mx-auto mb-12 max-w-xl text-center text-[32px] font-bold uppercase leading-tight tracking-tight text-black">
           {title}
         </h2>
 
@@ -32,7 +32,7 @@ export function BenefitsSection({
           {benefits.map((benefit) => (
             <div key={benefit.title} className="flex flex-col items-center">
               <div className="mb-5 aspect-square w-full max-w-[180px] bg-[#d9d9d9]" />
-              <h3 className="text-xs font-bold uppercase tracking-wide max-w-[175px] text-center text-black">{benefit.title}</h3>
+              <h3 className="font-bold uppercase tracking-[0.1em] max-w-[175px] text-center text-black text-[20px] leading-[28px]">{benefit.title}</h3>
               {/* <p className="mt-1 text-[10px] uppercase leading-relaxed tracking-wide text-black/50">
                 {benefit.description}
               </p> */}

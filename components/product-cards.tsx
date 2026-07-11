@@ -66,7 +66,7 @@ export function ProductCard({
         </div>
 
         {/* CTA Button */}
-        <button className="w-full border border-black bg-white text-black text-[11px] font-medium py-2.5 px-4 flex items-center gap-2 hover:bg-black hover:text-white transition-colors duration-200 group">
+        <button className="w-full border border-black bg-white text-black text-[16px] font-normal py-3 px-4 flex items-center gap-2 hover:bg-black hover:text-white transition-colors duration-200 group">
           <ArrowRight className="h-4 w-4 shrink-0" />
           <span>Product Details</span>
         </button>

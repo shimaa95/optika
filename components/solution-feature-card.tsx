@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import type { LensCategory } from "@/lib/lens-categories.config";
 
 interface SolutionFeatureCardProps {
@@ -23,7 +24,7 @@ export function SolutionFeatureCard({ category }: SolutionFeatureCardProps) {
 
       {/* Content Area */}
       <div className="flex flex-col p-8 lg:p-10 flex-grow">
-        <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#1a1a1a] mb-4 leading-tight">
+        <h3 className={cn("text-2xl lg:text-3xl font-bold tracking-tight text-[#1a1a1a] mb-4 leading-tight", category.titleClassName)}>
           {category.logoText}
         </h3>
         <p className="text-sm lg:text-base font-normal leading-relaxed text-[#1a1a1a]/60">

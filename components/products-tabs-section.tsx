@@ -64,7 +64,7 @@ export function ProductsTabsSection() {
         </div>
 
         {/* Tab Content */}
-        <div className="border-b-4 mx-auto px-6 sm:px-8 md:px-12 lg:px-16 xl:px-20 xl:px-28  bg-white  py-10 lg:py-14 h-[40vh] min-h-[40vh] flex flex-col justify-top">
+        <div className="border-b-4 mx-auto px-6 sm:px-8 md:px-12 lg:px-20 xl:px-20 xl:px-28  bg-white  py-10 lg:py-14 h-[40vh] min-h-[40vh] flex flex-col justify-top">
           <div className="w-full">
             {/* Description */}
             <p className="mb-8 max-w-sm sm:mb-10 md:max-w-md lg:mb-10 text-black/80 text-[13px] sm:text-sm lg:text-base leading-[150%] tracking-[0.02em] font-normal" style={{ fontFamily: "var(--font-inter)", color: "#333" }}>

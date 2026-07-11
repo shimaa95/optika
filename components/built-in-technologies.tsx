@@ -85,7 +85,7 @@ export function BuiltInTechnologies() {
     <section className="w-full bg-[#f4f6f8] py-16">
       {/* Section heading */}
       <div className="text-center mb-10 md:mb-16">
-        <h2 className="text-[40px] xl:text-[64px] font-bold text-black tracking-tight font-inter">
+        <h2 className="text-[32px] font-bold text-black tracking-tight font-inter">
           Built-In Technologies
         </h2>
         <p className="text-[16px] xl:text-[20px] text-black mt-4 xl:mt-8 font-inter">
@@ -94,7 +94,7 @@ export function BuiltInTechnologies() {
       </div>
 
       {/* Card + Tabs container */}
-      <div className="mx-auto lg:mx-26 xl:mx-50 border border-gray-100 overflow-hidden bg-white">
+      <div className="mx-auto lg:mx-20 xl:mx-24 2xl:mx-50 border border-gray-100 overflow-hidden bg-white">
 
         {/* ── Tab Bar ── */}
         <div className="flex justify-center border-b border-gray-200 overflow-x-auto scrollbar-none">
@@ -127,7 +127,7 @@ export function BuiltInTechnologies() {
         </div>
 
         {/* ── Tab Panel ── */}
-        <div className="flex flex-col md:flex-row min-h-[500px] xl:min-h-[620px]">
+        <div className="flex flex-col md:flex-row min-h-[500px] xl:min-h-[660px]">
 
           {/* Left: image */}
           <div className="w-full md:w-1/2 relative overflow-hidden min-h-[300px]">

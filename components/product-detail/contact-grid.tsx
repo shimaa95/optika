@@ -15,12 +15,12 @@ export function ContactGrid({ contact }: ContactGridProps) {
           <AnimateInView
             key={column.title}
             delay={index * 0.08}
-            className={`flex flex-col justify-between px-6 py-12 sm:px-8 sm:py-14 lg:px-12 lg:py-16 ${
+            className={`flex flex-col justify-between px-6 py-12 lg:px-20 xl:px-24 2xl:px-50 lg:py-16 ${
               index === 0 ? "md:border-r md:border-[#e5e5e5]" : ""
             }`}
           >
             <div>
-              <h3 className="text-[clamp(1.125rem,1.8vw,1.5rem)] font-bold text-text-dark">
+              <h3 className="font-bold text-text-dark text-[20px] tracking-[0.1em] leading-[28px]">
                 {column.title}
               </h3>
               <p className="mt-3 max-w-md text-[14px] leading-[1.5] text-text-dark/70 sm:text-[15px]">

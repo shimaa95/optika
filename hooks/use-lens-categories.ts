@@ -2,9 +2,10 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ensureGsap } from "@/lib/gsap";
 import { STACK_OFFSETS, VISIBLE_BEHIND, type LensCategory } from "@/lib/lens-categories.config";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+ensureGsap();
 
 ScrollTrigger.config({
   ignoreMobileResize: true,
@@ -46,16 +47,16 @@ export function useLensCategories(categories: LensCategory[]) {
               ".lens-image",
               {
                 clipPath: "inset(100% 0% 0% 0%)",
-                y: 40,
-                scale: 0.9
+                y: 24,
+                scale: 0.96
               },
               {
                 clipPath: "inset(0% 0% 0% 0%)",
                 y: 0,
                 scale: 1,
-                duration: 1.4,
-                ease: "power4.out",
-                stagger: 0.1,
+                duration: 1.0,
+                ease: "power3.out",
+                stagger: 0.06,
               }
             );
 
@@ -63,7 +64,7 @@ export function useLensCategories(categories: LensCategory[]) {
             observer.disconnect();
           }
         },
-        { threshold: 0.4 }
+        { threshold: 0.3 }
       );
 
       // Pre-hide the images before observing
@@ -75,7 +76,7 @@ export function useLensCategories(categories: LensCategory[]) {
     { scope: sectionRef }
   );
 
-  const getCardTransform = (index: number) => {
+  const getCardTransform = useCallback((index: number) => {
     let slot = (index - activeIndex + total) % total;
     const isActive = slot === 0;
     const slotBehind = slot <= VISIBLE_BEHIND ? slot : null;
@@ -96,7 +97,7 @@ export function useLensCategories(categories: LensCategory[]) {
       zIndex: VISIBLE_BEHIND + 1 - slotBehind,
       pointerEvents: isActive ? ("auto" as const) : ("none" as const),
     };
-  };
+  }, [activeIndex, total]);
 
   return {
     activeIndex,

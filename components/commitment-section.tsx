@@ -50,7 +50,7 @@ export function CommitmentSection() {
             <div className="px-4 py-16 text-center sm:py-20 lg:py-24">
                 <h2
                     className="mx-auto max-w-2xl font-bold uppercase leading-tight tracking-tight text-black"
-                    style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}
+                    style={{ fontSize: "32px" }}
                 >
                     WE ARE COMMITTED TO
                     <br />
@@ -81,8 +81,7 @@ export function CommitmentSection() {
                         <div className="mt-12 flex w-full flex-col items-center">
                             {/* Title — fixed font size, no responsive scaling */}
                             <h3
-                                className="mb-6 font-bold uppercase tracking-wide px-10 text-4xl  text-black whitespace-pre-line "
-                                style={{ lineHeight: "1.3" }}
+                                className="mb-6 font-bold uppercase tracking-[0.1em] px-10 text-[20px] leading-[28px] text-black whitespace-pre-line "
                             >
                                 {card.title}
                             </h3>

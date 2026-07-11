@@ -4,7 +4,7 @@ import { ArrowRight, Sparkles, LayoutGrid, Globe } from "lucide-react"
 export function SolutionsSection() {
   return (
     <section className="w-full bg-[#f5f5f5]">
-      <div className="grid min-h-[50vh] lg:min-h-screen grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:px-26 xl:px-50 ">
+      <div className="grid min-h-[50vh] lg:min-h-screen grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-0 lg:px-20 xl:px-24 2xl:px-50 ">
         {/* Left Content Area */}
         <div className="flex flex-col items-center lg:items-end justify-center px-6 xl:py-12 py-4 sm:px-8 sm:py-20 md:px-12 lg:px-10 xl:px-16 xl:px-24">
           <div className="w-full max-w-md lg:max-w-[480px] xl:max-w-[540px]">

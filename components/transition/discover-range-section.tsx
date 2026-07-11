@@ -29,7 +29,7 @@ export function DiscoverRangeSection({ videoUrl, imageSrc }: { videoUrl?: string
 
 
         {/* Text content */}
-        <div className="flex flex-col justify-center px-8 py-16  lg:px-16 lg:py-20 ">
+        <div className="flex flex-col justify-center px-8 py-16  lg:px-20 lg:py-20 ">
           <div className="max-w-md">
             <Tagline className="mb-8"> Our <br />  Products </Tagline>
             <Headline size="lg" className="mb-8">
@@ -38,7 +38,7 @@ export function DiscoverRangeSection({ videoUrl, imageSrc }: { videoUrl?: string
             <div className="flex flex-col gap-7">
               {lensRanges.map((range) => (
                 <div key={range.title}>
-                  <h3 className="2xl:text-[24px] text-[20px]  font-semibold uppercase tracking-wide text-black">{range.title}</h3>
+                  <h3 className="font-bold uppercase text-black text-[20px] tracking-[0.1em] leading-[28px]">{range.title}</h3>
                   <p className="mt-1 text-black/50 2xl:text-[20px] text-[16px]">{range.description}</p>
                 </div>
               ))}

@@ -42,12 +42,12 @@ export default function TermsPage() {
 
         {/* Hero content — top-left aligned */}
         <div
-          className="absolute z-10 px-6 lg:px-26 xl:px-50 w-fit bottom-25"
+          className="absolute z-10 px-6 lg:px-20 xl:px-24 2xl:px-50 w-fit bottom-25"
         >
           <div style={{ maxWidth: "400px" }}>
             {/* Main Title */}
 
-            <h2 className="font-inter text-[28px] md:text-[36px] xl:text-[64px] font-bold leading-[0.98] tracking-[-0.03em] uppercase mb-4 xl:mb-6 relative z-10 text-white">TERMS AND<br />CONDITIONS<br /> OF USE</h2>
+            <h2 className="font-inter text-[32px] font-bold leading-[0.98] tracking-[-0.03em] uppercase mb-4 xl:mb-6 relative z-10 text-white">TERMS AND<br />CONDITIONS<br /> OF USE</h2>
             {/* Description text */}
             <p
               className="text-white mb-6 text-[14px] xl:text-[16px] leading-[1.5] opacity-[0.80] max-w-[400px] "
@@ -95,10 +95,10 @@ export default function TermsPage() {
       {/* ══════════════════════════════════════════
           TERMS CONTENT SECTION
       ══════════════════════════════════════════ */}
-      <section className="bg-white px-6 lg:px-26 xl:px-50">
+      <section className="bg-white px-6 lg:px-20 xl:px-24 2xl:px-50">
         <div style={{ paddingTop: "48px", paddingBottom: "72px" }}>
 
-          <div className="w-3xl mb-10 text-left"> <h2 className="text-2xl xl:text-3xl font-bold text-[#333333] tracking-tight  mb-1">
+          <div className="w-3xl mb-10 text-left"> <h2 className="text-[32px] font-bold text-[#333333] tracking-tight  mb-1">
             Welcome to the &apos;www.optika.com&apos; website. By choosing to access the &apos;www.optika.com&apos; website you agree
             to accept the terms and conditions of this Legal Notice governing use of the site.  <br /> The following are Our{" "}
             <strong>

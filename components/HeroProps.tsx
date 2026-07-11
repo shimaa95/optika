@@ -17,10 +17,16 @@ export interface HeroProps {
     align?: 'left' | 'center' | 'right';
     containerClassName?: string;
     textContainerClassName?: string;
-    containerStyle?: React.CSSProperties;
+    gridClassName?: string;
+    textColClassName?: string;
     sectionClassName?: string;
     overlayClassName?: string;
-    showOverlay?: boolean;
+    heroLayout?: {
+        sectionClassName?: string;
+        gridClassName?: string;
+        textColClassName?: string;
+    };
+    showOverlay?: boolean; headlineClassName?: string;
     showScrollIndicator?: boolean;
     theme?: 'light' | 'dark'; TaglineclassaName?: string, size?: HeadlineSize
 }

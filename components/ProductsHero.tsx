@@ -20,7 +20,7 @@ const config: Partial<HeroProps> = {
   imageAlt: 'Modern office interior with natural lighting',
   sectionClassName: 'relative h-[80vh] xl:h-[70vh] w-full overflow-hidden',
   TaglineclassaName: 'max-w-sm',
-  containerClassName: 'absolute bottom-0 left-0 w-full px-6  lg:px-26 xl:px-50 pb-16',
+  containerClassName: 'absolute bottom-0 left-0 w-full px-6  lg:px-20 xl:px-24 2xl:px-50 pb-16',
   textContainerClassName: 'z-10 flex flex-col items-start',
   containerStyle: {},
   theme: 'dark',

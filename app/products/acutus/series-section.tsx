@@ -204,7 +204,7 @@ function LensDialogTitleBlock({ card }: { card: LensCardData }) {
 function LensDialogScrollBlock({ card }: { card: LensCardData }) {
     return (
         <div className="flex flex-col gap-5 text-left">
-            <h3 className="font-inter text-xl font-bold uppercase leading-tight tracking-tight text-white sm:text-2xl">
+            <h3 className="font-inter font-bold uppercase leading-[28px] tracking-[0.1em] text-white text-[20px]">
                 {card.title}
             </h3>
             <p className="font-inter text-[10px] font-medium uppercase tracking-[0.2em] text-neutral-400">

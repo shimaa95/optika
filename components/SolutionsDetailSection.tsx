@@ -97,7 +97,7 @@ interface SolutionsDetailSectionProps {
 
 export function SolutionsDetailSection({ rows = DEFAULT_DETAIL_ROWS }: SolutionsDetailSectionProps) {
   return (
-    <section className="w-full bg-white px-6 lg:px-26 xl:px-50  py-20 lg:py-32">
+    <section className="w-full bg-white px-6 lg:px-20 xl:px-24 2xl:px-50  py-20 lg:py-32">
       <div className="w-full max-w-[1920px] flex flex-col gap-20 lg:gap-20 xl:gap-20">
         {rows.map((row) => (
           <SolutionDetailRow key={row.id} config={row} />
@@ -129,7 +129,7 @@ const WORKFLOW_STEPS = [
 
 function WhatOptikaSolvesPanel() {
   return (
-    <div className="relative overflow-hidden w-full h-[380px] lg:h-[471px] flex flex-col justify-between py-10 lg:py-12 px-6">
+    <div className="relative overflow-hidden w-full h-[380px] xl:h-[471px] flex flex-col justify-between py-10 lg:py-12 px-6">
       <div className="absolute inset-0">
         <Image
           src="/solves.jpg"
@@ -141,7 +141,7 @@ function WhatOptikaSolvesPanel() {
         {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" /> */}
       </div>
       <div className="relative z-10 flex flex-col gap-4">
-        <h2 className="text-white font-sans text-[24px] font-medium leading-[1.3] tracking-[-0.01em]">
+        <h2 className="text-white font-sans text-[32px] font-medium leading-[1.3] tracking-[-0.01em]">
           What Optika solves
         </h2>
         <p className="text-white/75 font-sans font-normal text-[16px] leading-[1.3] tracking-[-0.01em] max-w-[95%]">
@@ -157,7 +157,7 @@ function WhatOptikaSolvesPanel() {
 
 function OurPromisePanel() {
   return (
-    <div className="relative overflow-hidden  w-full h-[380px] lg:h-[471px] flex flex-col justify-between px-6 py-10 lg:py-12">
+    <div className="relative overflow-hidden  w-full h-[380px] xl:h-[471px] flex flex-col justify-between px-6 py-10 lg:py-12">
       <div className="absolute right-0 top-0 w-full h-full">
         <Image
           src="/Promis.jpg"
@@ -169,7 +169,7 @@ function OurPromisePanel() {
         {/* <div className="absolute inset-0 bg-gradient-to-r from-[#1c3a4a] via-[#1c3a4a]/60 to-transparent" /> */}
       </div>
       <div className="relative z-10 flex flex-col gap-4 max-w-[95%]">
-        <h2 className="text-white font-sans text-[24px] font-medium leading-[1.3] tracking-[-0.01em]">
+        <h2 className="text-white font-sans text-[32px] font-medium leading-[1.3] tracking-[-0.01em]">
           Our Promise to you
         </h2>
         <p className="text-white/75 font-sans font-normal text-[16px] leading-[1.3] tracking-[-0.01em]">
@@ -184,7 +184,7 @@ function OurPromisePanel() {
 function WhyPartnersPanel() {
   return (
     <div
-      className="relative overflow-hidden bg-[#111] lg:w-[65vw] h-[380px] lg:h-[471px] flex flex-col justify-end px-6 lg:pl-[50px] py-10 lg:py-12"
+      className="relative overflow-hidden bg-[#111] lg:w-[65vw] h-[380px] xl:h-[471px] flex flex-col justify-end px-6 lg:pl-[50px] py-10 lg:py-12"
     >
       <div className="absolute inset-0">
         <Image
@@ -197,7 +197,7 @@ function WhyPartnersPanel() {
         {/* <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" /> */}
       </div>
       <div className="relative z-10 flex flex-col justify-between h-full"> <div>
-        <h2 className="text-white mb-4  font-sans text-[24px] font-medium leading-[1.3] tracking-[-0.01em]">
+        <h2 className="text-white mb-4  font-sans text-[32px] font-medium leading-[1.3] tracking-[-0.01em]">
           Why partners choose Optika
         </h2>
         <p className="text-white/70 font-sans max-w-[200px] lg:max-w-[380px] font-normal text-[16px] leading-[1.3] tracking-[-0.01em]">
@@ -218,7 +218,7 @@ function WhyPartnersPanel() {
 
 function WorkflowPanel() {
   return (
-    <div className="w-full lg:w-[35vw] h-[380px] lg:h-[471px] flex flex-col gap-2">
+    <div className="w-full lg:w-[35vw] h-[380px] xl:h-[471px] flex flex-col gap-2">
       <div className="relative overflow-hidden flex-1 flex flex-col justify-center px-6 py-6 lg:py-10">
         <div className="absolute inset-0">
           <Image
@@ -231,15 +231,15 @@ function WorkflowPanel() {
         </div>
 
         <div className="relative z-10 flex flex-col">
-          <h2 className="text-white font-sans text-[22px] lg:text-[24px] font-medium leading-[1.3] tracking-[-0.01em] mb-3">
+          <h2 className="text-white font-sans text-[32px] font-medium leading-[1.3] tracking-[-0.01em] mb-3">
             Workflow in steps
           </h2>
-          <p className="text-[#d4d4d4] font-sans font-normal text-[15px] lg:text-[16px] leading-[1.4] tracking-[-0.01em] mb-6 max-w-[90%]">
+          <p className="text-[#d4d4d4] font-sans font-normal text-[14px] xl:text-[16px] leading-[1.4] tracking-[-0.01em] mb-6 max-w-[90%]">
             Our process is simple, structured, and designed for reliability.
           </p>
-          <ul className="flex flex-col gap-1.5">
+          <ul className="flex flex-col gap-1">
             {WORKFLOW_STEPS.map((step, i) => (
-              <li key={step} className="text-white font-sans text-[14px] lg:text-[15px]">
+              <li key={step} className="text-white font-sans text-[14px] xl:text-[16px]">
                 {i + 1}. {step === "Order input" ? "Order Input" : step}
               </li>
             ))}
@@ -247,7 +247,7 @@ function WorkflowPanel() {
         </div>
       </div>
 
-      <div className="bg-black w-full h-[157px] shrink-0 flex items-center px-6">
+      <div className="bg-black w-full h-[100px] xl:h-[157px] shrink-0 flex items-center px-6">
         <Link
           href="https://rx.optikalenses.com/auth"
           target="_blank"
@@ -264,9 +264,9 @@ function WorkflowPanel() {
 
 export function SolutionsGridSection() {
   return (
-    <section className="w-full px-5 lg:px-26 xl:px-50 pt-16 lg:pt-24 pb-12 bg-white">
+    <section className="w-full px-5 lg:px-20 xl:px-24 2xl:px-50 pt-16 lg:pt-24 pb-12 bg-white">
       <div className="w-full mb-10 text-left">
-        <h2 className="font-sans font-medium text-[36px] leading-[1.3] tracking-[-0.01em] text-gray-900 mb-2 xl:mb-8">
+        <h2 className="font-sans font-medium text-[32px] leading-[1.3] tracking-[-0.01em] text-gray-900 mb-2 xl:mb-8">
           Solutions for partners
         </h2>
         <p className="max-w-xl text-sm md:text-sm leading-relaxed text-gray-600 xl:text-lg">

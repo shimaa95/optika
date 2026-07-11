@@ -55,7 +55,7 @@ function MainContent({ isReady, onComplete }: { isReady: boolean; onComplete: ()
 
       {/* Logo */}
       <div
-        className="fixed flex items-center h-16 justify-between w-full gap-6 top-8 px-6 z-50 md:px-10 lg:px-16 pointer-events-auto transition-colors duration-500"
+        className="fixed flex items-center h-16 justify-between w-full gap-6 top-8 px-6 z-50 md:px-10 lg:px-20 pointer-events-auto transition-colors duration-500"
         style={{ color: currentStage === 1 ? "#1a1a2e" : "#ffffff" }}
       >
         <a href="/" aria-label="Home">

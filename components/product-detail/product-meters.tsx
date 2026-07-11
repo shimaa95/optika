@@ -3,9 +3,10 @@
 import { useEffect, useRef } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ensureGsap } from "@/lib/gsap"
 import type { ProductDetailData } from "@/lib/products/product-detail"
 
-gsap.registerPlugin(ScrollTrigger)
+ensureGsap()
 
 interface ProductMetersProps {
   meters: ProductDetailData["meters"]
@@ -62,16 +63,12 @@ export function ProductMeters({ meters }: ProductMetersProps) {
       })
 
       // If already in view on load (e.g. short viewport / deep link)
-      ScrollTrigger.refresh()
       const rect = container.getBoundingClientRect()
       const inView = rect.top < window.innerHeight * 0.88 && rect.bottom > 0
       if (inView) playAnimation()
     }, container)
 
-    const refreshTimer = window.setTimeout(() => ScrollTrigger.refresh(), 150)
-
     return () => {
-      window.clearTimeout(refreshTimer)
       ctx.revert()
       hasAnimated.current = false
     }

@@ -51,7 +51,7 @@ export function WhatWeDo() {
           </p>
 
           {/* Headline — largest, brightest, dominant focal point */}
-          <h2 className="text-3xl lg:text-4xl xl:text-[2.75rem] font-bold text-white leading-[1.1] tracking-tight mb-5">
+          <h2 className="text-[32px] font-bold text-white leading-[1.1] tracking-tight mb-5">
             Eyewear products and ophthalmic care Solutions
           </h2>
 

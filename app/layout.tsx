@@ -4,8 +4,8 @@ import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Navigation } from '@/components/navigation';
 import AssistlyChatWidget from '@/components/AssistlyChatWidget';
-import { CustomCursor } from '@/components/custom-cursor';
 import { ASSISTLY } from '@/lib/assistly';
+import { Footer } from '@/components/footer';
 
 
 
@@ -67,15 +67,14 @@ export default function RootLayout({
       </head>
       {/* Apply the font variables to the body so they can be accessed anywhere */}
       <body className={`${inter.className}  ${playfair.variable} antialiased`} suppressHydrationWarning>
-        <CustomCursor />
         <Navigation />
-        {children}
+        {children} 
         <AssistlyChatWidget
           chatbotId={ASSISTLY.chatbotId}
           origin={ASSISTLY.origin}
           logoUrl={ASSISTLY.logoUrl}
           primaryColor={ASSISTLY.primaryColor}
-        />
+        /> 
         <Analytics />
 
       </body>

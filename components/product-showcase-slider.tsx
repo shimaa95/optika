@@ -205,7 +205,7 @@ function SlideContent({ slide }: SlideContentProps) {
   }, [slide]);
 
   return (
-    <div className="flex flex-col justify-center h-full px-6 py-10 md:px-10 lg:px-16 md:py-0">
+    <div className="flex flex-col justify-center h-full px-6 py-10 md:px-10 lg:px-20 md:py-0">
       <SeriesLabel series={slide.series} />
       <ProductName name={slide.productName} />
       <div className="flex items-center gap-3 mb-6">

@@ -20,7 +20,7 @@ interface ProductDetailsSectionProps {
 
 export function ProductDetailsSection({ product, themeColor }: ProductDetailsSectionProps) {
   return (
-    <section className="bg-bg-light px-6 md:px-26 xl:px-50 py-20 sm:py-24 lg:py-[120px]">
+    <section className="bg-bg-light px-6 lg:px-20 xl:px-24 2xl:px-50 py-20 sm:py-24 lg:py-[120px]">
       <div className=" ">
         <div className="grid grid-cols-1  gap-14 lg:grid-cols-2 justify-between w-full lg:gap-10 xl:gap-20">
           <div className="flex flex-col ">

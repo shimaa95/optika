@@ -11,6 +11,7 @@ import { faqs, FaqSection } from "@/components/faq-section"
 import { PartnersSection } from "@/components/partners-section"
 import { PerformanceSection } from "@/components/performance-section"
 import FilterLensesSection from "@/components/filter-lenses-section"
+import { Footer } from "@/components/footer"
 
 const SHOWCASE_SLIDES = [
   {
@@ -56,8 +57,7 @@ const SHOWCASE_SLIDES = [
 
 export default function SolutionsPage() {
   return (
-    <MainLayout>
-      <LuxuryHero
+<>     <LuxuryHero
         imageSrc="/Rectangle.png"
         imageAlt="Optika premium optical solutions"
         imagePosition="50% 40%"
@@ -84,18 +84,16 @@ export default function SolutionsPage() {
       <BuiltInTechnologies />
       <FilterLensesSection />
 
-      <Solutions className="px-6 lg:px-26 xl:px-50" />
+      <Solutions className="px-6 lg:px-20 xl:px-24 2xl:px-50" />
 
       <InnovativeToolsBanner />
 
 
 
       <SolutionsGridSection />
-      <SolutionsDetailSection />
       <PerformanceSection />
 
-      <FaqSection faqs={faqs} />
-    </MainLayout>
+      <FaqSection faqs={faqs} /> <Footer /></> 
   );
 }
 

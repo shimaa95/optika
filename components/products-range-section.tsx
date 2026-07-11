@@ -40,7 +40,7 @@ export function ProductsRangeSection() {
   return (
     <section
       aria-label="Discover Optika's wide range of lenses"
-      className="w-full flex flex-col lg:flex-row   bg-white h-[100vh]  px-6 lg:px-26 xl:px-50"
+      className="w-full flex flex-col lg:flex-row   bg-white h-[100vh]  px-6 lg:px-20 xl:px-24 2xl:px-50"
     >
       {/* ── Left Column: Full-bleed Photo with crossfade ─────── */}
       <div className="w-full lg:w-[50%] relative flex justify-center min-h-[50vh] items-center lg:h-full overflow-hidden">

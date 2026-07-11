@@ -54,7 +54,7 @@ export function AboutSection() {
           <p className="text-[10px] font-medium tracking-[0.24em] uppercase mb-4 text-gray-400">
             What We Do
           </p>
-          <h2 className="text-[26px] lg:text-[34px] xl:text-[42px] font-bold mb-6 leading-[1.1]">
+          <h2 className="text-[32px] font-bold mb-6 leading-[1.1]">
             Eyewear products and<br />
             ophthalmic care<br />
             Solutions

@@ -8,7 +8,7 @@ export function BackgroundDecor() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 overflow-hidden "
+      className="pointer-events-none absolute inset-0 bg overflow-hidden "
     >
       <img
         src="/bfdecor.svg"

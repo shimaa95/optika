@@ -27,7 +27,7 @@ const Tagline = ({
 
   return (
 
-    <p className={`font-helvetica text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase    mb-4 xl:mb-8 ${themeClasses} ${className}`}>
+    <p className={`font-helvetica text-[10px] sm:text-[11px]   font-medium uppercase whitespace-nowrap mb-4 xl:mb-8  ${themeClasses} ${className}`}>
       {content}
     </p>
   );

@@ -4,11 +4,11 @@ import Image from "next/image";
 
 export function InnovativeToolsBanner() {
   return (
-    <section className="w-full bg-[#f4f6f8] px-6 lg:px-26 xl:px-50 py-12 md:py-16">
+    <section className="w-full bg-[#f4f6f8] px-6 lg:px-20 xl:px-24 2xl:px-50 py-12 md:py-16">
       <div className="relative w-full overflow-hidden  bg-[#ebf1f6] min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex flex-col md:flex-row items-center">
         {/* Left Side Text Content */}
         <div className="w-full md:w-1/2 p-8 sm:p-12 md:p-16 z-10 flex flex-col justify-center">
-          <h2 className="font-inter text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-[1.25] tracking-tight text-gray-900 uppercase max-w-md">
+          <h2 className="font-inter text-[32px] font-bold leading-[1.25] tracking-tight text-gray-900 uppercase max-w-md">
             Innovative Tools for Eye Care Professional Who Demand Accuracy
           </h2>
         </div>

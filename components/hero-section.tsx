@@ -27,11 +27,16 @@ const defaultConfig: Partial<HeroProps> = {
 };
 
 // Sensible layout fallbacks — callers override these via config
-const LAYOUT_DEFAULTS = {
-  sectionClassName: 'lg:px-24 xl:px-36 relative min-h-[70vh] h-[100vh] w-full overflow-hidden px-6',
-  containerClassName: 'relative mx-auto flex h-screen  lg:h-full   lg:items-center items-end justify-start md:justify-end  ml-0 px-0 sm:px-8 md:px-16 lg:px-24 xl:px-32 ',
-  containerStyle: { bottom: '8vh' } as React.CSSProperties,
-  textContainerClassName: 'z-10 flex flex-col   xl:self-end   py-10 md:py-0 pl-0 lg:mr-36 lg:mt-[200px] xl:mb-[20vh] xl:pl-0  lg:py-0',
+// Full-bleed image background; text sits on top, aligned to the right
+// 12-col grid, 24px gutter, 46px margin (matches the design panel)
+// Text starts at col 7 and spans 5 cols (cols 7-11) per the reference design
+//
+// Exported so other hero variants (e.g. AboutHero) can import the same
+// defaults and pass a `heroLayout` override to swap or extend them.
+export const LAYOUT_DEFAULTS = {
+  sectionClassName: 'relative min-h-[70vh] h-[100vh] w-full overflow-hidden bg-white',
+  gridClassName: 'grid h-full w-full grid-cols-12 gap-6 items-center lg:pt-16 px-6 lg:px-[46px]',
+  textColClassName: 'col-span-12 lg:col-span-5 lg:col-start-7 z-10 ', // bg-red-500/10 is for debugging layout, remove in production
 };
 
 const TEXT_ALIGN_MAP = {
@@ -41,13 +46,39 @@ const TEXT_ALIGN_MAP = {
 } as const;
 
 
-export function HeroSection({ config = {} }: { config?: Partial<HeroProps> }) {
-  const props = { ...defaultConfig, ...config };
+export interface HeroLayout {
+  sectionClassName?: string;
+  gridClassName?: string;
+  textColClassName?: string;
+}
 
-  const sectionClassName = props.sectionClassName || LAYOUT_DEFAULTS.sectionClassName;
-  const containerClassName = props.containerClassName || LAYOUT_DEFAULTS.containerClassName;
-  const containerStyle = props.containerStyle || LAYOUT_DEFAULTS.containerStyle;
-  const textContainerClassName = props.textContainerClassName || LAYOUT_DEFAULTS.textContainerClassName;
+export function HeroSection({
+  config = {},
+  heroLayout,
+}: {
+  config?: Partial<HeroProps>;
+  /**
+   * Replace the default layout tokens. Spread on top of LAYOUT_DEFAULTS so
+   * partial overrides work. Example:
+   *
+   *   <HeroSection config={...} heroLayout={{ textColClassName: 'col-span-12 lg:col-span-6' }} />
+   *
+   * Or import the defaults and extend:
+   *
+   *   import { LAYOUT_DEFAULTS, HeroSection } from '@/components/hero-section'
+   *   <HeroSection heroLayout={{ ...LAYOUT_DEFAULTS, textColClassName: 'col-span-12' }} />
+   *
+   * Also accepted inside the `config` object as a fallback for callers that
+   * only know the `config` API.
+   */
+  heroLayout?: HeroLayout;
+}) {
+  const props = { ...defaultConfig, ...config };
+  const layout = { ...LAYOUT_DEFAULTS, ...(heroLayout || props.heroLayout || {}) };
+
+  const sectionClassName = props.sectionClassName || layout.sectionClassName;
+  const gridClassName = props.gridClassName || layout.gridClassName;
+  const textColClassName = props.textColClassName || layout.textColClassName;
   const textAlignClass = TEXT_ALIGN_MAP[props.textAlign || 'left'];
 
   return (
@@ -60,11 +91,12 @@ export function HeroSection({ config = {} }: { config?: Partial<HeroProps> }) {
           overlayClassName={props.overlayClassName}
         />
       )}
-      <div className={containerClassName} style={containerStyle}>
-        <div className={textContainerClassName}>
+
+      <div className={gridClassName + ' overflow-hidden'}>
+        <div className={textColClassName}>
           <div className={textAlignClass}>
             {props.tagline && <Tagline text={props.tagline} theme={props.theme} className={props.TaglineclassaName} />}
-            {props.title && <Headline theme={props.theme} >{props.title}</Headline>}
+            {props.title && <Headline theme={props.theme} className='' >{props.title}</Headline>}
             {props.description && <Description text={props.description} theme={props.theme} className='max-w-xs' size='sm' />}
             {props.customCta}
             {!props.customCta && props.ctaText && (
@@ -73,22 +105,19 @@ export function HeroSection({ config = {} }: { config?: Partial<HeroProps> }) {
               </div>
             )}
           </div>
-
         </div>
       </div>
 
       {props.showScrollIndicator && (
         <>
-          <style>{`
+            <style>{`
             .scroll-downs {
               position: absolute;
               right: 0; 
-              bottom: 80px;
+           
               left: 0; 
               margin: auto;
-              width: 34px;
-              height: 55px;
-            }
+                         }
             .mousey {
               width: 3px;
               padding: 10px 15px;
@@ -114,7 +143,7 @@ export function HeroSection({ config = {} }: { config?: Partial<HeroProps> }) {
               100% { transform: translateY(20px); opacity: 0;}
             }
           `}</style>
-          <div className="scroll-downs">
+          <div className={"scroll-downs    bottom-14 xl:bottom-20 w-4 h-8 xl:w-[34px] xl:h-14 "}>
             <div className="mousey">
               <div className="scroller"></div>
             </div>

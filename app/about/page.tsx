@@ -58,15 +58,9 @@ export default function AboutPage() {
         <div className="relative  min-h-screen w-full bg-white overflow-x-hidden">
             <AboutHero />
             <BehindOptika />
-            <GenniusBanner />            <LensCategoriesSection bgClassName="bg-[#f4f6f8]" border="border-white/5 shadow-[0_1px_4px_rgba(f,f,f,f.1)] " categories={DEFAULT_CATEGORIES} bgCards="bg-white " />
+            <GenniusBanner />            <LensCategoriesSection cardVariant="constrained" bgClassName="bg-[#f4f6f8]" border="border-white/5 shadow-[0_1px_4px_rgba(f,f,f,f.1)] " categories={DEFAULT_CATEGORIES} bgCards="bg-white " />
 
-            <SolutionsIntroSection
-                tagline="Tools for clinics that demand clinical accuracy"
-                description="Optika equips clinics and independent stores with personalised lenses and an ordering flow designed to reduce remakes and improve patient outcomes."
-                ctaText="Download your Copy"
-                ctaHref="#"
-                cards={false}
-            />
+         
             <Succeed />
             <PerformanceSection />
 

@@ -8,7 +8,7 @@ export function AcutusDescription() {
         </p>
 
         {/* Title */}
-        <h2 className="text-3xl md:text-4xl font-bold text-black tracking-tight mb-6">
+        <h2 className="text-[32px] font-bold text-black tracking-tight mb-6">
           ACUTUS
         </h2>
 

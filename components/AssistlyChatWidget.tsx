@@ -142,11 +142,16 @@ export default function AssistlyChatWidget({
         aria-modal="false"
         style={panelStyle}
       >
-        <iframe
-          src={`https://chatbots-smoky.vercel.app/chatbot/15`}
-          title="Assistly chat"
-          style={{ width: "100%", height: "100%", border: 0, display: "block" }}
-        />
+        {/* Lazy-mount iframe: only render after the user has opened the
+            chat at least once. Saves the 3rd-party chatbot network cost
+            on every page load. */}
+        {(open || closing) && (
+          <iframe
+            src={`https://chatbots-smoky.vercel.app/chatbot/15`}
+            title="Assistly chat"
+            style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+          />
+        )}
       </div>
 
       {/* ── Close Button (only when open) ──────────────────────────────────

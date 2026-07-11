@@ -44,7 +44,7 @@ const ArrowButton = ({
     </>
   );
 
-  const commonClasses = `group cursor-pointer inline-flex w-fit items-center gap-3 font-inter text-[16px] xl:text-[20px] font-normal leading-none tracking-normal transition-colors ${isDark ? 'text-white' : 'text-black/80'
+  const commonClasses = `group cursor-pointer inline-flex w-fit items-center gap-3 font-inter text-[16px] font-normal leading-none tracking-normal transition-colors ${isDark ? 'text-white' : 'text-black/80'
     } ${className}`;
 
   if (href) {

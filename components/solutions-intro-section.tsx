@@ -45,6 +45,12 @@ interface SolutionsIntroSectionProps {
   ctaHref?: string;
   cards?: boolean;
   bottomImage?: boolean;
+  /**
+   * Extra classes appended to the section wrapper.
+   * Use to override vertical rhythm on a per-page basis
+   * (e.g. the About page wants tighter, even gaps).
+   */
+  className?: string;
 }
 
 export function SolutionsIntroSection({
@@ -55,11 +61,12 @@ export function SolutionsIntroSection({
   ctaHref = "#",
   cards = true,
   bottomImage = false,
+  className = "",
 }: SolutionsIntroSectionProps) {
   return (
     <section
       aria-label="Solutions introduction"
-      className="w-full   bg-[#f4f6f8] px-6 lg:px-26 xl:px-50 pt-16  lg:pt-24  flex flex-col items-center text-center"
+      className={`w-full bg-[#f4f6f8] px-6 lg:px-20 xl:px-24 2xl:px-50 pt-16 lg:pt-24 flex flex-col items-center text-center ${className}`}
     >
       {/* Tagline */}
       {tagline && (
@@ -74,7 +81,7 @@ export function SolutionsIntroSection({
       )}
 
       {/* Editorial divider */}
-      <div className="mb-8 lg:mb-10 w-10 h-[1.5px] bg-[#1a1a1a]/20" />
+      <div className="solutions-divider mb-8 lg:mb-10 w-10 h-[1.5px] bg-[#1a1a1a]/20" />
 
       {/* Description */}
       {description && (
@@ -83,14 +90,14 @@ export function SolutionsIntroSection({
           theme="light"
           size="md"
           maxWidth="max-w-lg"
-          className="text-center mx-auto leading-[1.8]"
+          className="text-center mx-auto leading-[1.8] mb-8 lg:mb-10"
         />
       )}
       {!cards && !bottomImage && ctaText && ctaHref && (
         <Link
           href={ctaHref}
           className="
-            mt-2 mb-16 inline-flex items-center gap-2
+            solutions-cta mt-2 mb-16 inline-flex items-center gap-2
             font-inter text-[12px] lg:text-[13px]
             font-semibold tracking-[0.12em] uppercase
             text-[#1a1a1a]
@@ -104,11 +111,11 @@ export function SolutionsIntroSection({
         </Link>
       )}
       {/* CTA link */}
-      {cards || bottomImage && ctaText && ctaHref && (
+      {(cards || bottomImage) && ctaText && ctaHref && (
         <Link
           href={ctaHref}
           className="
-            mt-2 inline-flex items-center gap-2
+            solutions-cta mt-2 inline-flex items-center gap-2
             font-inter text-[12px] lg:text-[13px]
             font-semibold tracking-[0.12em] uppercase
             text-[#1a1a1a]

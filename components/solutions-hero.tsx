@@ -34,7 +34,7 @@ export function SolutionsHero({
   ctaHref = "#details",
 }: SolutionsHeroProps) {
   return (
-    <section className="lg:px-26 xl:px-50 relative min-h-screen xl:min-h-[70vh] xl:h-[70vh] w-full">
+    <section className="lg:px-20 xl:px-24 2xl:px-50 relative min-h-screen xl:min-h-[70vh] xl:h-[70vh] w-full">
       {/* Hero Image */}
       <div className="absolute inset-0 min-h-screen xl:h-[70vh] xl:min-h-[70vh]">
         <Image
@@ -50,7 +50,7 @@ export function SolutionsHero({
       </div>
 
       {/* Content Container - Mirrored from Home Hero */}
-      <div className="relative mx-auto flex min-h-screen xl:min-h-[70vh] xl:h-[70vh] items-end xl:items-center xl:pt-40 ml-4 px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 xl:px-20" style={{ bottom: '15vh' }}>
+      <div className="relative mx-auto flex min-h-screen xl:min-h-[70vh] xl:h-[70vh] items-end xl:items-center xl:pt-40 ml-4 px-4 sm:px-6 md:px-8 lg:px-20 xl:px-16 xl:px-20" style={{ bottom: '15vh' }}>
         <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-2">
           {/* Spacer for layout balance on large screens */}
           <div className="hidden lg:block" />

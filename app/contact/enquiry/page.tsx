@@ -14,7 +14,7 @@ export default function EnquiryFormPage() {
 
         {/* Form Container */}
         <div className="max-w-[480px] w-full my-auto ">
-          <h1 className="text-4xl md:text-[42px] lg:text-[48px] font-bold tracking-tight mb-2 uppercase leading-tight">
+          <h1 className="text-[32px] font-bold tracking-tight mb-2 uppercase leading-tight">
             ENQUIRY FORM
           </h1>
           <p className="text-[12px] md:text-[13px] text-neutral-400 mb-10">

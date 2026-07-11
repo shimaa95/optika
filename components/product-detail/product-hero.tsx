@@ -59,13 +59,13 @@ export function ProductHero({
 
       {/* Product name — bottom-left in theme banner */}
       <div
-        className="absolute bottom-0 left-0 w-full z-10 px-6 lg:px-26 xl:px-50 pb-6 pt-6"
+        className="absolute bottom-0 left-0 w-full z-10 px-6 lg:px-20 xl:px-24 2xl:px-50 pb-6 pt-6"
         style={{ backgroundColor: themeColor }}
       >
-        <h2 className="text-[36px] font-bold capitalize leading-[1.02] tracking-[0.03em] text-white xl:text-[40px]">
+        <h2 className="text-[40px] font-bold capitalize leading-[1.02] tracking-[-0.03em] text-white">
           {name.toLowerCase()}
         </h2>
-        <p className="mt-2 text-[10px] font-medium uppercase tracking-[0.24em] text-white sm:text-[12px] xl:text-[14px] xl:tracking-[0.26em]">
+        <p className="mt-2 text-[16px] font-medium uppercase tracking-[-0.03em] leading-[24px] text-white">
           {subtitle}
         </p>
       </div>

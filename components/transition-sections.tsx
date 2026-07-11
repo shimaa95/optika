@@ -38,7 +38,7 @@ export function TransitionSection() {
             </p>
 
             {/* CTA Button */}
-            <button className="bg-[#6b21a8] text-white text-xs py-2.5 px-5 flex items-center gap-2 hover:bg-[#581c87] transition-colors">
+            <button className="bg-[#6b21a8] text-white text-[16px] font-normal py-2.5 px-5 flex items-center gap-2 hover:bg-[#581c87] transition-colors">
               <ArrowRight className="h-4 w-4" />
               <span>Lens Specification</span>
             </button>

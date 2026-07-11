@@ -44,7 +44,7 @@ export default function ContactPage() {
                   <p className="text-xs sm:text-sm font-inter font-normal leading-relaxed text-gray-300 group-hover:text-gray-500 transition-colors duration-300">
                     Fill out our contact form and we&apos;ll get back to you shortly.
                   </p>
-                  <Link href="/contact/form" className="shrink-0 inline-flex items-center gap-1 text-[10px] sm:text-[11px] tracking-[0.12em] font-semibold uppercase font-inter whitespace-nowrap text-gray-400 group-hover:text-gray-900 transition-colors duration-300">
+                  <Link href="/contact/enquiry" className="shrink-0 inline-flex items-center gap-1 text-[10px] sm:text-[11px] tracking-[0.12em] font-semibold uppercase font-inter whitespace-nowrap text-gray-400 group-hover:text-gray-900 transition-colors duration-300">
                     Contact Form →
                   </Link>
                 </div>
@@ -129,15 +129,6 @@ export default function ContactPage() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-
-        {/* Footer Links */}
-        <div className="mt-12 mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between text-[10px] sm:text-[11px] text-gray-400 font-inter font-medium tracking-wide">
-          <p>© 2024 Optika Lenses.</p>
-          <div className="flex items-center  gap-6 mt-4 sm:mt-0">
-            <Link href="/terms" className="hover:text-gray-900 transition-colors duration-300">Terms</Link>
-            <Link href="/privacy" className="hover:text-gray-900 transition-colors duration-300">Privacy Policy</Link>
           </div>
         </div>
       </div>

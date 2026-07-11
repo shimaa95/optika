@@ -17,8 +17,8 @@ export function PowerfulLensesSection({
 }: PowerfulLensesSectionProps) {
   return (
     <section className="w-full pt-16 lg:pt-24 bg-white">
-      <div className="w-full px-6 lg:px-26 xl:px-50">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 lg:text-4xl xl:text-5xl leading-tight">
+      <div className="w-full px-6 lg:px-20 xl:px-24 2xl:px-50">
+        <h2 className="text-[32px] font-bold text-gray-800 leading-tight">
           {title}
         </h2>
         <p className="mt-4 xl:mt-8 max-w-lg text-sm md:text-base leading-relaxed text-gray-500  xl:text-lg">

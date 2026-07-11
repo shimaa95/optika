@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { ensureGsap } from "@/lib/gsap"
 
 export function DifferencePartnerWrapper({
   difference,
@@ -16,7 +17,7 @@ export function DifferencePartnerWrapper({
   const partnerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    ensureGsap()
 
     const ctx = gsap.context(() => {
       if (!containerRef.current || !partnerRef.current || !differenceRef.current) return

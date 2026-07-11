@@ -18,19 +18,19 @@ export function ProductOverview({
   return (
     <AnimateInView className="flex flex-col">
       <div>
-        <h3 className="text-[15px] font-bold text-text-dark sm:text-[20px]">
+        <h3 className="font-inter text-[20px] font-bold tracking-[0.1em] leading-[28px] text-text-dark">
           Ideal for
         </h3>
-        <p className="mt-3 max-w-xl text-[14px] leading-[1.5] text-text-dark sm:text-[15px]">
+                    <p className="text-sm mt-4 xl:text-base text-black/70 leading-relaxed ">
           {idealFor}
         </p>
       </div>
 
       <div className="mt-10 sm:mt-12">
-        <h3 className="text-[15px] font-bold text-text-dark sm:text-[20px]">
+        <h3 className="font-inter text-[20px] font-bold tracking-[0.1em] leading-[28px] text-text-dark">
           Characteristics
         </h3>
-        <p className="mt-3 max-w-md text-[14px] leading-[1.5] text-text-dark sm:text-[15px]">
+                    <p className="text-sm mt-4 xl:text-base text-black/70 leading-relaxed ">
           {characteristics}
         </p>
       </div>

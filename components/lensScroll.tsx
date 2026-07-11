@@ -3,18 +3,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ensureGsap } from "@/lib/gsap";
 
-// Ensure GSAP plugins are registered
-if (typeof window !== "undefined") {
-    gsap.registerPlugin(ScrollTrigger);
-}
+ensureGsap();
 
 export default function LensScroll() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [images, setImages] = useState<HTMLImageElement[]>([]);
     const [bgColor, setBgColor] = useState<string>("#E6E6E6");
-    const [scrollProgress, setScrollProgress] = useState(0);
+    const scrollProgressRef = useRef(0);
+    const beat1Ref = useRef<HTMLDivElement>(null);
+    const beat2Ref = useRef<HTMLDivElement>(null);
+    const beat3Ref = useRef<HTMLDivElement>(null);
+    const beat4Ref = useRef<HTMLDivElement>(null);
 
     // Use the 192 lens images available in public/lens/
     const frameCount = 162;
@@ -127,7 +129,8 @@ export default function LensScroll() {
                 scrub: 0.5,
                 onUpdate: (self) => {
                     render(Math.round(playhead.frame));
-                    setScrollProgress(self.progress);
+                    scrollProgressRef.current = self.progress;
+                    applyBeatStyles();
                 }
             }
         });
@@ -145,7 +148,6 @@ export default function LensScroll() {
 
         return () => {
             tl.kill();
-            ScrollTrigger.getAll().forEach((t) => t.kill());
             window.removeEventListener("resize", handleResize);
             clearTimeout(resizeTimer);
         };
@@ -156,10 +158,11 @@ export default function LensScroll() {
     // Beats: 0% (Centered), 25% (Left), 60% (Right), 90% (Centered)
 
     // Helper for fade in/out
-    const getBeatStyle = (start: number, peak: number, end: number) => {
+    const computeBeatStyle = (start: number, peak: number, end: number) => {
+        const p = scrollProgressRef.current;
         // fade in
-        if (scrollProgress >= start && scrollProgress < peak) {
-            const progress = (scrollProgress - start) / (peak - start);
+        if (p >= start && p < peak) {
+            const progress = (p - start) / (peak - start);
             return {
                 opacity: progress,
                 transform: `translateY(${(1 - progress) * 10}px)`,
@@ -167,8 +170,8 @@ export default function LensScroll() {
             };
         }
         // fade out
-        else if (scrollProgress >= peak && scrollProgress <= end) {
-            const progress = 1 - ((scrollProgress - peak) / (end - peak));
+        else if (p >= peak && p <= end) {
+            const progress = 1 - ((p - peak) / (end - peak));
             return {
                 opacity: progress,
                 transform: `translateY(${(1 - progress) * -10}px)`,
@@ -178,10 +181,27 @@ export default function LensScroll() {
         return { opacity: 0, transform: `translateY(10px)`, pointerEvents: 'none' };
     };
 
-    const beat1Styles = getBeatStyle(0, 0.05, 0.15) as React.CSSProperties; // 0%
-    const beat2Styles = getBeatStyle(0.20, 0.28, 0.40) as React.CSSProperties; // 25%
-    const beat3Styles = getBeatStyle(0.55, 0.63, 0.75) as React.CSSProperties; // 60%
-    const beat4Styles = getBeatStyle(0.85, 0.93, 1.0) as React.CSSProperties; // 90%
+    const applyBeatStyles = () => {
+        const beats: [React.RefObject<HTMLDivElement>, number, number, number][] = [
+            [beat1Ref, 0, 0.05, 0.15],
+            [beat2Ref, 0.20, 0.28, 0.40],
+            [beat3Ref, 0.55, 0.63, 0.75],
+            [beat4Ref, 0.85, 0.93, 1.0],
+        ];
+        for (const [ref, start, peak, end] of beats) {
+            const el = ref.current;
+            if (!el) continue;
+            const s = computeBeatStyle(start, peak, end);
+            el.style.opacity = String(s.opacity);
+            el.style.transform = s.transform;
+            el.style.pointerEvents = s.pointerEvents;
+        }
+    };
+
+    const beat1Styles = { opacity: 0, transform: 'translateY(10px)', pointerEvents: 'none' as const };
+    const beat2Styles = { opacity: 0, transform: 'translateY(10px)', pointerEvents: 'none' as const };
+    const beat3Styles = { opacity: 0, transform: 'translateY(10px)', pointerEvents: 'none' as const };
+    const beat4Styles = { opacity: 0, transform: 'translateY(10px)', pointerEvents: 'none' as const };
 
     return (
         <div
@@ -206,6 +226,7 @@ export default function LensScroll() {
 
                     {/* 0% Beat: Centered */}
                     <div
+                        ref={beat1Ref}
                         className="absolute inset-0 flex flex-col items-center pt-[15vh] transition-all duration-300 ease-out"
                         style={beat1Styles}
                     >
@@ -217,6 +238,7 @@ export default function LensScroll() {
 
                     {/* 25% Beat: Left */}
                     <div
+                        ref={beat2Ref}
                         className="absolute inset-y-0 left-0 flex flex-col justify-center pl-[8vw] md:pl-[12vw] transition-all duration-300 ease-out"
                         style={beat2Styles}
                     >

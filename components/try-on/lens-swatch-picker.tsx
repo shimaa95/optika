@@ -29,9 +29,9 @@ export function LensSwatchPicker({
   }
 
   return (
-    <div className="mt-8 select-none">
+    <div className="select-none">
       {/* Dark strip container */}
-      <div className="relative mx-auto overflow-hidden rounded-xl" style={{ height: "100px", maxWidth: "340px" }}>
+      <div className="relative mx-auto overflow-visible rounded-xl bg-black/30 backdrop-blur-sm" style={{ height: "100px", maxWidth: "340px" }}>
         <div className="absolute inset-0 flex items-center justify-center">
           {TRY_ON_SWATCHES.map((option, index) => {
             // Linear (non-wrapping) offset
@@ -65,12 +65,12 @@ export function LensSwatchPicker({
                   className={cn(
                     "block w-full h-full rounded-full",
                     option.id === selectedId
-                      ? "ring-[2.5px] ring-neutral-900 ring-offset-[3px] ring-offset-white"
+                      ? "ring-[2.5px] ring-white ring-offset-[3px] ring-offset-black/40"
                       : "",
                   )}
                   style={{
                     background: option.gradient,
-                    boxShadow: option.id === selectedId ? "0 0 16px rgba(255,255,255,0.25)" : undefined,
+                    boxShadow: option.id === selectedId ? "0 0 16px rgba(255,255,255,0.45)" : undefined,
                   }}
                 />
               </button>
@@ -81,7 +81,7 @@ export function LensSwatchPicker({
 
       {/* Color name below */}
       <p
-        className="vto-serif mt-3 text-center text-[14px] font-medium tracking-wide text-neutral-700"
+        className="vto-serif mt-3 text-center text-[14px] font-medium tracking-wide text-white drop-shadow"
         aria-live="polite"
       >
         {selectedSwatch.name}

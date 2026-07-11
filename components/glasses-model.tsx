@@ -23,6 +23,8 @@ import gsap from "gsap";
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import { ensureGsap } from "@/lib/gsap";
+
 import {
   REEL_CRAFT_BEIGE,
   REEL_GRADIENT_DARK,
@@ -33,7 +35,7 @@ import { applyReelGlassesMaterials } from "@/lib/reel-materials";
 
 import { prefersReducedMotion } from "@/lib/motion-preferences";
 
-gsap.registerPlugin(ScrollTrigger);
+ensureGsap();
 
 const MODEL_URL = "/AkshtaS%20spetcs2.glb";
 
@@ -527,10 +529,8 @@ function Scene({ isVisible, reducedMotion = false }: SceneProps) {
       teardown = () => {
         modelSt.kill();
         timelines.forEach((tl) => tl.kill());
-        ScrollTrigger.getAll().forEach((st) => st.kill());
         clearWillChange();
       };
-      ScrollTrigger.refresh();
     };
 
     run();

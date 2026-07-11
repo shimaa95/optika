@@ -7,7 +7,11 @@ import { HeroProps } from "./HeroProps";
 
 
 
-
+const heroLayout = {
+  sectionClassName: 'relative h-[75vh] w-full overflow-hidden',
+  gridClassName: 'grid h-full w-full grid-cols-12 gap-6 items-end px-6 lg:px-20 xl:px-24 2xl:px-50',
+  textColClassName: 'col-span-12 lg:col-span-5 lg:col-start-1 z-10 lg:mb-10 xl:mb-20',
+};
 export function LuxuryHero({
   imageSrc = "/solutions-digital-len.png",
   imageAlt = "Optika premium optical solutions",
@@ -17,7 +21,7 @@ export function LuxuryHero({
   overlayClassName = 'bg-black/70',
   theme = 'dark',
   // Pin the text block to bottom-left, left edge aligns with navbar logo
-  containerClassName = 'absolute bottom-0 left-0 w-full px-6 lg:px-26 xl:px-50 pb-0',
+  containerClassName = 'absolute bottom-0 left-0 w-full px-6 lg:px-20 xl:px-24 2xl:px-50 pb-0',
   textContainerClassName = 'z-10 flex  flex-col items-start',
 
   title = (
@@ -34,6 +38,6 @@ export function LuxuryHero({
 
 }: Partial<HeroProps>) {
   return (
-    <HeroSection config={{ imageSrc, imageAlt, imagePosition, tagline, title, description, sectionClassName, overlayClassName, theme, containerClassName, textContainerClassName, }} />
+    <HeroSection config={{ imageSrc, imageAlt, imagePosition, tagline, title, description, heroLayout, sectionClassName, overlayClassName, theme, containerClassName, textContainerClassName, }} />
   );
 }
