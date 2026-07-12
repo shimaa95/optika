@@ -2,6 +2,7 @@ import { type SchemaTypeDefinition } from 'sanity'
 
 // Documents
 import { homePage } from './documents/homePage'
+import { aboutPage } from './documents/aboutPage'
 
 // Section objects (used as array items in the homePage page builder)
 import { hero } from './objects/hero'
@@ -26,6 +27,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
     // Documents
     homePage,
+    aboutPage,
     // Section objects
     hero,
     about,
