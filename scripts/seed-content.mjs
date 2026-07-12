@@ -473,6 +473,43 @@ export function buildHomePagePayload({ imageAssetId }) {
   }
 }
 
+// --- Asset upload + cache ---
+
+/**
+ * Loads the asset-id cache from disk. Returns {} if the file is missing
+ * or invalid. The cache maps public path → Sanity asset _id.
+ */
+function loadCache() {
+  if (!fs.existsSync(CACHE_PATH)) return {}
+  try {
+    return JSON.parse(fs.readFileSync(CACHE_PATH, 'utf8'))
+  } catch (err) {
+    console.warn(`Could not parse ${CACHE_PATH} — starting fresh. (${err.message})`)
+    return {}
+  }
+}
+
+function saveCache(cache) {
+  fs.writeFileSync(CACHE_PATH, JSON.stringify(cache, null, 2) + '\n')
+}
+
+/**
+ * Uploads a single image to Sanity, returning its asset _id.
+ * Cached paths return immediately without re-uploading.
+ */
+async function uploadImage(client, publicPath, cache) {
+  if (cache[publicPath]) {
+    return cache[publicPath]
+  }
+  const abs = getImagePath(publicPath)
+  const buffer = fs.readFileSync(abs)
+  const asset = await client.assets.upload('image', buffer, {
+    filename: path.basename(publicPath),
+  })
+  cache[publicPath] = asset._id
+  return asset._id
+}
+
 async function main() {
   const envLocal = loadEnvLocal()
   const projectId =
@@ -505,8 +542,76 @@ async function main() {
     useCdn: false,
   })
 
+  const force = process.argv.includes('--force')
+  const cache = loadCache()
+
   console.log(`Target: project ${projectId} / dataset ${dataset}`)
-  console.log('(seeder scaffold only — payloads not yet built)')
+  console.log(`Cache: ${CACHE_PATH} (${Object.keys(cache).length} entries)`)
+
+  // Pre-warm: upload every image referenced by either payload.
+  const referenced = new Set(Object.values(IMAGES))
+  console.log(`\nUploading ${referenced.size} images...`)
+
+  let uploaded = 0
+  let cached = 0
+  for (const publicPath of referenced) {
+    if (cache[publicPath]) {
+      cached++
+      continue
+    }
+    process.stdout.write(`  ↑ ${publicPath} ... `)
+    const id = await uploadImage(client, publicPath, cache)
+    process.stdout.write(`→ ${id}\n`)
+    uploaded++
+  }
+  saveCache(cache)
+  console.log(`  done. uploaded=${uploaded}, cached=${cached}`)
+
+  // Now build payloads with the real (cache-backed) imageAssetId.
+  const realImageAssetId = (publicPath) => {
+    if (!cache[publicPath]) {
+      throw new Error(`No asset id cached for ${publicPath} — was the upload step skipped?`)
+    }
+    return cache[publicPath]
+  }
+  const homePayload = {
+    _id: 'homePage',
+    _type: 'homePage',
+    title: 'Home Page',
+    ...buildHomePagePayload({ imageAssetId: realImageAssetId }),
+  }
+  const aboutPayload = {
+    _id: 'aboutPage',
+    _type: 'aboutPage',
+    title: 'About Page',
+    ...buildAboutPagePayload({ imageAssetId: realImageAssetId }),
+  }
+
+  console.log('\nAbout to write:')
+  console.log(`  homePage.pageBuilder: ${homePayload.pageBuilder.length} entries`)
+  console.log(`  aboutPage.lensCategoryCards: ${aboutPayload.lensCategoryCards.length}`)
+  console.log(`  aboutPage.succeed.boxes: ${aboutPayload.succeed.boxes.length}`)
+  console.log(`  Total image assets: ${referenced.size}`)
+
+  if (!force) {
+    const rl = readline.createInterface({ input, output })
+    const answer = await rl.question('\nContinue? [y/N] ')
+    rl.close()
+    if (answer.trim().toLowerCase() !== 'y') {
+      console.log('Aborted.')
+      return
+    }
+  }
+
+  console.log('\nWriting homePage...')
+  const homeResult = await client.createOrReplace(homePayload)
+  console.log(`  → ${homeResult._id} (rev: ${homeResult._rev ? homeResult._rev.slice(0, 8) : 'created'})`)
+
+  console.log('Writing aboutPage...')
+  const aboutResult = await client.createOrReplace(aboutPayload)
+  console.log(`  → ${aboutResult._id} (rev: ${aboutResult._rev ? aboutResult._rev.slice(0, 8) : 'created'})`)
+
+  console.log('\nDone. Open https://optika.sanity.studio/ to verify.')
 }
 
 // Only invoke main() when this file is run directly (`node seed-content.mjs`).
