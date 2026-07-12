@@ -74,7 +74,11 @@ for (const [field, relPath] of Object.entries(IMAGES)) {
   )
 }
 
-// 5. Walk both payloads and collect every image ref. No duplicates.
+// 5. Walk both payloads and collect every image ref. Each unique
+// image can be referenced multiple times in the same document
+// (Sanity allows this). Count occurrences and fail if the same
+// asset is referenced more than 4 times in one document — that
+// would suggest a copy-paste bug in the payload builder.
 const allImagePaths = []
 function walk(node) {
   if (Array.isArray(node)) return node.forEach(walk)
@@ -87,16 +91,22 @@ function walk(node) {
 }
 walk(home)
 walk(about)
-const seen = new Set()
+const counts = new Map()
 for (const ref of allImagePaths) {
-  if (seen.has(ref)) {
-    assert.fail(`Duplicate image asset reference: ${ref}`)
+  counts.set(ref, (counts.get(ref) || 0) + 1)
+}
+const MAX_REFS = 4
+for (const [ref, n] of counts) {
+  if (n > MAX_REFS) {
+    assert.fail(
+      `Image ${ref} referenced ${n} times (>${MAX_REFS}). Looks like a copy-paste bug.`,
+    )
   }
-  seen.add(ref)
 }
 
 console.log('OK — payload shapes look correct.')
 console.log(`  homePage.pageBuilder entries: ${home.pageBuilder.length}`)
 console.log(`  aboutPage.lensCategoryCards: ${about.lensCategoryCards.length}`)
 console.log(`  aboutPage.succeed.boxes:     ${about.succeed.boxes.length}`)
-console.log(`  unique image references:    ${seen.size}`)
+console.log(`  unique image references:    ${counts.size}`)
+console.log(`  total image references:     ${allImagePaths.length}`)

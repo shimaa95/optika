@@ -53,7 +53,7 @@ function loadEnvLocal() {
 // passes the path to `getImagePath`, which converts a public path
 // (e.g. "/hero.jpg") into an absolute filesystem path the uploader
 // can read.
-const IMAGES = {
+export const IMAGES = {
   // homePage
   homeHeroBackground: '/Lens-1.jpeg',
   homeAboutImage: '/about12345.png',
@@ -77,7 +77,7 @@ const IMAGES = {
   aboutContactBanner: '/contact.jpg',
 }
 
-function getImagePath(publicPath) {
+export function getImagePath(publicPath) {
   if (!publicPath || typeof publicPath !== 'string') {
     throw new Error(`getImagePath: expected a non-empty string, got ${publicPath}`)
   }
@@ -296,6 +296,180 @@ export function buildAboutPagePayload({ imageAssetId }) {
         buttonLabel: 'Fill Form',
       },
     },
+  }
+}
+
+/**
+ * Builds the homePage document payload (no _id, no _type wrapper).
+ * Returns a `pageBuilder` array of 9 entries in the same order as
+ * the React home page renders.
+ * @param {object} ctx
+ * @param {(publicPath: string) => string} ctx.imageAssetId
+ */
+export function buildHomePagePayload({ imageAssetId }) {
+  return {
+    seo: {
+      title: 'Optika — Premium Optical Lenses',
+      description:
+        'Where precision meets artistry. Premium eyewear crafted with innovative engineering and timeless elegance.',
+      ogTitle: 'Optika — Premium Optical Lenses',
+      ogDescription:
+        'Premium digital lenses, ophthalmic care products, and tailored solutions for partners and individual wearers.',
+    },
+    pageBuilder: [
+      // 1. Hero — from components/home/home-page-client.tsx heroSectionConfig
+      {
+        _key: 'pb-hero',
+        _type: 'hero',
+        image: img(IMAGES.homeHeroBackground, imageAssetId),
+        tagline: 'Exceptional Optical Solutions',
+        headline: 'HIGH-END LENSES FOR MODERN EYECARE',
+        description:
+          'Optika delivers to you Premium Digital Lenses and Solutions manufactured to the highest standards.',
+      },
+      // 2. About — from components/about-final.tsx
+      {
+        _key: 'pb-about',
+        _type: 'about',
+        eyebrow: 'Welcome to',
+        title: 'Optika Lenses',
+        description:
+          'Optika is a Provider and Distributor of Exclusive and advanced Digital Lenses, Ophthalmic care products, and Premium Eyewear Solutions.',
+        image: img(IMAGES.homeAboutImage, imageAssetId),
+      },
+      // 3. GroupBanner — from components/optika/group-banner.tsx
+      {
+        _key: 'pb-group-banner',
+        _type: 'groupBanner',
+        image: img(IMAGES.homeGroupBanner, imageAssetId),
+      },
+      // 4. Partners — from components/optika/partners-section.tsx
+      {
+        _key: 'pb-partners',
+        _type: 'partners',
+        tagline: 'Exceptional Optical Solutions',
+        headline: 'Partners integrated solutions',
+        body:
+          "Optika supports business partners with automated solutions that are designed to perform well today and adaptable tomorrow. Whether it's distribution, specification, or tailored support, we help partners move faster and to serve better.",
+        ctaLabel: 'Become a Partner',
+        ctaHref: '#',
+        image: img(IMAGES.homePartnersImage, imageAssetId),
+      },
+      // 5. LensCategories — from lib/lens-categories.config.ts
+      {
+        _key: 'pb-lens-categories',
+        _type: 'lensCategories',
+        viewAllLabel: 'View All Lenses',
+        viewAllHref: '/products',
+        categories: [
+          {
+            _key: 'cat-acutus',
+            id: { _type: 'slug', current: 'acutus' },
+            image: img(IMAGES.homeLensAcutus, imageAssetId),
+            logoText: 'ACUTUS',
+            logoSubscript: '®',
+            description: 'Optika Exclusive range of Lens',
+            link: '/products/acutus',
+          },
+          {
+            _key: 'cat-single-vision',
+            id: { _type: 'slug', current: 'single-vision' },
+            image: img(IMAGES.homeLensSingleVision, imageAssetId),
+            logoText: 'SINGLE VISION',
+            logoSubscript: '',
+            description: 'Innovative Single Vision Lenses',
+            link: '/products/single-vision',
+          },
+          {
+            _key: 'cat-transitions',
+            id: { _type: 'slug', current: 'transitions' },
+            image: img(IMAGES.homeLensTransitions, imageAssetId),
+            logoText: 'Transitions',
+            logoSubscript: '®',
+            logo: img(IMAGES.homeLensTransitionsLogo, imageAssetId),
+            description: 'Light Innovative Technology Lenses',
+            link: '/products/transition',
+          },
+        ],
+      },
+      // 6. Solutions — from components/Solutions.tsx DEFAULT_CONTENT
+      {
+        _key: 'pb-solutions',
+        _type: 'solutions',
+        blocks: [
+          {
+            _key: 'sol-workflow',
+            _type: 'solutionBlock',
+            eyebrow: 'Solutions for partners',
+            title: 'STREAMLINED WORKFLOWS',
+            description:
+              'We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style.',
+            ctaLabel: 'Become a Partner',
+            ctaHref: '',
+            image: img(IMAGES.homeSolutionsWorkflow, imageAssetId),
+          },
+          {
+            _key: 'sol-scale',
+            _type: 'solutionBlock',
+            eyebrow: 'A connected system',
+            title: 'SCALE WITHOUT LOSING CONSISTENCY',
+            description:
+              'We operate as an integrated system for partners to creates a stable foundation for growth, operational clarity, and a more consistent experience across every touch-point.',
+            ctaLabel: 'Learn More',
+            ctaHref: '',
+            image: img(IMAGES.homeSolutionsScale, imageAssetId),
+          },
+        ],
+      },
+      // 7. Performance — from components/performance-section.tsx
+      {
+        _key: 'pb-performance',
+        _type: 'performance',
+        headline:
+          'Designed to perform well today and remain adaptable tomorrow.',
+        backgroundImage: img(IMAGES.homePerformanceBackground, imageAssetId),
+      },
+      // 8. FAQ — from components/faq-section.tsx
+      {
+        _key: 'pb-faq',
+        _type: 'faq',
+        sectionTitle: 'FAQ',
+        subheading:
+          'Find answers to questions about our lenses and ordering process.',
+        faqs: [
+          { _key: 'q-0', _type: 'item', question: 'What makes Optika lenses different?', answer: 'Optika lenses are manufactured in the Czech Republic using cutting-edge digital technology and tested to the highest industry standards. Every lens is customized to meet the specific needs of the wearer, ensuring unmatched visual clarity and comfort.' },
+          { _key: 'q-1', _type: 'item', question: 'How long does delivery take?', answer: 'Most orders are delivered within 48 hours of production completion. We optimize every step of our workflow to ensure your lenses arrive on time and ready to perform.' },
+          { _key: 'q-2', _type: 'item', question: 'Can I customize my orders?', answer: 'Yes. Our digital ordering system allows eye care professionals to customize every aspect of their lens orders. You control the specifications, and we handle the precision manufacturing.' },
+          { _key: 'q-3', _type: 'item', question: 'What quality standards do you follow?', answer: 'Every lens meets global industry standards and passes through rigorous quality controls at every stage of production. We test what matters and deliver what works.' },
+          { _key: 'q-4', _type: 'item', question: 'Do you offer bulk ordering?', answer: 'We serve eye care professionals of all sizes. Our system scales to your needs, whether you are ordering a few lenses or managing high-volume production.' },
+          { _key: 'q-5', _type: 'item', question: 'Reach out to our team for more information.', answer: "Our lenses combine Czech precision manufacturing with advanced digital technology. Each lens is customized to the wearer's exact specifications and tested rigorously before delivery. You get clarity that performs." },
+          { _key: 'q-6', _type: 'item', question: 'What sets Optika apart?', answer: 'We handle the ordering through a streamlined digital system designed for eye care professionals. You specify what you need, we manufacture with precision, and delivery happens within 48 hours. The process is built for efficiency.' },
+          { _key: 'q-7', _type: 'item', question: 'How does ordering work?', answer: 'Every lens passes through strict quality controls at every production stage. We test what matters and only ship what meets our standards. Your patients will notice the difference immediately.' },
+        ],
+      },
+      // 9. Contact — from components/contact-section.tsx
+      {
+        _key: 'pb-contact',
+        _type: 'contact',
+        bannerImage: img(IMAGES.homeContactBanner, imageAssetId),
+        bannerTitle: 'Still have questions?',
+        bannerSubtitle: 'Questions about lenses or ordering or even about us?',
+        contactCard: {
+          title: 'Contact us',
+          description:
+            'Reach out straight to our mail and our teams will reach back right away',
+          buttonLabel: 'Contact Us',
+        },
+        enquiryCard: {
+          title: 'Enquiry Form',
+          description:
+            'Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.',
+          buttonLabel: 'Fill Form',
+        },
+      },
+      // Footer is intentionally omitted — the site footer is rendered
+      // globally via the root layout, not edited per page.
+    ],
   }
 }
 
