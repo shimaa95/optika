@@ -13,8 +13,9 @@ import { DocumentIcon } from '@sanity/icons'
  *   - `InnovativeToolsBanner`  → `innovativeToolsBanner`
  *   - `SolutionsGridSection`   → `solutionsGridSection`
  *   - `PerformanceSection`     → `performance` (reused shared object)
- *   - `ContactSection`         → `contact` (reused shared object)
- *   - `Footer`                 → `footer` (reused shared object)
+ *   - `ContactSection`/`Footer` are intentionally omitted; the page
+ *     renders the shared `<SharedFooter />`, which is driven by the
+ *     `sharedFooter` document.
  *
  * Field order matches the render order top-to-bottom.
  */
@@ -83,16 +84,6 @@ export const solutionsPage = defineType({
       name: 'performance',
       title: 'Performance',
       type: 'performance',
-    }),
-    defineField({
-      name: 'contact',
-      title: 'Contact',
-      type: 'contact',
-    }),
-    defineField({
-      name: 'footer',
-      title: 'Footer',
-      type: 'footer',
     }),
   ],
   preview: {
