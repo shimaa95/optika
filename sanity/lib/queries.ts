@@ -175,22 +175,6 @@ export const ABOUT_PAGE_QUERY = defineQuery(`
         "question": coalesce(question, ""),
         "answer": coalesce(answer, "")
       }
-    },
-
-    "contact": contact{
-      "bannerImage": bannerImage,
-      "bannerTitle": coalesce(bannerTitle, ""),
-      "bannerSubtitle": coalesce(bannerSubtitle, ""),
-      "contactCard": contactCard{
-        "title": coalesce(title, ""),
-        "description": coalesce(description, ""),
-        "buttonLabel": coalesce(buttonLabel, "")
-      },
-      "enquiryCard": enquiryCard{
-        "title": coalesce(title, ""),
-        "description": coalesce(description, ""),
-        "buttonLabel": coalesce(buttonLabel, "")
-      }
     }
   }
 `)
