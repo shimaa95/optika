@@ -1,4 +1,5 @@
 "use client";
+import { Fragment } from "react";
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/hero-section";
 
@@ -115,10 +116,10 @@ export default function HomePageClient({
       heroConfig.title = (
         <>
           {lines.map((line, i) => (
-            <React.Fragment key={i}>
+            <Fragment key={i}>
               {i > 0 && <br />}
               {line}
-            </React.Fragment>
+            </Fragment>
           ))}
         </>
       )
