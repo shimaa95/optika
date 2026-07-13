@@ -1,0 +1,208 @@
+# Enquiry Form → Sanity + Resend
+
+**Date:** 2026-07-13
+**Status:** Approved (brainstorming complete)
+**Scope:** Wire up the `/contact/enquiry` form so submissions are saved to Sanity and a notification email is sent to the team via Resend. Includes wiring the form to the existing `enquiryPage` Sanity document so editors can control field labels and interest options.
+
+## Problem
+
+`/contact/enquiry` is a non-functional UI shell. The `<form>` has no `onSubmit`, no `action`, no `method`. The inputs lack `name` attributes. Clicking submit triggers HTML5 client-side validation, then does nothing — no data is sent anywhere. The hardcoded copy and interest options in JSX do not match the editable `enquiryPage` Sanity document, which is currently never queried.
+
+The `/contact` page itself is not a form (it's a contact card with `mailto:` / `tel:` links) and is out of scope.
+
+## Goals
+
+1. Form submissions are persisted to Sanity as a new `enquirySubmission` document type, viewable in the Studio.
+2. The team receives a Resend email notification for every legitimate submission.
+3. Editors can change form field labels, placeholders, and interest options from the Studio without code changes.
+4. The form keeps working in dark mode, matches existing visual style, and shows a success toast on submit.
+
+## Non-Goals (v1)
+
+- Email confirmation to the submitter.
+- Rate limiting (rely on honeypot; revisit if abuse appears).
+- File uploads / attachments.
+- Multi-step or conditional form logic.
+- CRM integration.
+- A separate public-facing submissions dashboard.
+
+## Architecture
+
+A single Next.js Server Action handles the form. It writes to Sanity and emails the team, in that order. Email failure does not roll back the Sanity write — the lead is the primary value.
+
+```
+[User submits /contact/enquiry]
+        │
+        ▼
+[Server Action: submitEnquiryAction]
+        │  1. Honeypot check (silent success if filled)
+        │  2. Zod validate
+        │  3. Sanity create (writeClient, WRITE_TOKEN)
+        │  4. Resend send to TEAM_INBOX (best-effort)
+        │
+        ▼
+[Return { success, error? }]  →  toast + reset / inline error
+```
+
+### Why a Server Action
+
+- The `WRITE_TOKEN` and `RESEND_API_KEY` never reach the client bundle (security).
+- Form progressively enhances (the action works even with JS disabled, minus client-side toast).
+- `useActionState` gives us first-class pending / success / error state with one hook.
+- No new API route, no new client-side fetch path.
+
+## Components & Files
+
+### New files
+
+- `sanity/schemaTypes/documents/enquirySubmission.ts` — new document type.
+- `sanity/lib/write-client.ts` — `@sanity/client` instance with `WRITE_TOKEN` and `useCdn: false`. Distinct from the existing read `client` in `sanity/lib/client.ts`.
+- `app/actions/submit-enquiry.ts` — Server Action.
+- `app/contact/enquiry/enquiry-form.tsx` — extracted client component for the form (current form is inlined in `app/contact/enquiry/page.tsx`).
+
+### Modified files
+
+- `sanity/schemaTypes/index.ts` — register the new `enquirySubmission` type.
+- `sanity.config.ts` — add `EnquirySubmissions` to the desk structure (list view, filter `_type == "enquirySubmission"`, sort by `submittedAt desc`).
+- `app/contact/enquiry/page.tsx` — convert to a thin server component that fetches the `enquiryPage` document and renders `<EnquiryForm data={...} />`.
+- `sanity/lib/queries.ts` — add `ENQUIRY_PAGE_QUERY` to fetch the editable form copy.
+- `package.json` — add `resend` and `zod` (already present) dependencies. Verify versions: latest `resend` SDK supports ESM and the Node runtime.
+
+### Schema: `enquirySubmission`
+
+```ts
+defineType({
+  name: 'enquirySubmission',
+  title: 'Enquiry Submission',
+  type: 'document',
+  icon: EnvelopeIcon,
+  fields: [
+    defineField({ name: 'submittedAt', type: 'datetime', readOnly: true,
+      initialValue: () => new Date().toISOString() }),
+    defineField({ name: 'fullName', type: 'string', validation: r => r.required() }),
+    defineField({ name: 'email', type: 'string', validation: r => r.required().email() }),
+    defineField({ name: 'company', type: 'string', validation: r => r.required() }),
+    defineField({ name: 'interests', type: 'array', of: [{ type: 'string' }],
+      validation: r => r.min(1).error('Select at least one interest') }),
+    defineField({ name: 'message', type: 'text', validation: r => r.required().min(10) }),
+    defineField({ name: 'status', type: 'string',
+      options: { list: ['new', 'contacted', 'archived'], layout: 'radio' },
+      initialValue: 'new', validation: r => r.required() }),
+    defineField({ name: 'notes', type: 'text',
+      description: 'Internal notes for the team' }),
+  ],
+  preview: {
+    select: { title: 'fullName', subtitle: 'email', date: 'submittedAt' },
+    prepare: ({ title, subtitle, date }) => ({
+      title, subtitle, media: EnvelopeIcon,
+      description: date ? new Date(date).toLocaleString() : undefined,
+    }),
+  },
+})
+```
+
+`_id` is generated by Sanity — no custom IDs. (Per Sanity best practices: do not encode identity into `_id`.)
+
+### Server Action: `submitEnquiryAction`
+
+```ts
+'use server'
+const schema = z.object({
+  fullName: z.string().min(1).max(200),
+  email: z.string().email().max(200),
+  company: z.string().min(1).max(200),
+  interests: z.array(z.string()).min(1),
+  message: z.string().min(10).max(5000),
+  website: z.string().optional(), // honeypot
+})
+
+export async function submitEnquiryAction(
+  _prev: ActionState, formData: FormData
+): Promise<ActionState> {
+  const raw = {
+    fullName: formData.get('fullName'),
+    email: formData.get('email'),
+    company: formData.get('company'),
+    interests: formData.getAll('interests'),
+    message: formData.get('message'),
+    website: formData.get('website'),
+  }
+  // Honeypot: silent success.
+  if (raw.website) return { success: true }
+
+  const parsed = schema.safeParse(raw)
+  if (!parsed.success) return { success: false, error: 'Please check the form fields.' }
+
+  let submissionId: string
+  try {
+    const doc = await writeClient.create({
+      _type: 'enquirySubmission',
+      ...parsed.data,
+    })
+    submissionId = doc._id
+  } catch (err) {
+    console.error('[enquiry] sanity write failed', err)
+    return { success: false, error: 'Something went wrong. Please try again.' }
+  }
+
+  // Email is best-effort — submission is already saved.
+  try {
+    await resend.emails.send({
+      from: 'Optika Enquiries <enquiries@optika.com>',
+      to: process.env.TEAM_INBOX!,
+      subject: `New enquiry from ${parsed.data.fullName}`,
+      html: renderEnquiryEmail(parsed.data),
+    })
+  } catch (err) {
+    console.error('[enquiry] resend failed', err, { submissionId })
+  }
+
+  return { success: true }
+}
+```
+
+### Form: `enquiry-form.tsx`
+
+Controlled by `useActionState(submitEnquiryAction, { success: false })`. Adds a hidden honeypot input `name="website"` styled with `position: absolute; left: -9999px; opacity: 0;` and `tabIndex={-1}` + `autoComplete="off"`. Real users never see or fill it; bots that auto-fill all fields trigger the silent-success path.
+
+Renders fields from the `enquiryPage` Sanity document (not hardcoded). On `success`, resets the form via `formRef.current.reset()` and shows a `sonner` toast.
+
+## Environment Variables (new)
+
+| Var | Required | Notes |
+|---|---|---|
+| `SANITY_API_WRITE_TOKEN` | yes | Rename of the existing `WRITE_TOKEN`. Same value. |
+| `RESEND_API_KEY` | yes | from Resend dashboard |
+| `TEAM_INBOX` | yes | destination email address, e.g. `hello@optika.com` |
+
+The existing `WRITE_TOKEN` is renamed to `SANITY_API_WRITE_TOKEN` to match Sanity's standard naming convention used in their docs. The old name is kept as a fallback in the read path (no fallback in the write client — we want a hard error if the new name isn't set so misconfigurations surface immediately in dev).
+
+## Error Handling
+
+| Scenario | Behavior |
+|---|---|
+| Honeypot filled | Silent success (200, no Sanity write, no email) |
+| Zod validation fails | Return `{ success: false, error: 'Please check the form fields.' }`. Specific errors are logged server-side; we don't leak them to the client. |
+| Sanity write fails | Log error, return error. **Do not send email** — we have no submission to reference. |
+| Email fails (after Sanity write succeeded) | Log error with `submissionId`, return `{ success: true }`. Editor sees the doc in the Studio even without an email. |
+| Network blip / user closes tab | Submission is lost — that's accepted. We could add a queue in v2. |
+
+## Out of scope, but worth noting
+
+- The `enquiryPage` schema currently has a `formFields[]` array that allows editors to define label, placeholder, fieldType, and required per field. The implementation should respect that structure but with this fixed shape:
+  - `fieldType: 'text' | 'email' | 'textarea'` → render as a top-level input bound to a fixed Sanity submission field by name: `fullName` (text, required), `email` (email, required), `company` (text, required), `message` (textarea, required). The form author maps a `formFields[]` entry to one of these by matching the entry's `name` (a new optional field on the inline formField object) to a fixed key. Editors must set `name` to one of `fullName | email | company | message` or the entry is ignored.
+  - `fieldType: 'checkbox'` is **not used** in the editable array. Interests are managed separately via `interestOptions[]`, which renders as the existing checkbox group bound to `interests[]` in the submission. This keeps the form a stable, server-validated shape while still letting editors rename the interest labels.
+- The Studio structure should add a top-level "Enquiries" item with a `filter` of `_type == "enquirySubmission"` and a default sort. The `sharedFooter`, `contactPage`, and `enquiryPage` singletons stay where they are.
+
+## Verification
+
+No test runner is configured. The bar (per `CLAUDE.md`) is: no new lint errors, no new build errors, no console errors in dev.
+
+1. `pnpm lint` passes.
+2. `pnpm build` passes (note: `typescript.ignoreBuildErrors` is true in `next.config.mjs`, so build is a smoke test).
+3. Manual smoke test in dev:
+   - Submit a valid form → success toast appears, form resets, new doc visible in Studio, email arrives in `TEAM_INBOX`.
+   - Submit with an empty required field → inline error or browser-native validation.
+   - Submit with the honeypot filled (via DevTools) → success toast, but no Sanity doc and no email.
+   - Temporarily break the `SANITY_API_WRITE_TOKEN` → user sees an error message, no email.
+4. Confirm `/contact/enquiry` page renders using the editable `enquiryPage` document (change a label in Studio, see it update on the page after revalidation).
