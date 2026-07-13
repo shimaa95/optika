@@ -1,15 +1,15 @@
 # Sanity Content Seeder
 
 One-shot Node script that uploads the project's `/public/` images to
-Sanity and writes `homePage` + `aboutPage` documents with the
-hardcoded React component content.
+Sanity and writes page documents with the hardcoded React component
+content (`homePage`, `aboutPage`, and all other marketing pages).
 
 ## Why
 
-The `homePage` and `aboutPage` schemas exist in Sanity, but the
-documents are empty. This script populates them with the same content
-the React components render today, so the hosted Studio at
-https://optika.sanity.studio/ has real data to display.
+Sanity schemas exist for all marketing pages, but the frontend still
+reads hardcoded React content. This script populates Sanity with the
+same copy and images the components render today, so the hosted Studio
+at https://optika.sanity.studio/ has real data to edit.
 
 The React components do NOT change. They still render hardcoded
 content. A follow-up will wire the components to the data.
@@ -35,12 +35,27 @@ content. A follow-up will wire the components to the data.
    SANITY_API_WRITE_TOKEN=skXXX pnpm seed:content --force
    ```
 
-3. Open https://optika.sanity.studio/ and verify both "Home Page" and
-   "About Page" documents have content.
+3. Open https://optika.sanity.studio/ and verify page documents have
+   content. By default the script seeds all pages except `homePage` and
+   `aboutPage` (already seeded). Pass `--all` to include those too.
+
+## MCP fallback (no write token)
+
+If `SANITY_API_WRITE_TOKEN` is not available, export jobs and seed via
+Sanity MCP:
+
+```bash
+node scripts/export-seed-jobs.mjs
+node scripts/prepare-mcp-phases.mjs
+```
+
+Phase files land in `scripts/mcp-phases/`. Create documents without
+cross-references first, publish, then patch `nextProduct` refs and
+`acutusPage` lens carousel references.
 
 ## Idempotency
 
-Re-running the script overwrites both documents with the same `_id`s.
+Re-running the script overwrites documents with the same `_id`s.
 Images already uploaded to Sanity are cached in
 `.sanity-asset-cache.json` (gitignored) and not re-uploaded.
 

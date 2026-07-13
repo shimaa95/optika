@@ -18,7 +18,7 @@ export default function FilterLensesSection() {
   };
 
   return (
-    <section className="relative w-full h-auto bg-white py-24 min-h-[600px] flex items-center justify-center overflow-hidden">
+    <section className="relative w-full  bg-white   flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       {/* <div className="absolute inset-0 z-0">
         <Image
@@ -32,12 +32,16 @@ export default function FilterLensesSection() {
 
       <div className="relative z-10 w-full  mx-auto px-6  lg:px-20 xl:px-24 2xl:px-50 flex flex-col justify-center min-h-[400px]">
         {/* Texts */}
-        <div className="mb-12 mt-auto mx-auto ">
+        <div className="mb-12  mx-auto ">
           <p className="text-black/80 text-lg mb-2 font-light tracking-wide text-center">Find your right Lens</p>
           <h2 className="text-black/80 text-[32px] font-bold  leading-[1.1] tracking-tight">
             Filter Lenses Using Built-in Technologies          </h2>
         </div>
-        <div className="h-[.1px] w-full bg-black/20 mx-auto mb-12" />
+        <div
+          className="h-px w-full bg-black/20 mx-auto mb-12 filter-divider"
+          role="separator"
+          aria-orientation="horizontal"
+        />
         {/* Filter Card */}
         <div className=" bg-[#f4f6f8]  px-8 py-10 md:py-12 md:px-12 md:flex mx-auto md:items-center md:gap-16 w-full ">
 
@@ -46,7 +50,7 @@ export default function FilterLensesSection() {
             <select
               value={technology}
               onChange={(e) => setTechnology(e.target.value)}
-              className="w-full appearance-none bg-transparent outline-none text-gray-800 text-lg cursor-pointer pr-10"
+              className="w-full bg-transparent outline-none text-gray-800 text-lg cursor-pointer pr-10 native-select"
               required
             >
               <option value="" disabled hidden>Technology</option>
@@ -62,7 +66,7 @@ export default function FilterLensesSection() {
             <select
               value={lens}
               onChange={(e) => setLens(e.target.value)}
-              className="w-full appearance-none bg-transparent outline-none text-gray-800 text-lg cursor-pointer pr-10"
+              className="w-full bg-transparent outline-none text-gray-800 text-lg cursor-pointer pr-10 native-select"
               required
             >
               <option value="" disabled hidden>Lens</option>

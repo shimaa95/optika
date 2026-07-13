@@ -1,89 +1,58 @@
-"use client";
-import dynamic from "next/dynamic";
-import { HeroSection } from "@/components/hero-section";
+import type { Metadata } from 'next'
+import { client } from '@/sanity/lib/client'
+import { HOME_SEO_QUERY } from '@/sanity/lib/queries'
+import { urlFor } from '@/sanity/lib/image'
+import HomePageClient from '@/components/home/home-page-client'
 
-import { faqs } from "@/components/faq-section";
-import { Skeleton } from "@/components/ui/skeleton";
-import { GroupBanner } from '@/components/optika/group-banner'
-import { PartnersSection } from '@/components/optika/partners-section'
-import { AboutSection } from "@/components/about-final";
-import { Footer } from "@/components/footer";
-const SectionSkeleton = () => <Skeleton className="w-full h-[50vh] rounded-none bg-zinc-900/50" />;
+const FALLBACK = {
+  title: 'Optika — Premium Optical Lenses',
+  description:
+    'Where precision meets artistry. Premium eyewear crafted with innovative engineering and timeless elegance.',
+  ogImage: '/og-default.png',
+}
 
-const heroSectionConfig = {
-  imageSrc: "/Lens-1.png",
-  imageAlt: "Premium optical lenses showcasing modern eyecare technology",
-  imagePosition: "center",
-  tagline: "Exceptional Optical Solutions",
-  title: (
-    <>
-      HIGH-END
-      <br />
-      LENSES
-      <br />
-      FOR MODERN
-      <br />
-      EYECARE
-    </>
-  ),
-  description: "Optika delivers to you Premium Digital Lenses and Solutions manufactured to the highest standards.",
+export async function generateMetadata(): Promise<Metadata> {
+  // stega: false is critical — stega characters in <title> destroy SEO.
+  const seo = await client.fetch(
+    HOME_SEO_QUERY,
+    {},
+    { next: { revalidate: 60 }, stega: false }
+  )
 
-  alignLeft: false,
-  showScrollIndicator: true,
-};
-// const LAYOUT_DEFAULTS = {
-//   sectionClassName: 'relative min-h-[70vh] h-[100vh] w-full overflow-hidden bg-white',
-//   gridClassName: 'grid h-full w-full grid-cols-12 gap-6 items-center px-6 lg:px-[46px]',
-//   textColClassName: 'col-span-12 lg:col-span-5 lg:col-start-7 z-10',
-// };
-const LensCategoriesSection = dynamic(() =>
-  import("@/components/lens-categories-section").then(
-    (mod) => mod.LensCategoriesSection,
-  ),
-  { loading: SectionSkeleton }
-);
-const Solutions = dynamic(() =>
-  import("@/components/Solutions").then((mod) => mod.default || mod),
-  { loading: SectionSkeleton }
-);
+  const title = seo?.title?.trim() ? seo.title : FALLBACK.title
+  const description = seo?.description?.trim()
+    ? seo.description
+    : FALLBACK.description
+  const ogTitle = seo?.ogTitle?.trim() ? seo.ogTitle : title
+  const ogDescription = seo?.ogDescription?.trim()
+    ? seo.ogDescription
+    : description
 
-const PerformanceSection = dynamic(() =>
-  import("@/components/performance-section").then(
-    (mod) => mod.PerformanceSection,
-  ),
-  { loading: SectionSkeleton }
-);
+  const ogImageUrl = seo?.image
+    ? urlFor(seo.image).width(1200).height(630).url()
+    : FALLBACK.ogImage
 
-const FaqSection = dynamic(() =>
-  import("@/components/faq-section").then((mod) => mod.FaqSection),
-  { loading: SectionSkeleton }
-);
-const ContactSection = dynamic(() =>
-  import("@/components/contact-section").then((mod) => mod.ContactSection),
-  { loading: SectionSkeleton }
-);
+  return {
+    title,
+    description,
+    robots: seo?.noIndex ? 'noindex' : undefined,
+    alternates: seo?.canonicalUrl
+      ? { canonical: seo.canonicalUrl }
+      : undefined,
+    openGraph: {
+      title: ogTitle,
+      description: ogDescription,
+      images: [{ url: ogImageUrl, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: seo?.twitterCard === 'summary' ? 'summary' : 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: [ogImageUrl],
+    },
+  }
+}
 
-export default function Home() {
-  return (
-    <>
-      <HeroSection config={heroSectionConfig} />
-
-      <main className="relative min-h-screen text-white">
-        <div className="relative z-10 flex flex-col gap-20 bg-white lg:gap-36 ">
-          <AboutSection />
-
-          <div className="flex flex-col gap-36 bg-white   ">
-            <GroupBanner />
-            <PartnersSection />
-          </div>
-        </div>
-      </main>
-      <LensCategoriesSection />
-
-      <Solutions className="px-6 lg:px-20 xl:px-24 2xl:px-50" />
-      <PerformanceSection />
-      <FaqSection faqs={faqs} />
-      <ContactSection /> <Footer />
-    </>
-  );
+export default function HomePage() {
+  return <HomePageClient />
 }

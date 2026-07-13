@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect, useCallback } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, ChevronDown } from "lucide-react"
+import { Menu, X, ChevronDown } from 'lucide-react'
 import { motion, AnimatePresence } from "framer-motion"
 
 const navLinks = [
@@ -110,7 +110,7 @@ export function Navigation({ bgColorClass = 'bg-white ', textColorClass = "text-
 
         {/* Partners Link - Desktop */}
         <Link
-          href="/https://rx.optikalenses.com/auth"
+          href="https://rx.optikalenses.com/auth"
           className={`hidden transition-opacity text-[14px] xl:text-[16px] tracking-[0.02em] hover:opacity-70 md:block font-inter font-normal text-[#333436]`}
         >
           / For Partners

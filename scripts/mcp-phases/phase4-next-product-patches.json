@@ -1,0 +1,134 @@
+{
+  "acutusProduct-actus-due-plus": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-smart"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-smart": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-elite"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-elite": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-air"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-air": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-sharp"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-sharp": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-drive"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-drive": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-kids"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-kids": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-night"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-night": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-sport"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-sport": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-read"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-read": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-acutus-custom"
+          }
+        }
+      }
+    ]
+  },
+  "acutusProduct-acutus-custom": {
+    "patches": [
+      {
+        "set": {
+          "nextProduct": {
+            "_type": "reference",
+            "_ref": "acutusProduct-actus-due-plus"
+          }
+        }
+      }
+    ]
+  }
+}

@@ -5,7 +5,6 @@ import './globals.css'
 import { Navigation } from '@/components/navigation';
 import AssistlyChatWidget from '@/components/AssistlyChatWidget';
 import { ASSISTLY } from '@/lib/assistly';
-import { Footer } from '@/components/footer';
 
 
 
@@ -27,14 +26,7 @@ export const metadata: Metadata = {
   generator: 'v0.app',
   icons: {
     icon: [
-      {
-        url: '/icon-ico',
-        media: '(prefers-color-scheme: light)',
-      },
-      {
-        url: '/icon-ico',
-        media: '(prefers-color-scheme: dark)',
-      },
+ 
       {
         url: '/icon.ico',
         type: 'image/svg+xml',

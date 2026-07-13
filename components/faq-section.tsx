@@ -51,7 +51,7 @@ export const faqs = [
 export function FaqSection({ faqs = [], subheading }: { faqs?: { question: string, answer: string }[], subheading?: string }) {
     return (
         <section className="w-full  lg:px-20 xl:px-24 2xl:px-50 px-6 bg-white ">
-            <div className="w-full py-16 sm:py-20 lg:py-24">
+            <div className="w-full ">
                 {/* Header */}
                 <div className="mb-10 lg:mb-16 ">
                     <h2 className="mb-2 text-[32px] font-bold tracking-tight text-black">

@@ -12,6 +12,23 @@ export const succeedBox = defineType({
   type: 'object',
   fields: [
     defineField({
+      name: 'icon',
+      title: 'Icon',
+      type: 'string',
+      description:
+        'Optional Lucide icon name (e.g. "Eye", "LayoutGrid", "Sun", "Palette"). Icons are positional when omitted.',
+      options: {
+        list: [
+          { title: 'Eye', value: 'Eye' },
+          { title: 'Layout Grid', value: 'LayoutGrid' },
+          { title: 'Line Chart', value: 'LineChart' },
+          { title: 'Truck', value: 'Truck' },
+          { title: 'Sun', value: 'Sun' },
+          { title: 'Palette', value: 'Palette' },
+        ],
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',

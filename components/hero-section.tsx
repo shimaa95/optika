@@ -113,23 +113,24 @@ export function HeroSection({
             <style>{`
             .scroll-downs {
               position: absolute;
-              right: 0; 
-           
-              left: 0; 
+              right: 0;
+            
+              left: 0;
               margin: auto;
-                         }
+              width: 22px;
+              height: 36px;           }
             .mousey {
-              width: 3px;
-              padding: 10px 15px;
-              height: 35px;
-              border: 2px solid #000;
-              border-radius: 25px;
-              opacity: 0.75; 
+              width: 2px;
+              padding: 6px 10px;
+              height: 22px;
+              border: 1.5px solid #000;
+              border-radius: 16px;
+              opacity: 0.75;
               box-sizing: content-box;
             }
             .scroller {
-              width: 3px;
-              height: 10px;
+              width: 2px;
+              height: 6px;
               border-radius: 25%;
               background-color: #000;
               animation-name: scroll;
@@ -140,10 +141,10 @@ export function HeroSection({
             @keyframes scroll {
               0% { opacity: 0; }
               10% { transform: translateY(0); opacity: 1; }
-              100% { transform: translateY(20px); opacity: 0;}
+              100% { transform: translateY(12px); opacity: 0;}
             }
           `}</style>
-          <div className={"scroll-downs    bottom-14 xl:bottom-20 w-4 h-8 xl:w-[34px] xl:h-14 "}>
+          <div className="scroll-downs bottom-5 lg:bottom-10 xl:bottom-28">
             <div className="mousey">
               <div className="scroller"></div>
             </div>

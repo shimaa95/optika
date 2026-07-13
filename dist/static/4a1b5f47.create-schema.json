@@ -1,0 +1,6123 @@
+[
+  {
+    "fields": [
+      {
+        "initialValue": "Home Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for <title>, meta description, share image, and robots. Leave blank to use defaults.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "options": {
+          "insertMenu": {
+            "views": [
+              {
+                "name": "grid"
+              },
+              {
+                "name": "list"
+              }
+            ],
+            "groups": [
+              {
+                "name": "hero",
+                "title": "Hero"
+              },
+              {
+                "name": "content",
+                "title": "Content"
+              },
+              {
+                "name": "media",
+                "title": "Media"
+              },
+              {
+                "name": "chrome",
+                "title": "Page chrome"
+              }
+            ]
+          }
+        },
+        "of": [
+          {
+            "type": "hero"
+          },
+          {
+            "type": "about"
+          },
+          {
+            "type": "groupBanner"
+          },
+          {
+            "type": "partners"
+          },
+          {
+            "type": "lensCategories"
+          },
+          {
+            "type": "solutions"
+          },
+          {
+            "type": "performance"
+          },
+          {
+            "type": "faq",
+            "title": "FAQ"
+          },
+          {
+            "type": "contact"
+          },
+          {
+            "type": "footer"
+          }
+        ],
+        "name": "pageBuilder",
+        "type": "array"
+      }
+    ],
+    "name": "homePage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "About Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for <title>, meta description, share image, and robots. Leave blank to use defaults.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "name": "behindOptika",
+        "type": "behindOptika"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ],
+            "message": "Exactly 3 cards expected."
+          }
+        ],
+        "description": "Three cards for the lens categories section.",
+        "of": [
+          {
+            "type": "lensCategory",
+            "title": "Lens Category Card"
+          }
+        ],
+        "name": "lensCategoryCards",
+        "type": "array"
+      },
+      {
+        "name": "succeed",
+        "type": "succeed"
+      },
+      {
+        "name": "performance",
+        "type": "performance"
+      },
+      {
+        "name": "faq",
+        "type": "faq",
+        "title": "FAQ"
+      },
+      {
+        "name": "contact",
+        "type": "contact"
+      }
+    ],
+    "name": "aboutPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Products Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "initialValue": "OUR PRODUCTS",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "rangeEyebrow",
+        "type": "string",
+        "title": "Range Section Eyebrow"
+      },
+      {
+        "initialValue": "Discover Optika's Wide Range of Lenses",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "rangeHeadline",
+        "type": "string",
+        "title": "Range Section Headline"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "productRange",
+            "title": "Product Range Item"
+          }
+        ],
+        "name": "productRanges",
+        "type": "array"
+      },
+      {
+        "initialValue": "Find your right Lens",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "filterTitle",
+        "type": "string",
+        "title": "Filter Section Title"
+      },
+      {
+        "initialValue": "Filter Lenses Using Built-in Technologies",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 140
+              }
+            ]
+          }
+        ],
+        "name": "filterSubtitle",
+        "type": "string",
+        "title": "Filter Section Subtitle"
+      },
+      {
+        "name": "faqs",
+        "type": "faq",
+        "title": "FAQ Section"
+      }
+    ],
+    "name": "productsPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Single Vision Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for page title, meta description, share image, and robots.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "introTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "introSubtitle",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 360
+              }
+            ]
+          }
+        ],
+        "name": "introDescription",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "sectionTitle",
+        "type": "string",
+        "title": "Benefits Section Title"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "benefit"
+          }
+        ],
+        "name": "benefits",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "ctaLabel",
+        "type": "string",
+        "title": "CTA Label"
+      },
+      {
+        "description": "Optional internal path or external URL for the CTA button.",
+        "name": "ctaHref",
+        "type": "string",
+        "title": "CTA Link"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "featureImage",
+        "type": "image"
+      }
+    ],
+    "name": "singleVisionPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Transition Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 160
+                  }
+                ]
+              }
+            ],
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "rows": 4,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 360
+                  }
+                ]
+              }
+            ],
+            "name": "description",
+            "type": "text"
+          }
+        ],
+        "name": "powerfulLenses",
+        "type": "object",
+        "title": "Powerful Lenses Section"
+      },
+      {
+        "description": "Four icon boxes + center video. Set SucceedHeader off on the frontend.",
+        "name": "succeed",
+        "type": "succeed",
+        "title": "Succeed Section"
+      },
+      {
+        "name": "discoverRange",
+        "type": "discoverRange",
+        "title": "Discover Range Section"
+      },
+      {
+        "name": "bannerGrid",
+        "type": "transitionsBannerGrid",
+        "title": "Transitions Banner Grid"
+      },
+      {
+        "name": "faqs",
+        "type": "faq",
+        "title": "FAQ Section"
+      }
+    ],
+    "name": "transitionPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "ACUTUS Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for <title>, meta description, share image, and robots. Leave blank to use defaults.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "description": "Maps to AcutusHeroSection via HeroProps: tagline → tagline, headline → title, description → description, image → imageSrc.",
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "initialValue": "ACUTUS LENSES",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "carouselHeading",
+        "type": "string"
+      },
+      {
+        "initialValue": "Meet Optika's Exclusive range of Premium Lenses",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "carouselSubtitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "description": "Cards shown in the ACUTUS carousel. Order matters — the array order is the carousel order.",
+        "of": [
+          {
+            "type": "acutusLens",
+            "title": "ACUTUS Lens"
+          }
+        ],
+        "name": "lenses",
+        "type": "array",
+        "title": "Lens Lineup"
+      }
+    ],
+    "name": "acutusPage",
+    "type": "document",
+    "title": "ACUTUS Page"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Full display name (e.g. \"ACUTUS PLUS\").",
+        "name": "name",
+        "type": "string",
+        "title": "Product Name"
+      },
+      {
+        "options": {
+          "source": "name",
+          "maxLength": 96
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "URL segment for `/products/acutus/[slug]`.",
+        "name": "slug",
+        "type": "slug"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Technical label under the name (e.g. \"ORGANIC RX PROGRESSIVE\").",
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "description": "Display number in the footer band (e.g. 1 for the first product in the lineup).",
+        "name": "sequenceNumber",
+        "type": "number"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "regex",
+                "constraint": {
+                  "pattern": "/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/",
+                  "name": "hex color",
+                  "invert": false
+                }
+              }
+            ],
+            "message": "Use a hex color such as #2b64e3"
+          }
+        ],
+        "description": "Hex color used for banners, accents, and the hero name band.",
+        "name": "themeColor",
+        "type": "string"
+      },
+      {
+        "description": "Optional overrides for page metadata. Description falls back to Ideal For when blank.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "hero",
+        "type": "productDetailHero"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "lensGraphic",
+        "type": "productLensGraphic"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "description": "Short positioning statement shown in the overview column.",
+        "name": "idealFor",
+        "type": "text"
+      },
+      {
+        "rows": 5,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 800
+              }
+            ]
+          }
+        ],
+        "description": "Longer product description shown below Ideal For.",
+        "name": "characteristics",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 6
+              }
+            ]
+          }
+        ],
+        "description": "Performance meters (typically FAR, INTERMEDIATE, NEAR, COMFORT).",
+        "of": [
+          {
+            "type": "productMeter"
+          }
+        ],
+        "name": "meters",
+        "type": "array",
+        "title": "Comfort Meters"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "productSpecRow"
+          }
+        ],
+        "name": "specs",
+        "type": "array",
+        "title": "Specifications"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Heading above the bullet list (e.g. \"Why ACUTUS PLUS\").",
+        "name": "whyTitle",
+        "type": "string",
+        "title": "Why Section Title"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 8
+              }
+            ]
+          }
+        ],
+        "description": "Short benefit bullets shown in the specs column.",
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 120
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "whyPoints",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": true,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "Optional link for the brochure download action. Leave blank to hide.",
+        "name": "brochureUrl",
+        "type": "url",
+        "title": "Brochure URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "footer",
+        "type": "productDetailFooter"
+      },
+      {
+        "description": "Product linked from \"Discover Next\". When set, its slug drives the footer CTA.",
+        "to": [
+          {
+            "type": "acutusProduct"
+          }
+        ],
+        "name": "nextProduct",
+        "type": "reference"
+      }
+    ],
+    "name": "acutusProduct",
+    "type": "document",
+    "title": "ACUTUS Product"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Terms Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero",
+        "title": "Page Hero"
+      },
+      {
+        "initialValue": "Download your Copy",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "downloadLabel",
+        "type": "string",
+        "title": "Download Button Label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": true,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "Optional PDF or document link for the hero download button.",
+        "name": "downloadUrl",
+        "type": "url",
+        "title": "Download URL"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 700
+              }
+            ]
+          }
+        ],
+        "name": "introText",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "termsSection"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Terms Sections"
+      }
+    ],
+    "name": "termsPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Privacy Policy Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero",
+        "title": "Page Hero"
+      },
+      {
+        "initialValue": "Download your Copy",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "downloadLabel",
+        "type": "string",
+        "title": "Download Button Label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": true,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "downloadUrl",
+        "type": "url",
+        "title": "Download URL"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 700
+              }
+            ]
+          }
+        ],
+        "name": "introText",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "policySection"
+          }
+        ],
+        "name": "sections",
+        "type": "array",
+        "title": "Policy Sections"
+      }
+    ],
+    "name": "privacyPolicyPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Contact Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "panelImage",
+        "type": "image",
+        "title": "Left Panel Image"
+      },
+      {
+        "initialValue": "GET IN TOUCH",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "initialValue": "Welcome to Optika",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "contactMethod"
+          }
+        ],
+        "name": "contactMethods",
+        "type": "array"
+      },
+      {
+        "initialValue": "Follow Us At",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "socialTitle",
+        "type": "string",
+        "title": "Social Section Title"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 240
+              }
+            ]
+          }
+        ],
+        "name": "socialDescription",
+        "type": "text"
+      },
+      {
+        "initialValue": "© 2024 Optika Lenses",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "copyrightText",
+        "type": "string"
+      }
+    ],
+    "name": "contactPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Enquiry Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "initialValue": "ENQUIRY FORM",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "formTitle",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Kindly fill the following form to address your enquiry.",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 360
+              }
+            ]
+          }
+        ],
+        "name": "introText",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 120
+                      }
+                    ]
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 120
+                      }
+                    ]
+                  }
+                ],
+                "name": "placeholder",
+                "type": "string"
+              },
+              {
+                "options": {
+                  "list": [
+                    {
+                      "title": "Text",
+                      "value": "text"
+                    },
+                    {
+                      "title": "Email",
+                      "value": "email"
+                    },
+                    {
+                      "title": "Textarea",
+                      "value": "textarea"
+                    },
+                    {
+                      "title": "Checkbox",
+                      "value": "checkbox"
+                    }
+                  ]
+                },
+                "name": "fieldType",
+                "type": "string"
+              },
+              {
+                "initialValue": false,
+                "name": "required",
+                "type": "boolean"
+              }
+            ],
+            "type": "object",
+            "name": "formField"
+          }
+        ],
+        "name": "formFields",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "type": "interestOption"
+          }
+        ],
+        "name": "interestOptions",
+        "type": "array"
+      },
+      {
+        "initialValue": "SUBMIT",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "submitButtonLabel",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "sideImage",
+        "type": "image",
+        "title": "Right Panel Image"
+      },
+      {
+        "initialValue": "© 2024 Optika Lenses",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "copyrightText",
+        "type": "string"
+      }
+    ],
+    "name": "enquiryPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Try-On Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for <title>, meta description, share image, and robots. Leave blank to use defaults.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Full-bleed image shown in the left half of the split layout. Falls back to /single-vision.jpeg when blank.",
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt Text"
+          }
+        ],
+        "name": "heroImage",
+        "type": "image",
+        "title": "Hero Image (Left Panel)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "description": "Heading shown below the camera view (e.g. \"Learn more about Optika's Lenses\").",
+        "name": "infoHeadline",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "description": "Supporting paragraph shown under the headline.",
+        "name": "infoBody",
+        "type": "text"
+      },
+      {
+        "initialValue": "Learn More",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Label of the action button (e.g. \"Learn More\").",
+        "name": "ctaLabel",
+        "type": "string",
+        "title": "CTA Button Label"
+      },
+      {
+        "initialValue": "/products",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "Internal path or full URL the CTA navigates to.",
+        "name": "ctaHref",
+        "type": "string",
+        "title": "CTA Button Link"
+      },
+      {
+        "initialValue": "Need more info",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "description": "Small helper link above the headline (e.g. \"Need more info\").",
+        "name": "needInfoLabel",
+        "type": "string",
+        "title": "\"Need more info?\" Link Label"
+      },
+      {
+        "initialValue": "/products",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "Internal path for the helper link.",
+        "name": "needInfoHref",
+        "type": "string",
+        "title": "\"Need more info?\" Link Target"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 20
+              }
+            ]
+          }
+        ],
+        "description": "Colour options shown in the swatch picker. Order is the carousel order. Each swatch id must match the TryOnSwatchId union in swatches.ts.",
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      },
+                      {
+                        "flag": "regex",
+                        "constraint": {
+                          "pattern": "/^[a-z][a-z0-9-]*$/",
+                          "name": "slug-like id",
+                          "invert": false
+                        }
+                      }
+                    ],
+                    "message": "Use lowercase letters, numbers, and hyphens only (e.g. \"rose-gold\")."
+                  }
+                ],
+                "description": "Machine key (e.g. \"brown\", \"purple\"). Must be unique and lowercase.",
+                "name": "id",
+                "type": "string",
+                "title": "Swatch ID"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "description": "Human-readable name shown under the picker (e.g. \"Forest Green\").",
+                "name": "name",
+                "type": "string",
+                "title": "Display Name"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "regex",
+                        "constraint": {
+                          "pattern": "/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/",
+                          "name": "hex colour",
+                          "invert": false
+                        }
+                      }
+                    ],
+                    "message": "Use a 3- or 6-digit hex colour (e.g. #8b5cf6)."
+                  }
+                ],
+                "description": "CSS hex colour used as the canvas tint overlay (e.g. \"#8b5cf6\").",
+                "name": "lensHex",
+                "type": "string",
+                "title": "Lens Colour (hex)"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "min",
+                        "constraint": 0
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 1
+                      },
+                      {
+                        "flag": "precision",
+                        "constraint": 2
+                      }
+                    ]
+                  }
+                ],
+                "description": "Tint opacity on the camera canvas. Must be between 0 and 1 (e.g. 0.48).",
+                "name": "lensOpacity",
+                "type": "number"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 300
+                      }
+                    ]
+                  }
+                ],
+                "description": "CSS gradient used to render the circular swatch button (e.g. \"linear-gradient(145deg, #9b6fd4 0%, #4a2878 100%)\").",
+                "name": "gradient",
+                "type": "string",
+                "title": "Swatch Gradient (CSS)"
+              }
+            ],
+            "type": "object",
+            "name": "swatch"
+          }
+        ],
+        "name": "swatches",
+        "type": "array",
+        "title": "Lens Colour Swatches"
+      }
+    ],
+    "name": "tryOnPage",
+    "type": "document",
+    "title": "Try-On Page"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Solutions Page",
+        "hidden": true,
+        "name": "title",
+        "type": "string",
+        "title": "Internal Name"
+      },
+      {
+        "description": "Optional overrides for <title>, meta description, share image, and robots. Leave blank to use defaults.",
+        "name": "seo",
+        "type": "seo",
+        "title": "SEO & Social Sharing"
+      },
+      {
+        "name": "hero",
+        "type": "hero"
+      },
+      {
+        "name": "intro",
+        "type": "solutionsIntro",
+        "title": "Solutions Intro"
+      },
+      {
+        "name": "builtInTechnologies",
+        "type": "builtInTechnologies",
+        "title": "Built-In Technologies"
+      },
+      {
+        "initialValue": "Find your right Lens",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "filterTitle",
+        "type": "string",
+        "title": "Filter Section Title"
+      },
+      {
+        "initialValue": "Filter Lenses Using Built-in Technologies",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 140
+              }
+            ]
+          }
+        ],
+        "name": "filterSubtitle",
+        "type": "string",
+        "title": "Filter Section Subtitle"
+      },
+      {
+        "description": "Two blocks for the 2×2 grid (reuses the shared `solutions` object). The first block is top-left text, the second is bottom-right text.",
+        "name": "solutionsBlocks",
+        "type": "solutions",
+        "title": "Solutions 2×2 Blocks"
+      },
+      {
+        "name": "innovativeToolsBanner",
+        "type": "innovativeToolsBanner"
+      },
+      {
+        "name": "performance",
+        "type": "performance"
+      },
+      {
+        "name": "contact",
+        "type": "contact"
+      },
+      {
+        "name": "footer",
+        "type": "footer"
+      }
+    ],
+    "name": "solutionsPage",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 220
+              }
+            ]
+          }
+        ],
+        "name": "subheading",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              },
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ]
+          }
+        ],
+        "description": "Up to 4 panels. Render order: 1st–2nd fill the top row, 3rd–4th fill the bottom row.",
+        "of": [
+          {
+            "type": "solutionsGridPanel"
+          }
+        ],
+        "name": "panels",
+        "type": "array"
+      }
+    ],
+    "name": "sharedSolutionsGrid",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Background image for the \"Still have questions?\" banner.",
+        "name": "contactBannerImage",
+        "type": "image"
+      },
+      {
+        "initialValue": "Still have questions?",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "contactBannerTitle",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "initialValue": "Questions about lenses or ordering or even about us?",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "contactBannerSubtitle",
+        "type": "text"
+      },
+      {
+        "initialValue": "Contact us",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "contactCardTitle",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "initialValue": "Reach out straight to our mail and our teams will reach back right away",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "contactCardDescription",
+        "type": "text"
+      },
+      {
+        "initialValue": "Contact Us",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "contactCardButtonLabel",
+        "type": "string"
+      },
+      {
+        "initialValue": "Enquiry Form",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "enquiryCardTitle",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "initialValue": "Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "enquiryCardDescription",
+        "type": "text"
+      },
+      {
+        "initialValue": "Fill Form",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "enquiryCardButtonLabel",
+        "type": "string"
+      },
+      {
+        "initialValue": "Optika",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "logoText",
+        "type": "string"
+      },
+      {
+        "initialValue": "Prague, Czech Republic",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "address",
+        "type": "string"
+      },
+      {
+        "initialValue": "+420 2 5731 1111",
+        "name": "phone",
+        "type": "string",
+        "title": "Phone Number"
+      },
+      {
+        "initialValue": "tel:+420257311111",
+        "name": "phoneHref",
+        "type": "string",
+        "title": "Phone Link (tel:)"
+      },
+      {
+        "initialValue": "hello@optika.com",
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "initialValue": "mailto:hello@optika.com",
+        "name": "emailHref",
+        "type": "string",
+        "title": "Email Link (mailto:)"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "platform",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "uri",
+                        "constraint": {
+                          "options": {
+                            "scheme": [
+                              "/^http$/",
+                              "/^https$/"
+                            ],
+                            "allowRelative": false,
+                            "relativeOnly": false,
+                            "allowCredentials": false
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ],
+                "name": "href",
+                "type": "url",
+                "title": "URL"
+              }
+            ],
+            "type": "object",
+            "name": "socialLink"
+          }
+        ],
+        "name": "socialLinks",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "title",
+                "type": "string",
+                "title": "Section Title"
+              },
+              {
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "name": "label",
+                        "type": "string"
+                      },
+                      {
+                        "name": "href",
+                        "type": "string",
+                        "title": "Path"
+                      }
+                    ],
+                    "type": "object",
+                    "name": "navLink"
+                  }
+                ],
+                "name": "links",
+                "type": "array"
+              }
+            ],
+            "type": "object",
+            "name": "navSection"
+          }
+        ],
+        "name": "navSections",
+        "type": "array",
+        "title": "Navigation Sections"
+      },
+      {
+        "of": [
+          {
+            "fields": [
+              {
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "name": "href",
+                "type": "string",
+                "title": "Path"
+              }
+            ],
+            "type": "object",
+            "name": "legalLink"
+          }
+        ],
+        "name": "legalLinks",
+        "type": "array",
+        "title": "Legal Links (bottom bar)"
+      },
+      {
+        "initialValue": "smoedesign",
+        "description": "Small print at the bottom, e.g. \"smoedesign\".",
+        "name": "creditLine",
+        "type": "string"
+      }
+    ],
+    "name": "sharedFooter",
+    "type": "document"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Background Image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Small eyebrow text above the headline.",
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "description": "Main hero copy. Line breaks and stacked words are styled by the component.",
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "hero",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "description": "Small line above the title (e.g. \"Welcome to\").",
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "about",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "groupBanner",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "body",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "ctaLabel",
+        "type": "string",
+        "title": "CTA Label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "Internal path or full URL.",
+        "name": "ctaHref",
+        "type": "string",
+        "title": "CTA Link"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "partners",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "options": {
+                  "source": "logoText"
+                },
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      },
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "description": "Stable identifier used in code (lowercase, hyphenated).",
+                "name": "id",
+                "type": "slug",
+                "title": "ID"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "fields": [
+                  {
+                    "validation": [
+                      {
+                        "level": "error",
+                        "rules": [
+                          {
+                            "flag": "max",
+                            "constraint": 180
+                          }
+                        ]
+                      }
+                    ],
+                    "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt text"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "name": "logoText",
+                "type": "string"
+              },
+              {
+                "description": "Optional small text after the logo (e.g. ®).",
+                "name": "logoSubscript",
+                "type": "string"
+              },
+              {
+                "description": "Optional inline logo image (e.g. Transitions®).",
+                "name": "logo",
+                "type": "image",
+                "title": "Logo Image"
+              },
+              {
+                "rows": 2,
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 160
+                      }
+                    ]
+                  }
+                ],
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "custom"
+                      }
+                    ]
+                  }
+                ],
+                "description": "Internal path this card links to.",
+                "name": "link",
+                "type": "string"
+              }
+            ],
+            "type": "object",
+            "name": "category"
+          }
+        ],
+        "name": "categories",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "viewAllLabel",
+        "type": "string",
+        "title": "\"View All\" Label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "viewAllHref",
+        "type": "string",
+        "title": "\"View All\" Link"
+      }
+    ],
+    "name": "lensCategories",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 60
+                      }
+                    ]
+                  }
+                ],
+                "name": "eyebrow",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 120
+                      }
+                    ]
+                  }
+                ],
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 400
+                      }
+                    ]
+                  }
+                ],
+                "name": "description",
+                "type": "text"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "name": "ctaLabel",
+                "type": "string",
+                "title": "CTA Label"
+              },
+              {
+                "description": "Optional. Internal path or full URL.",
+                "name": "ctaHref",
+                "type": "string",
+                "title": "CTA Link"
+              },
+              {
+                "options": {
+                  "hotspot": true
+                },
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "fields": [
+                  {
+                    "validation": [
+                      {
+                        "level": "error",
+                        "rules": [
+                          {
+                            "flag": "max",
+                            "constraint": 180
+                          }
+                        ]
+                      }
+                    ],
+                    "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+                    "name": "alt",
+                    "type": "string",
+                    "title": "Alt text"
+                  }
+                ],
+                "name": "image",
+                "type": "image"
+              }
+            ],
+            "type": "object",
+            "name": "solutionBlock"
+          }
+        ],
+        "name": "blocks",
+        "type": "array"
+      }
+    ],
+    "name": "solutions",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ]
+          }
+        ],
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "backgroundImage",
+        "type": "image"
+      }
+    ],
+    "name": "performance",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "description": "Heading shown above the list (e.g. \"FAQ\").",
+        "name": "sectionTitle",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "description": "Optional supporting copy under the section title.",
+        "name": "subheading",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 160
+                      }
+                    ]
+                  }
+                ],
+                "name": "question",
+                "type": "string"
+              },
+              {
+                "rows": 3,
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 500
+                      }
+                    ]
+                  }
+                ],
+                "name": "answer",
+                "type": "text"
+              }
+            ],
+            "type": "object",
+            "name": "item"
+          }
+        ],
+        "name": "faqs",
+        "type": "array",
+        "title": "Questions"
+      }
+    ],
+    "name": "faq",
+    "type": "object",
+    "title": "FAQ"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "bannerImage",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "bannerTitle",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "bannerSubtitle",
+        "type": "text"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 80
+                  }
+                ]
+              }
+            ],
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "rows": 2,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 280
+                  }
+                ]
+              }
+            ],
+            "name": "description",
+            "type": "text"
+          },
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 40
+                  }
+                ]
+              }
+            ],
+            "name": "buttonLabel",
+            "type": "string"
+          }
+        ],
+        "name": "contactCard",
+        "type": "object"
+      },
+      {
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "presence",
+                    "constraint": "required"
+                  },
+                  {
+                    "flag": "max",
+                    "constraint": 80
+                  }
+                ]
+              }
+            ],
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "rows": 2,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 280
+                  }
+                ]
+              }
+            ],
+            "name": "description",
+            "type": "text"
+          },
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 40
+                  }
+                ]
+              }
+            ],
+            "name": "buttonLabel",
+            "type": "string"
+          }
+        ],
+        "name": "enquiryCard",
+        "type": "object"
+      }
+    ],
+    "name": "contact",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "logoText",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "addressLabel",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "address",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "contactLabel",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "phone",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "tel: link, e.g. \"tel:+420123456789\".",
+        "name": "phoneHref",
+        "type": "string",
+        "title": "Phone Link"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "email",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "mailto: link, e.g. \"mailto:hello@optika.com\".",
+        "name": "emailHref",
+        "type": "string",
+        "title": "Email Link"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "name": "href",
+                "type": "string",
+                "title": "Link"
+              }
+            ],
+            "type": "object",
+            "name": "link"
+          }
+        ],
+        "name": "socialLinks",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "name": "title",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "min",
+                        "constraint": 1
+                      }
+                    ]
+                  }
+                ],
+                "of": [
+                  {
+                    "fields": [
+                      {
+                        "validation": [
+                          {
+                            "level": "error",
+                            "rules": [
+                              {
+                                "flag": "presence",
+                                "constraint": "required"
+                              },
+                              {
+                                "flag": "max",
+                                "constraint": 40
+                              }
+                            ]
+                          }
+                        ],
+                        "name": "label",
+                        "type": "string"
+                      },
+                      {
+                        "validation": [
+                          {
+                            "level": "error",
+                            "rules": [
+                              {
+                                "flag": "presence",
+                                "constraint": "required"
+                              }
+                            ]
+                          }
+                        ],
+                        "name": "href",
+                        "type": "string",
+                        "title": "Link"
+                      }
+                    ],
+                    "type": "object",
+                    "name": "link"
+                  }
+                ],
+                "name": "links",
+                "type": "array"
+              }
+            ],
+            "type": "object",
+            "name": "section"
+          }
+        ],
+        "name": "navSections",
+        "type": "array",
+        "title": "Navigation Sections"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "fields": [
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      },
+                      {
+                        "flag": "max",
+                        "constraint": 40
+                      }
+                    ]
+                  }
+                ],
+                "name": "label",
+                "type": "string"
+              },
+              {
+                "validation": [
+                  {
+                    "level": "error",
+                    "rules": [
+                      {
+                        "flag": "presence",
+                        "constraint": "required"
+                      }
+                    ]
+                  }
+                ],
+                "name": "href",
+                "type": "string",
+                "title": "Link"
+              }
+            ],
+            "type": "object",
+            "name": "link"
+          }
+        ],
+        "name": "legalLinks",
+        "type": "array"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Small print at the very bottom (e.g. \"Built by smoedesign\").",
+        "name": "creditLine",
+        "type": "string"
+      }
+    ],
+    "name": "footer",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "description": "Overrides the page <title> if provided. Keep under 60 characters for Google.",
+        "name": "title",
+        "type": "string",
+        "title": "Meta Title"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "description": "Shown in search results and social previews. Keep between 50 and 160 characters.",
+        "name": "description",
+        "type": "text",
+        "title": "Meta Description"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "description": "Image used for Open Graph and Twitter cards. Recommended size: 1200×630 px.",
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and as a fallback when the image fails to load.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Share Image"
+      },
+      {
+        "initialValue": false,
+        "description": "When on, sets robots to \"noindex\" so search engines do not crawl this page.",
+        "name": "noIndex",
+        "type": "boolean",
+        "title": "Hide from Search Engines"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "Absolute URL of the preferred version of this page. Leave blank to use the default.",
+        "name": "canonicalUrl",
+        "type": "url",
+        "title": "Canonical URL"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "description": "Optional. Falls back to Meta Title when blank. Used by Facebook, LinkedIn, etc.",
+        "name": "ogTitle",
+        "type": "string",
+        "title": "Social Title (og:title)"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "description": "Optional. Falls back to Meta Description when blank. Used by Facebook, LinkedIn, etc.",
+        "name": "ogDescription",
+        "type": "text",
+        "title": "Social Description (og:description)"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Summary with large image",
+              "value": "summary_large_image"
+            },
+            {
+              "title": "Summary",
+              "value": "summary"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "summary_large_image",
+        "description": "How the share card renders on X / Twitter. Most pages use the large image variant.",
+        "name": "twitterCard",
+        "type": "string",
+        "title": "Twitter Card Type"
+      }
+    ],
+    "name": "seo",
+    "type": "object",
+    "title": "SEO"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 220
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "description": "Internal path or external URL for the product range card.",
+        "name": "href",
+        "type": "string",
+        "title": "Link"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "productRange",
+    "type": "object",
+    "title": "Product Range Item"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 220
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "benefit",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "sectionTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "description": "Body paragraphs shown under the section heading.",
+        "of": [
+          {
+            "rows": 4,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 2000
+                  }
+                ]
+              }
+            ],
+            "type": "text"
+          }
+        ],
+        "name": "paragraphs",
+        "type": "array"
+      },
+      {
+        "description": "Optional bullet list (e.g. liability disclaimers).",
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 500
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "bulletPoints",
+        "type": "array"
+      },
+      {
+        "description": "Optional nested sub-headings within this section.",
+        "of": [
+          {
+            "type": "legalSubsection"
+          }
+        ],
+        "name": "subsections",
+        "type": "array"
+      }
+    ],
+    "name": "termsSection",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "sectionTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "rows": 4,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 2000
+                  }
+                ]
+              }
+            ],
+            "type": "text"
+          }
+        ],
+        "name": "paragraphs",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 500
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "bulletPoints",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "type": "legalSubsection"
+          }
+        ],
+        "name": "subsections",
+        "type": "array"
+      }
+    ],
+    "name": "policySection",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "subtitle",
+        "type": "string",
+        "title": "Subheading"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "of": [
+          {
+            "rows": 4,
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 2000
+                  }
+                ]
+              }
+            ],
+            "type": "text"
+          }
+        ],
+        "name": "paragraphs",
+        "type": "array"
+      },
+      {
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 500
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "bulletPoints",
+        "type": "array"
+      }
+    ],
+    "name": "legalSubsection",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 240
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "linkLabel",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/",
+                      "/^mailto$/",
+                      "/^tel$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "name": "linkUrl",
+        "type": "url",
+        "title": "Link URL"
+      }
+    ],
+    "name": "contactMethod",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string"
+      }
+    ],
+    "name": "interestOption",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "description": "Section heading shown at the top of the grid.",
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Small label above the top-left paragraph (e.g. \"About Us\").",
+        "name": "topLeftEyebrow",
+        "type": "string",
+        "title": "Top-left Eyebrow"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "topLeftBody",
+        "type": "text",
+        "title": "Top-left Body"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "topRightImage",
+        "type": "image",
+        "title": "Top-right Image"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "bottomLeftImage",
+        "type": "image",
+        "title": "Bottom-left Image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "bottomRightEyebrow",
+        "type": "string",
+        "title": "Bottom-right Eyebrow"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "bottomRightBody1",
+        "type": "text",
+        "title": "Bottom-right Body 1"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "bottomRightBody2",
+        "type": "text",
+        "title": "Bottom-right Body 2"
+      }
+    ],
+    "name": "behindOptika",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "lensCategory",
+    "type": "object",
+    "title": "Lens Category Card"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Small label above the heading (optional).",
+        "name": "eyebrow",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "heading",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "subheading",
+        "type": "text"
+      },
+      {
+        "options": {
+          "accept": "video/mp4,video/webm"
+        },
+        "description": "Upload an .mp4 or .webm video to play in the center of the section.",
+        "name": "videoFile",
+        "type": "file"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 4
+              }
+            ],
+            "message": "Succeed expects exactly 4 boxes."
+          }
+        ],
+        "description": "Exactly 4 boxes. Order is preserved on render.",
+        "of": [
+          {
+            "type": "succeedBox"
+          }
+        ],
+        "name": "boxes",
+        "type": "array"
+      }
+    ],
+    "name": "succeed",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Eye",
+              "value": "Eye"
+            },
+            {
+              "title": "Layout Grid",
+              "value": "LayoutGrid"
+            },
+            {
+              "title": "Line Chart",
+              "value": "LineChart"
+            },
+            {
+              "title": "Truck",
+              "value": "Truck"
+            },
+            {
+              "title": "Sun",
+              "value": "Sun"
+            },
+            {
+              "title": "Palette",
+              "value": "Palette"
+            }
+          ]
+        },
+        "description": "Optional Lucide icon name (e.g. \"Eye\", \"LayoutGrid\", \"Sun\", \"Palette\"). Icons are positional when omitted.",
+        "name": "icon",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      }
+    ],
+    "name": "succeedBox",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 4
+              }
+            ]
+          }
+        ],
+        "description": "Two-digit number shown on the card (e.g. \"01\", \"11\"). Pads with a leading zero.",
+        "name": "number",
+        "type": "string",
+        "title": "Display Number"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "description": "Small text above the title (e.g. \"Optika's Exclusive Lens Series\").",
+        "name": "seriesLine",
+        "type": "string",
+        "title": "Series Line (eyebrow)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Full lens name including the \"ACUTUS \" prefix (e.g. \"ACUTUS PLUS\"). The card strips this prefix to render the short form.",
+        "name": "title",
+        "type": "string",
+        "title": "Lens Title"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Short technical label shown under the title (e.g. \"ORGANIC RX PROGRESSIVE\").",
+        "name": "productType",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ],
+            "message": "Exactly 3 features are expected."
+          }
+        ],
+        "description": "Three short feature bullets shown in the dialog and as card footer hashtags.",
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 60
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "features",
+        "type": "array"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      },
+      {
+        "description": "Links the carousel card to `/products/acutus/[slug]`. Preferred over deriving slug from the title.",
+        "to": [
+          {
+            "type": "acutusProduct"
+          }
+        ],
+        "name": "product",
+        "type": "reference",
+        "title": "Product Detail Page"
+      }
+    ],
+    "name": "acutusLens",
+    "type": "object",
+    "title": "ACUTUS Lens"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Short zone label (e.g. \"FAR\", \"INTERMEDIATE\", \"NEAR\", \"COMFORT\").",
+        "name": "label",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "min",
+                "constraint": 0
+              },
+              {
+                "flag": "max",
+                "constraint": 100
+              }
+            ]
+          }
+        ],
+        "description": "Percentage shown on the meter (0–100).",
+        "name": "value",
+        "type": "number"
+      }
+    ],
+    "name": "productMeter",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "label",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "value",
+        "type": "string"
+      },
+      {
+        "options": {
+          "list": [
+            {
+              "title": "Green",
+              "value": "green"
+            },
+            {
+              "title": "White",
+              "value": "white"
+            },
+            {
+              "title": "Gray",
+              "value": "gray"
+            }
+          ],
+          "layout": "radio"
+        },
+        "initialValue": "white",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "green",
+                  "white",
+                  "gray"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "variant",
+        "type": "string",
+        "title": "Row Style"
+      }
+    ],
+    "name": "productSpecRow",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "background",
+        "type": "image",
+        "title": "Background Image"
+      }
+    ],
+    "name": "productDetailHero",
+    "type": "object",
+    "title": "Product Hero"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Lens Graphic"
+      }
+    ],
+    "name": "productLensGraphic",
+    "type": "object",
+    "title": "Lens Graphic"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Footer Image"
+      },
+      {
+        "initialValue": "/products",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ]
+          }
+        ],
+        "description": "Internal path used when no next product reference is set (e.g. \"/products\").",
+        "name": "discoverNextHref",
+        "type": "string",
+        "title": "Discover Next Link (fallback)"
+      },
+      {
+        "initialValue": "/products",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ]
+          }
+        ],
+        "description": "Internal path for the \"Back to Products\" button.",
+        "name": "backToProductsHref",
+        "type": "string",
+        "title": "Back to Products Link"
+      }
+    ],
+    "name": "productDetailFooter",
+    "type": "object",
+    "title": "Product Footer"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "description": "Main heading. Use line breaks in the frontend if needed.",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 280
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Banner Image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 200
+              }
+            ]
+          }
+        ],
+        "description": "Internal path or full URL for the CTA.",
+        "name": "linkUrl",
+        "type": "string",
+        "title": "Link URL"
+      },
+      {
+        "initialValue": "LEARN MORE",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "name": "linkText",
+        "type": "string",
+        "title": "Link Label"
+      }
+    ],
+    "name": "transitionsBanner",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "name": "topBanner",
+        "type": "transitionsBanner",
+        "title": "Top Banner (full width)"
+      },
+      {
+        "name": "bottomLeftBanner",
+        "type": "transitionsBanner"
+      },
+      {
+        "name": "bottomRightBanner",
+        "type": "transitionsBanner"
+      }
+    ],
+    "name": "transitionsBannerGrid",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 120
+              }
+            ]
+          }
+        ],
+        "name": "subtitle",
+        "type": "string"
+      },
+      {
+        "rows": 4,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 400
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Section Image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "uri",
+                "constraint": {
+                  "options": {
+                    "scheme": [
+                      "/^http$/",
+                      "/^https$/"
+                    ],
+                    "allowRelative": false,
+                    "relativeOnly": false,
+                    "allowCredentials": false
+                  }
+                }
+              }
+            ]
+          }
+        ],
+        "description": "Optional .mp4 URL. When set, replaces the still image.",
+        "name": "videoUrl",
+        "type": "url",
+        "title": "Video URL"
+      }
+    ],
+    "name": "discoverRange",
+    "type": "object",
+    "title": "Discover Range Section"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "hotspot": false
+        },
+        "description": "Optional logo shown in place of the tagline text (e.g. \"/1Black.svg\").",
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 120
+                  }
+                ]
+              }
+            ],
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "taglineLogo",
+        "type": "image"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 140
+              }
+            ]
+          }
+        ],
+        "description": "Small eyebrow text shown when no tagline logo is set. Ignored if a logo is provided.",
+        "name": "tagline",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "headline",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 320
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "length",
+                "constraint": 3
+              }
+            ],
+            "message": "Exactly 3 cards are expected."
+          }
+        ],
+        "description": "Three feature cards shown below the description.",
+        "of": [
+          {
+            "type": "solutionsIntroCard"
+          }
+        ],
+        "name": "cards",
+        "type": "array",
+        "title": "Feature Cards"
+      }
+    ],
+    "name": "solutionsIntro",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Short card title (e.g. \"End-to-end system integration\").",
+        "name": "logoText",
+        "type": "string",
+        "title": "Title"
+      },
+      {
+        "rows": 2,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 220
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image"
+      }
+    ],
+    "name": "solutionsIntroCard",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "initialValue": "Built-In Technologies",
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "name": "sectionTitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "name": "sectionSubtitle",
+        "type": "string"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "min",
+                "constraint": 1
+              }
+            ]
+          }
+        ],
+        "description": "Tabs shown in the section. Order matters — first tab is selected by default.",
+        "of": [
+          {
+            "type": "builtInTechnologyTab",
+            "title": "Built-In Technology Tab"
+          }
+        ],
+        "name": "tabs",
+        "type": "array",
+        "title": "Technology Tabs"
+      }
+    ],
+    "name": "builtInTechnologies",
+    "type": "object",
+    "title": "Built-In Technologies"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 40
+              }
+            ]
+          }
+        ],
+        "description": "Short label shown in the tab bar (e.g. \"SMOOTH OPTICS\").",
+        "name": "label",
+        "type": "string",
+        "title": "Tab Label"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Cover Image"
+      },
+      {
+        "rows": 6,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 1200
+              }
+            ]
+          }
+        ],
+        "description": "Long-form description. Line breaks are preserved.",
+        "name": "characteristics",
+        "type": "text"
+      }
+    ],
+    "name": "builtInTechnologyTab",
+    "type": "object",
+    "title": "Built-In Technology Tab"
+  },
+  {
+    "fields": [
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 160
+              }
+            ]
+          }
+        ],
+        "description": "Bold heading shown in the left half of the banner.",
+        "name": "headline",
+        "type": "string"
+      }
+    ],
+    "name": "innovativeToolsBanner",
+    "type": "object"
+  },
+  {
+    "fields": [
+      {
+        "options": {
+          "list": [
+            {
+              "title": "What Optika solves",
+              "value": "solves"
+            },
+            {
+              "title": "Our Promise to you",
+              "value": "promise"
+            },
+            {
+              "title": "Why partners choose Optika",
+              "value": "whyPartners"
+            },
+            {
+              "title": "Workflow in steps",
+              "value": "workflow"
+            }
+          ],
+          "layout": "radio"
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "valid",
+                "constraint": [
+                  "solves",
+                  "promise",
+                  "whyPartners",
+                  "workflow"
+                ]
+              },
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "name": "variant",
+        "type": "string",
+        "title": "Panel Variant"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              },
+              {
+                "flag": "max",
+                "constraint": 80
+              }
+            ]
+          }
+        ],
+        "description": "Heading shown in the panel (e.g. \"What Optika solves\").",
+        "name": "title",
+        "type": "string"
+      },
+      {
+        "rows": 3,
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 360
+              }
+            ]
+          }
+        ],
+        "name": "description",
+        "type": "text"
+      },
+      {
+        "options": {
+          "hotspot": true
+        },
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "presence",
+                "constraint": "required"
+              }
+            ]
+          }
+        ],
+        "fields": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 180
+                  }
+                ]
+              }
+            ],
+            "description": "Describe the image for screen readers and SEO. Leave blank only if purely decorative.",
+            "name": "alt",
+            "type": "string",
+            "title": "Alt text"
+          }
+        ],
+        "name": "image",
+        "type": "image",
+        "title": "Background Image"
+      },
+      {
+        "description": "Used by the \"Why partners choose Optika\" variant.",
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 120
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "bullets",
+        "type": "array",
+        "title": "Bullets (Why partners)"
+      },
+      {
+        "description": "Used by the \"Workflow in steps\" variant.",
+        "of": [
+          {
+            "validation": [
+              {
+                "level": "error",
+                "rules": [
+                  {
+                    "flag": "max",
+                    "constraint": 60
+                  }
+                ]
+              }
+            ],
+            "type": "string"
+          }
+        ],
+        "name": "steps",
+        "type": "array",
+        "title": "Steps (Workflow)"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "max",
+                "constraint": 60
+              }
+            ]
+          }
+        ],
+        "description": "Used by the \"Workflow in steps\" variant (e.g. \"Apply for Partnership\").",
+        "name": "applyLabel",
+        "type": "string",
+        "title": "Apply CTA Label"
+      },
+      {
+        "validation": [
+          {
+            "level": "error",
+            "rules": [
+              {
+                "flag": "custom"
+              }
+            ]
+          }
+        ],
+        "description": "Used by the \"Workflow in steps\" variant. Internal path or full URL.",
+        "name": "applyHref",
+        "type": "string",
+        "title": "Apply CTA Link"
+      }
+    ],
+    "name": "solutionsGridPanel",
+    "type": "object"
+  }
+]

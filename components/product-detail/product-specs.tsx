@@ -51,7 +51,7 @@ export function ProductSpecs({
       </div>
 
       <div className="mt-10 sm:mt-12">
-        <h3 className="font-inter text-[20px] font-bold tracking-[0.1em] leading-[28px] text-text-dark">
+        <h3 className="font-inter text-[20px] font-bold   text-text-dark">
           {whyTitle}
         </h3>
         <ul className="mt-4 list-disc space-y-2 pl-5 font-inter text-[14px] xl:text-[16px]  text-text-dark">

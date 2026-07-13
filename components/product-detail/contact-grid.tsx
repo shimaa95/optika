@@ -20,7 +20,7 @@ export function ContactGrid({ contact }: ContactGridProps) {
             }`}
           >
             <div>
-              <h3 className="font-bold text-text-dark text-[20px] tracking-[0.1em] leading-[28px]">
+              <h3 className="font-bold text-text-dark text-[20px]  ">
                 {column.title}
               </h3>
               <p className="mt-3 max-w-md text-[14px] leading-[1.5] text-text-dark/70 sm:text-[15px]">

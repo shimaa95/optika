@@ -2,7 +2,7 @@ import React from 'react';
 
 interface PowerfulLensesSectionProps {
   title?: React.ReactNode;
-  description?: React.ReactNode;
+  description?: React.ReactNode; className?: string;
 }
 
 export function PowerfulLensesSection({
@@ -13,15 +13,15 @@ export function PowerfulLensesSection({
       Acutus Single Vision
     </>
   ),
-  description = "Acutus Single Vision lenses deliver exceptional clarity, precise focus, and seamless visual comfort throughout the day.",
+  description = "Acutus Single Vision lenses deliver exceptional clarity, precise focus, and seamless visual comfort throughout the day.", className = "",
 }: PowerfulLensesSectionProps) {
   return (
-    <section className="w-full pt-16 lg:pt-24 bg-white">
-      <div className="w-full px-6 lg:px-20 xl:px-24 2xl:px-50">
-        <h2 className="text-[32px] font-bold text-gray-800 leading-tight">
+    <section className={`w-full   bg-white ${className}`}>
+      <div className="w-fit   mx-auto">
+        <h2 className="text-[32px] text-center font-bold text-gray-800 leading-tight">
           {title}
         </h2>
-        <p className="mt-4 xl:mt-8 max-w-lg text-sm md:text-base leading-relaxed text-gray-500  xl:text-lg">
+        <p className="mt-4 xl:mt-8 max-w-xl text-center  mx-auto text-sm md:text-base leading-relaxed text-gray-500  xl:text-lg">
           {description}
         </p>
       </div>

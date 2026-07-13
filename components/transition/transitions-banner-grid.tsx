@@ -65,7 +65,7 @@ export function TransitionsBannerGrid({
     bottomRightBanner = defaultBottomRight
 }: TransitionsBannerGridProps) {
     return (
-        <section className="bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 w-full py-16">
+        <section className="bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 w-full ">
             <div className="mx-auto w-full flex flex-col gap-4">
                 {/* Row 1: Full width banner */}
                 <div className="relative w-full aspect-[16/9] lg:aspect-[21/9] xl:aspect-[3/1] bg-gray-200 overflow-hidden group">
@@ -75,26 +75,7 @@ export function TransitionsBannerGrid({
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-black/10"></div>
-                    <div className="absolute inset-0 flex flex-col justify-end p-8 lg:p-16 text-white max-w-2xl">
-                        <h3 className="text-4xl lg:text-5xl xl:text-6xl font-light mb-2 drop-shadow-lg">
-                            {topBanner.title}
-                        </h3>
-                        <p className="mb-4 text-sm lg:text-base uppercase tracking-widest font-bold drop-shadow-md">
-                            {topBanner.subtitle}
-                        </p>
-                        {topBanner.description && (
-                            <p className="mb-8 text-xs lg:text-sm drop-shadow-md opacity-90 max-w-md">
-                                {topBanner.description}
-                            </p>
-                        )}
-                        <Link
-                            href={topBanner.linkUrl}
-                            className="bg-white text-black px-8 py-3 uppercase text-xs font-bold w-max tracking-wider hover:bg-gray-100 transition-colors"
-                        >
-                            {topBanner.linkText}
-                        </Link>
-                    </div>
+                  
                 </div>
 
                 {/* Row 2: Two columns */}
@@ -120,12 +101,7 @@ export function TransitionsBannerGrid({
                                     {bottomLeftBanner.description}
                                 </p>
                             )}
-                            <Link
-                                href={bottomLeftBanner.linkUrl}
-                                className="bg-white text-black px-6 py-3 uppercase text-xs font-bold w-max tracking-wider hover:bg-gray-100 transition-colors"
-                            >
-                                {bottomLeftBanner.linkText}
-                            </Link>
+                           
                         </div>
                     </div>
 

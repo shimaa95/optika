@@ -1,17 +1,14 @@
-import { MainLayout } from "@/components/main-layout"
+import { client } from '@/sanity/lib/client'
+import { SHARED_SOLUTIONS_GRID_QUERY, SHARED_FOOTER_QUERY } from '@/sanity/lib/queries'
 import Solutions from "@/components/Solutions"
 import { LuxuryHero } from "@/components/luxury-hero"
 import { SolutionsIntroSection } from "@/components/solutions-intro-section"
 import { BuiltInTechnologies } from "@/components/built-in-technologies"
-import { ProductsRangeSection } from "@/components/products-range-section"
 import { InnovativeToolsBanner } from "@/components/innovative-tools-banner"
-import { HowItWorks } from "@/components/HowItWorks"
-import { SolutionsDetailSection, SolutionsGridSection } from "@/components/SolutionsDetailSection"
-import { faqs, FaqSection } from "@/components/faq-section"
-import { PartnersSection } from "@/components/partners-section"
+import {  SolutionsGridSection } from "@/components/SolutionsDetailSection"
 import { PerformanceSection } from "@/components/performance-section"
 import FilterLensesSection from "@/components/filter-lenses-section"
-import { Footer } from "@/components/footer"
+import { SharedFooter } from "@/components/shared-footer"
 
 const SHOWCASE_SLIDES = [
   {
@@ -55,9 +52,14 @@ const SHOWCASE_SLIDES = [
   },
 ];
 
-export default function SolutionsPage() {
+export default async function SolutionsPage() {
+  const [sharedGridData, footerData] = await Promise.all([
+    client.fetch(SHARED_SOLUTIONS_GRID_QUERY, {}, { next: { revalidate: 60 } }),
+    client.fetch(SHARED_FOOTER_QUERY, {}, { next: { revalidate: 3600 } }),
+  ])
+
   return (
-<>     <LuxuryHero
+<> <div className="bg-[#f4f6f8] flex flex-col gap-32"> <div className="flex flex-col gap-32 bg-[#f4f6f8]">    <LuxuryHero
         imageSrc="/Rectangle.png"
         imageAlt="Optika premium optical solutions"
         imagePosition="50% 40%"
@@ -75,25 +77,27 @@ export default function SolutionsPage() {
       />
 
       <SolutionsIntroSection
-        tagline="Tools for clinics that demand clinical accuracy"
+        taglineLogo="/1Black.svg"
         description="Optika equips clinics and independent stores with personalised lenses and an ordering flow designed to reduce remakes and improve patient outcomes."
-        ctaText="Download your Copy"
-        ctaHref="#"
-      />
 
+      />
+</div>
       <BuiltInTechnologies />
       <FilterLensesSection />
 
       <Solutions className="px-6 lg:px-20 xl:px-24 2xl:px-50" />
+      <div className="flex flex-col  gap-32 bg-white"> 
 
       <InnovativeToolsBanner />
 
 
 
-      <SolutionsGridSection />
+      <SolutionsGridSection data={sharedGridData} />
       <PerformanceSection />
 
-      <FaqSection faqs={faqs} /> <Footer /></> 
+      <div className="flex flex-col bg-white "> 
+                  <SharedFooter data={footerData} /> </div></div></div>
+    </>
   );
 }
 

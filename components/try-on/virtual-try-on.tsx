@@ -16,7 +16,7 @@ export function VirtualTryOn() {
     <div className="vto-root flex flex-col bg-white px-6 lg:px-0 lg:flex-row h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] lg:overflow-hidden">
       <div className="relative min-h-[45vh] w-full lg:w-1/2 lg:h-full shrink-0">
         <Image
-          src="/tryon.jpeg"
+          src="/single-vision.jpeg"
           alt="Model wearing Optika eyewear"
           fill
           priority

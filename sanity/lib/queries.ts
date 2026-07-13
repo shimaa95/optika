@@ -42,6 +42,81 @@ export const HOME_SEO_QUERY = defineQuery(`
  * - Callers must pass `stega: false` to keep stega characters out of
  *   SEO-relevant text.
  */
+/**
+ * All published ACUTUS product slugs for `generateStaticParams`.
+ */
+export const ACUTUS_PRODUCT_SLUGS_QUERY = defineQuery(`
+  *[_type == "acutusProduct" && defined(slug.current)]{
+    "slug": slug.current
+  }
+`)
+
+/**
+ * Full ACUTUS product detail projection. Mirrors `ProductDetailData` 1:1.
+ *
+ * - `coalesce()` on strings so the frontend can rely on empty strings, not null.
+ * - Image fields are pass-throughs; resolve URLs with `urlForImage()` on the client.
+ * - `nextProduct` is expanded via reference lookup.
+ * - Callers must pass `stega: false` for SEO-relevant text.
+ */
+export const ACUTUS_PRODUCT_BY_SLUG_QUERY = defineQuery(`
+  *[_type == "acutusProduct" && slug.current == $slug][0]{
+    "slug": coalesce(slug.current, ""),
+    "name": coalesce(name, ""),
+    "subtitle": coalesce(subtitle, ""),
+    sequenceNumber,
+    "themeColor": coalesce(themeColor, ""),
+    "title": coalesce(seo.title, ""),
+    "description": coalesce(seo.description, idealFor, ""),
+    "ogTitle": coalesce(seo.ogTitle, seo.title, name, ""),
+    "ogDescription": coalesce(seo.ogDescription, seo.description, idealFor, ""),
+    "image": seo.image,
+    "canonicalUrl": seo.canonicalUrl,
+    "noIndex": seo.noIndex == true,
+    "twitterCard": coalesce(seo.twitterCard, "summary_large_image"),
+
+    "hero": hero{
+      "eyebrow": coalesce(eyebrow, ""),
+      "headline": coalesce(headline, ""),
+      "background": background,
+      "backgroundPosition": coalesce(backgroundPosition, "")
+    },
+
+    "lensGraphic": lensGraphic{
+      "image": image
+    },
+
+    "idealFor": coalesce(idealFor, ""),
+    "characteristics": coalesce(characteristics, ""),
+    "meters": meters[]{
+      _key,
+      "label": coalesce(label, ""),
+      value
+    },
+    "specs": specs[]{
+      _key,
+      "label": coalesce(label, ""),
+      "value": coalesce(value, ""),
+      "variant": coalesce(variant, "white")
+    },
+    "whyTitle": coalesce(whyTitle, ""),
+    "whyPoints": whyPoints[],
+    "brochureUrl": coalesce(brochureUrl, ""),
+
+    "footer": footer{
+      "image": image,
+      "discoverNextHref": coalesce(discoverNextHref, "/products"),
+      "backToProductsHref": coalesce(backToProductsHref, "/products")
+    },
+
+    "nextProduct": nextProduct->{
+      "slug": coalesce(slug.current, ""),
+      "name": coalesce(name, ""),
+      "subtitle": coalesce(subtitle, "")
+    }
+  }
+`)
+
 export const ABOUT_PAGE_QUERY = defineQuery(`
   *[_type == "aboutPage"][0]{
     "title": coalesce(seo.title, ""),
@@ -81,7 +156,7 @@ export const ABOUT_PAGE_QUERY = defineQuery(`
       "eyebrow": coalesce(eyebrow, ""),
       "heading": coalesce(heading, ""),
       "subheading": coalesce(subheading, ""),
-      "videoUrl": coalesce(videoUrl, ""),
+      "videoUrl": coalesce(videoFile.asset->url, ""),
       "boxes": boxes[]{
         "title": coalesce(title, ""),
         "description": coalesce(description, "")
@@ -119,3 +194,111 @@ export const ABOUT_PAGE_QUERY = defineQuery(`
     }
   }
 `)
+
+/**
+ * SEO-only projection for the Try-On page.
+ * Callers must pass `stega: false` to keep stega characters out of <title>.
+ */
+export const TRY_ON_PAGE_SEO_QUERY = defineQuery(`
+  *[_type == "tryOnPage"][0]{
+    "title":          coalesce(seo.title, ""),
+    "description":    coalesce(seo.description, ""),
+    "ogTitle":        coalesce(seo.ogTitle, seo.title, ""),
+    "ogDescription":  coalesce(seo.ogDescription, seo.description, ""),
+    "image":          seo.image,
+    "canonicalUrl":   seo.canonicalUrl,
+    "noIndex":        seo.noIndex == true,
+    "twitterCard":    coalesce(seo.twitterCard, "summary_large_image")
+  }
+`)
+
+/**
+ * Full Try-On page content projection.
+ *
+ * - `heroImage` is a pass-through; use `urlFor()` on the client.
+ *   The component falls back to `/single-vision.jpeg` when null.
+ * - `swatches[]` mirrors the `TryOnSwatch` type in `lib/try-on/swatches.ts`.
+ *   The component falls back to the hardcoded array when this is empty.
+ * - Info-strip fields are coalesced to "" so the component can safely
+ *   test truthiness without optional chaining.
+ */
+export const TRY_ON_PAGE_QUERY = defineQuery(`
+  *[_type == "tryOnPage"][0]{
+    "heroImage":      heroImage,
+
+    "infoHeadline":   coalesce(infoHeadline, ""),
+    "infoBody":       coalesce(infoBody, ""),
+    "ctaLabel":       coalesce(ctaLabel, "Learn More"),
+    "ctaHref":        coalesce(ctaHref, "/products"),
+    "needInfoLabel":  coalesce(needInfoLabel, "Need more info"),
+    "needInfoHref":   coalesce(needInfoHref, "/products"),
+
+    "swatches": swatches[]{
+      _key,
+      "id":           coalesce(id, ""),
+      "name":         coalesce(name, ""),
+      "lensHex":      coalesce(lensHex, ""),
+      lensOpacity,
+      "gradient":     coalesce(gradient, "")
+    }
+  }
+`)
+
+export const SHARED_SOLUTIONS_GRID_QUERY = defineQuery(`
+  *[_type == "sharedSolutionsGrid"][0]{
+    "heading": coalesce(heading, ""),
+    "subheading": coalesce(subheading, ""),
+    "panels": panels[]{
+      _key,
+      variant,
+      title,
+      description,
+      "image": image,
+      bullets,
+      steps,
+      applyLabel,
+      applyHref
+    }
+  }
+`)
+
+export const SHARED_FOOTER_QUERY = defineQuery(`
+  *[_type == "sharedFooter"][0]{
+    "contactBannerImage": contactBannerImage,
+    "contactBannerTitle": coalesce(contactBannerTitle, "Still have questions?"),
+    "contactBannerSubtitle": coalesce(contactBannerSubtitle, "Questions about lenses or ordering or even about us?"),
+    "contactCardTitle": coalesce(contactCardTitle, "Contact us"),
+    "contactCardDescription": coalesce(contactCardDescription, "Reach out straight to our mail and our teams will reach back right away"),
+    "contactCardButtonLabel": coalesce(contactCardButtonLabel, "Contact Us"),
+    "enquiryCardTitle": coalesce(enquiryCardTitle, "Enquiry Form"),
+    "enquiryCardDescription": coalesce(enquiryCardDescription, "Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry."),
+    "enquiryCardButtonLabel": coalesce(enquiryCardButtonLabel, "Fill Form"),
+    "logoText": coalesce(logoText, "Optika"),
+    "address": coalesce(address, ""),
+    "phone": coalesce(phone, ""),
+    "phoneHref": coalesce(phoneHref, ""),
+    "email": coalesce(email, ""),
+    "emailHref": coalesce(emailHref, ""),
+    "socialLinks": socialLinks[]{
+      _key,
+      "platform": coalesce(platform, ""),
+      "href": coalesce(href, "")
+    },
+    "navSections": navSections[]{
+      _key,
+      "title": coalesce(title, ""),
+      "links": links[]{
+        _key,
+        "label": coalesce(label, ""),
+        "href": coalesce(href, "")
+      }
+    },
+    "legalLinks": legalLinks[]{
+      _key,
+      "label": coalesce(label, ""),
+      "href": coalesce(href, "")
+    },
+    "creditLine": coalesce(creditLine, "")
+  }
+`)
+

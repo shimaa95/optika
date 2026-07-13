@@ -499,3 +499,66 @@
     display: none !important;
   }
 }
+body {
+background-color: white;
+}
+
+/* Cross-browser scrollbar hide utility */
+.tab-bar-scroll {
+  -ms-overflow-style: none;  /* IE 10+ */
+  scrollbar-width: none;  /* Firefox */
+}
+.tab-bar-scroll::-webkit-scrollbar {
+  display: none;  /* Safari and Chrome */
+  width: 0;
+  height: 0;
+  background: transparent;
+}
+
+/* Browser compatibility fallbacks */
+.opacity-fallback {
+  /* IE fallback - opacity is supported in IE9+ */
+  -webkit-opacity: 1;
+  -moz-opacity: 1;
+  opacity: 1;
+}
+
+/* Ensure flexbox works in older browsers */
+.flex-fallback {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Cross-browser select styling (Safari/Firefox/Chrome/Edge) */
+.native-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  appearance: none;
+  text-overflow: '';
+  -ms-text-overflow: '';
+}
+
+.native-select::-ms-expand {
+  display: none;
+}
+
+/* Safari sub-pixel rendering fix for thin dividers */
+.filter-divider {
+  /* Use background gradient instead of border to render reliably across browsers */
+  height: 1px;
+  min-height: 1px;
+  /* Force subpixel rendering fix for Safari */
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* IE10+ visibility fallback for filters */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  .filter-divider {
+    height: 2px;
+  }
+}

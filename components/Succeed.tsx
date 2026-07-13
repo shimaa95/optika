@@ -9,7 +9,7 @@ export interface SucceedBoxProps {
 
 interface SucceedProps {
     SucceedHeader?: boolean;
-    videoUrl?: string;
+    videoUrl?: string; className?: string;
     boxes?: SucceedBoxProps[];
 }
 
@@ -39,13 +39,13 @@ const defaultBoxes: SucceedBoxProps[] = [
 function Succeed({
     SucceedHeader = true,
     videoUrl = "/acutus.mp4",
-    boxes = defaultBoxes
+    boxes = defaultBoxes, className = "",
 }: SucceedProps) {
     return (
-        <section className="w-full bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 py-16 sm:py-20 ">
+        <section className={`w-full bg-white px-6 lg:px-20 xl:px-24 2xl:px-50 ${className}`}>
             <div className="mx-auto">
                 {/* Section Header */}
-                {SucceedHeader && <div className="mb-10 text-center sm:mb-12 lg:mb-16">
+                {SucceedHeader && <div className="mb-10 text-center sm:mb-16 ">
                     <h2 className="mb-3 text-[32px] font-bold uppercase tracking-tight text-black">
                         Everything You Need
                         <br />
@@ -67,7 +67,7 @@ function Succeed({
                                     <div className="mb-4 flex h-10 w-10 items-center justify-center">
                                         <Icon className="h-6 w-6 text-black" />
                                     </div>
-                                    <h3 className="mb-2 font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]">{box.title}</h3>
+                                    <h3 className="mb-2 font-bold text-black text-[16px] tracking-tight leading-[28px]">{box.title}</h3>
                                     <p className="text-[11px] leading-[1.6] text-gray-500 sm:text-xs">
                                         {box.description}
                                     </p>
@@ -97,7 +97,7 @@ function Succeed({
                                     <div className="mb-4 flex h-10 w-10 items-center justify-center">
                                         <Icon className="h-6 w-6 text-black" />
                                     </div>
-                                    <h3 className="mb-2 font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]">{box.title}</h3>
+                                    <h3 className="mb-2 font-bold text-black text-[16px] tracking-tight leading-[20px]">{box.title}</h3>
                                     <p className="text-[11px] leading-[1.6] text-gray-500 sm:text-xs">
                                         {box.description}
                                     </p>

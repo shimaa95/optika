@@ -7,9 +7,6 @@ interface MainLayoutProps {
 
 export function MainLayout({ children }: MainLayoutProps) {
   return (
-    <div className="relative min-h-screen w-full bg-[#f5f5f5] overflow-x-hidden">
-      <main>{children}</main>
-      <Footer />
-    </div>
+<div className="flex flex-col gap-32"> {children}    </div>
   )
 }

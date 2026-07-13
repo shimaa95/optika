@@ -28,7 +28,7 @@ const Headline = ({
 
 
   // 1. Typography block ordered: Font Family -> Font Size -> Font Weight -> Line Height -> Letter Spacing -> Text Transform
-  const typographyClasses = `font-inter text-[40px] font-bold leading-[0.98]  uppercase`;
+  const typographyClasses = `font-inter text-[40px] font-bold leading-[0.98]  uppercase whitespace-nowrap`;
 
   // 2. Functional layout/spacing classes
   const spacingClasses = 'mb-4 xl:mb-8 relative z-10';

@@ -6,13 +6,16 @@ import { TransitionsBannerGrid } from "@/components/transition/transitions-banne
 import { SingleVisionSection } from "@/components/single-vision-section"
 import { PerformanceSection } from "@/components/performance-section"
 import { FaqSection } from "@/components/faq-section"
-import { ContactSection } from "@/components/contact-section"
+import { SharedFooter } from "@/components/shared-footer"
 import SplitLayoutHero from "@/components/SplitLayoutHero"
+import { client } from '@/sanity/lib/client'
+import { SHARED_SOLUTIONS_GRID_QUERY, SHARED_FOOTER_QUERY } from '@/sanity/lib/queries'
 import Succeed from "@/components/Succeed"
 import { Eye, LayoutGrid, Sun, Palette } from "lucide-react"
 import { DiscoverRangeSection } from "@/components/transition/DiscoverRangeSection"
-import { Footer } from "@/components/footer"
+
 import { SolutionsGridSection } from "@/components/SolutionsDetailSection"
+import { ProductIntro } from "@/components/product-intro"
 
 
 const transitionFaqs = [
@@ -50,9 +53,13 @@ const transitionFaqs = [
   }
 ]
 
-export default function TransitionPage() {
+export default async function TransitionPage() {
+  const [sharedGridData, footerData] = await Promise.all([
+    client.fetch(SHARED_SOLUTIONS_GRID_QUERY, {}, { next: { revalidate: 60 } }),
+    client.fetch(SHARED_FOOTER_QUERY, {}, { next: { revalidate: 3600 } }),
+  ])
   return (
-    <>
+    <> <div className="bg-white flex flex-col gap-32">
       <LuxuryHero
         imageSrc="/eye.jpg"
         imageAlt="Cinematic close-up of an eye representing Transitions light intelligent lenses"
@@ -71,6 +78,7 @@ export default function TransitionPage() {
         }
         description="The world's #1 photochromic lenses"
       />
+
       <PowerfulLensesSection title="Light Intelligent Lenses" description=" Light-responsive lenses that adapt naturally to changing environments. Transition lenses help deliver effortless comfort indoors and outdoors, with powerful performance throughout the day."
       />
       <Succeed
@@ -100,14 +108,14 @@ export default function TransitionPage() {
         ]}
       />
 
-      <DiscoverRangeSection description="your eyes from UV and filtering blue-violet light, Transitions® lenses darken outdoors and clear indoors. Transitions® adapt naturally to changing environments." />
+      <DiscoverRangeSection  description="your eyes from UV and filtering blue-violet light, Transitions® lenses darken outdoors and clear indoors. Transitions® adapt naturally to changing environments." />
       <TransitionsBannerGrid />
-      <SolutionsGridSection />
+      <SolutionsGridSection data={sharedGridData} />
       <FaqSection
         faqs={transitionFaqs}
         subheading="Find Answers to Questions about the Transitions Lenses"
       />
-      <ContactSection /> <Footer />
+      <SharedFooter data={footerData} />  </div>
     </>
   )
 }

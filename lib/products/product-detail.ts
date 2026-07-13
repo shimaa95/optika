@@ -16,13 +16,9 @@ export interface ProductDetailData {
   sequenceNumber: number
   themeColor: string
   hero: {
-    eyebrow: string
-    headline: string
     /** Full-bleed hero background — swap per lens/product (Sanity-ready) */
     backgroundSrc: string
     backgroundAlt: string
-    /** Optional focal point, e.g. "center 40%" */
-    backgroundPosition?: string
   }
   /** Lens overlay graphic — swap per lens/product (Sanity-ready) */
   lensGraphic: {
@@ -73,11 +69,8 @@ const actusDuePlus: ProductDetailData = {
   sequenceNumber: 1,
   themeColor: "#2b64e3",
   hero: {
-    eyebrow: "We do our best",
-    headline: "SO YOU NEVER MISS A MOMENT",
     backgroundSrc: "/acutusplus.jpeg",
     backgroundAlt: "Person reading a book in warm light",
-    backgroundPosition: "center 65%",
   },
   lensGraphic: {
     imageSrc: "/Lens1.png",

@@ -80,7 +80,7 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
   const items = content;
 
   return (
-    <section className={`w-full bg-[#f4f6f8] py-16 md:py-24 lg:py-32 ${className || ''}`}>
+    <section className={`w-full bg-[#f4f6f8]  ${className || ''}`}>
       <div className="grid grid-cols-1 md:grid-cols-2 border border-black/10 w-full">
         {/* Top Left - Text */}
         <div className="flex flex-col justify-center p-8 md:p-12 lg:p-20 xl:p-32 border-b md:border-b border-black/10 md:border-r">
@@ -89,7 +89,7 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
               <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] leading-snug font-medium text-black/50">
                 Solutions for partners
               </div>
-              <h2 className="mb-4 xl:mb-6 font-bold uppercase text-black text-[20px] tracking-[0.1em] leading-[28px]">Streamlined Workflows</h2>
+              <h2 className="mb-4 xl:mb-6 font-bold uppercase text-black text-[20px]  ">Streamlined Workflows</h2>
               <p className="mb-6 xl:mb-10 max-w-[200px] lg:max-w-[390px] text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed text-black/90">
                 We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style              </p>
               <Link href="#">
@@ -135,7 +135,7 @@ export function Solutions({ content = DEFAULT_CONTENT, className }: SolutionsPro
               <div className="mb-4 xl:mb-6 text-[13px] md:text-[14px] font-medium text-black/50">
                 A connected system
               </div>
-              <h2 className="mb-4 xl:mb-6 font-bold text-black text-[20px] tracking-[0.1em] leading-[28px]">SCALE WITHOUT <br /> LOSING CONSISTENCY</h2>
+              <h2 className="mb-4 xl:mb-6 font-bold text-black text-[20px]  ">SCALE WITHOUT <br /> LOSING CONSISTENCY</h2>
 
               <p className="text-[14px] md:text-[14px] mb-6 xl:mb-10 lg:text-[20px] leading-relaxed text-black/90 max-w-[200] lg:max-w-[390px]">
                 We operate as an integrated system for partners to creates a stable foundation for growth, operational clarity, and a more consistent experience across every touch-point.              </p>

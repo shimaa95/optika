@@ -59,7 +59,7 @@ export function ProductsRangeSection() {
       </div>
 
       {/* ── Right Column: Copy ───────────────────────────────── */}
-      <div className="w-full lg:w-[50%] flex flex-col justify-center lg:pl-20  py-16 lg:py-20">
+      <div className="w-full lg:w-[50%] flex flex-col justify-center lg:pl-20  ">
         {/* Eyebrow */}
         <p className="text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase text-gray-400 mb-4 font-inter">
           OUR PRODUCTS

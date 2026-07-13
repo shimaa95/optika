@@ -5,7 +5,7 @@ import Image from 'next/image'
 
 export default function BehindOptika() {
   return (
-    <section className="w-full bg-[#f4f6f8]  px-6 py-16 md:py-24 lg:px-20 xl:px-24 2xl:px-50 lg:py-32">
+    <section className="w-full  px-6  lg:px-20 xl:px-24 2xl:px-50 ">
       {/* Header Section */}
       <div className="flex items-center gap-6 mb-12 md:mb-16 lg:mb-20">
         <h2 className="text-[32px] font-bold uppercase tracking-tight text-black whitespace-nowrap">
@@ -24,7 +24,7 @@ export default function BehindOptika() {
               <div className="mb-6 xl:mb-8 text-[13px] md:text-[14px] leading-snug font-medium text-black/60">
                 About<br />Us
               </div>
-              <p className="text-[14px] md:text-[14px]  lg:text-[16px] leading-relaxed text-black/90">
+              <p className="text-[14px] lg:text-[16px] leading-relaxed text-black/90">
                 Optika is a Global Eyewear Solutions Provider and Distributor of Exclusive and advanced Digital Lenses, Eyecare products, and Premium solutions.
               </p>
             </div>
@@ -63,10 +63,10 @@ export default function BehindOptika() {
               <div className="mb-6 xl:mb-8 text-[13px] md:text-[14px] leading-snug font-medium text-black/60">
                 Ophthalmic<br />Technology<br />Provider
               </div>
-              <p className="mb-6 md:mb-8 text-[14px] md:text-[14px] lg:text-[16px] leading-relaxed text-black/90">
+              <p className="mb-6 md:mb-8 text-[14px]  lg:text-[16px] leading-relaxed text-black/90">
                 Driven by ambition, innovation, Optika supplies eyewear to professionals, hospitals, and users.
               </p>
-              <p className="text-[14px] md:text-[15px] lg:text-[16px] leading-relaxed text-black/90">
+              <p className="text-[14px] lg:text-[16px] leading-relaxed text-black/90">
                 We deliver variety of high-end lenses which are manufactured in the Czech Republic and tested according to industry best standards with strict quality controls.
               </p>
             </div>

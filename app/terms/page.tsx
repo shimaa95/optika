@@ -5,9 +5,9 @@ import "./terms.css"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, Facebook, Instagram } from "lucide-react"
+import { Menu, X } from "lucide-react"
 import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+import { SharedFooter } from "@/components/shared-footer"
 import { HeroSection } from "@/components/hero-section"
 import { HeroProps } from "@/components/HeroProps"
 
@@ -186,7 +186,7 @@ Limited liability company</p>
 
         </div>
       </section>
-      <Footer />
+      <SharedFooter />
     </section>
   )
 }

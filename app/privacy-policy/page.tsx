@@ -5,9 +5,8 @@ import "./terms.css"
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, X, Facebook, Instagram } from "lucide-react"
-import { Navigation } from "@/components/navigation"
-import { Footer } from "@/components/footer"
+import { Menu, X } from "lucide-react"
+import { SharedFooter } from "@/components/shared-footer"
 
 function XIcon({ className }: { className?: string }) {
   return (
@@ -235,7 +234,7 @@ export default function TermsPage() {
 
         </div>
       </section>
-      <Footer />
+      <SharedFooter />
     </section>
   )
 }

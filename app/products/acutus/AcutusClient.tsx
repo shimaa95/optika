@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect } from "react"
-import "@/app/gallery.css"
 import AcutusHeroSection from "./hero"
 import { HowItWorks } from "@/components/HowItWorks"
-import { ContactSection } from "@/components/contact-section"
-import { Footer } from "@/components/footer"
+import { SharedFooter } from "@/components/shared-footer"
 import { IrisCursor } from '@/components/gallery/iris-cursor'
 import { GalleryScene } from "@/components/gallery/gallery-scene"
 import { AcutusSmoothScroll } from "@/components/acutus-smooth-scroll"
@@ -34,7 +32,7 @@ export default function AcutusClient() {
       <AcutusLensesCarousel />
 
 
-      <ContactSection /><Footer />
+      <SharedFooter />
     </div></>
   )
 }

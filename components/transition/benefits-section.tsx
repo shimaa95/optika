@@ -22,7 +22,7 @@ export function BenefitsSection({
   benefits = defaultBenefits
 }: BenefitsSectionProps) {
   return (
-    <section className="bg-white w-full py-16 sm:py-20 lg:py-28">
+    <section className="bg-white w-full">
       <div className="mx-auto max-w-6xl px-6 lg:px-20">
         <h2 className="mx-auto mb-12 max-w-xl text-center text-[32px] font-bold uppercase leading-tight tracking-tight text-black">
           {title}

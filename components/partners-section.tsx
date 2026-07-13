@@ -17,7 +17,7 @@ export function PartnersSection() {
         <div className="flex flex-col justify-start pl-6 lg:pl-26 xl:pl-50 pr-6 lg:pr-10 xl:pr-14 py-10 lg:py-14">
 
           {/* Eyebrow — italic, spaced, muted */}
-          <h3 className="text-[20px] font-bold tracking-[0.1em] leading-[28px] text-[#e7e7e7] mb-4 xl:mb-8 font-light">
+          <h3 className="text-[20px] font-bold   text-[#e7e7e7] mb-4 xl:mb-8 font-light">
             Exceptional Optical Solutions
           </h3>
 

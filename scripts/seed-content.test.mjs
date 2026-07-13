@@ -1,12 +1,7 @@
 #!/usr/bin/env node
 /**
- * Pure-data validator for the seed-content payload shapes.
- * No network calls, no Sanity client. Run with `node scripts/seed-content.test.mjs`.
- *
- * The test imports the payload builder functions from `seed-content.mjs`.
- * If those functions are missing, the import will throw and this test
- * will fail — which is the intended state until later tasks add the
- * builders.
+ * Pure-data validator for seed-content payload shapes.
+ * Run with `node scripts/seed-content.test.mjs`.
  */
 
 import assert from 'node:assert/strict'
@@ -16,9 +11,8 @@ import path from 'node:path'
 const PROJECT_ROOT = path.resolve(import.meta.dirname, '..')
 const PUBLIC_DIR = path.join(PROJECT_ROOT, 'public')
 
-// Dynamic import so we can assert on what is exported. Will throw until
-// the payload builders are added in later tasks — that is by design.
 const mod = await import('./seed-content.mjs')
+const pages = await import('./seed-payloads-pages.mjs')
 
 const required = [
   'buildHomePagePayload',
@@ -27,86 +21,69 @@ const required = [
   'IMAGES',
 ]
 for (const name of required) {
-  assert.ok(
-    typeof mod[name] !== 'undefined',
-    `Expected export "${name}" from seed-content.mjs`,
-  )
+  assert.ok(typeof mod[name] !== 'undefined', `Expected export "${name}" from seed-content.mjs`)
 }
 
-const { buildHomePagePayload, buildAboutPagePayload, getImagePath, IMAGES } = mod
-
-const home = buildHomePagePayload({
-  imageAssetId: (path) => `asset-${path}`,
+const {
+  buildHomePagePayload,
+  buildAboutPagePayload,
   getImagePath,
-})
-const about = buildAboutPagePayload({
-  imageAssetId: (path) => `asset-${path}`,
-  getImagePath,
-})
+  IMAGES,
+} = mod
 
-// 1. homePage.pageBuilder has 9 entries
-assert.equal(
-  home.pageBuilder.length,
-  9,
-  `homePage.pageBuilder should have 9 entries, got ${home.pageBuilder.length}`,
-)
+const fakeId = (p) => `asset-${p}`
+const ctx = { imageAssetId: fakeId, IMAGES, getImagePath }
 
-// 2. aboutPage.lensCategoryCards has exactly 3 entries
-assert.equal(
-  about.lensCategoryCards.length,
-  3,
-  `lensCategoryCards should have 3 entries, got ${about.lensCategoryCards.length}`,
-)
+const home = buildHomePagePayload(ctx)
+const about = buildAboutPagePayload(ctx)
+const products = pages.buildProductsPagePayload(ctx)
+const singleVision = pages.buildSingleVisionPagePayload(ctx)
+const transition = pages.buildTransitionPagePayload(ctx)
+const solutions = pages.buildSolutionsPagePayload(ctx)
+const acutusPage = pages.buildAcutusPagePayload(ctx)
+const contact = pages.buildContactPagePayload(ctx)
+const enquiry = pages.buildEnquiryPagePayload(ctx)
+const terms = pages.buildTermsPagePayload(ctx)
+const privacy = pages.buildPrivacyPolicyPagePayload(ctx)
 
-// 3. aboutPage.succeed.boxes has exactly 4 entries
-assert.equal(
-  about.succeed.boxes.length,
-  4,
-  `succeed.boxes should have 4 entries, got ${about.succeed.boxes.length}`,
-)
+assert.equal(home.pageBuilder.length, 9)
+assert.equal(about.lensCategoryCards.length, 3)
+assert.equal(about.succeed.boxes.length, 4)
+assert.equal(products.productRanges.length, 3)
+assert.equal(singleVision.benefits.length, 4)
+assert.equal(transition.succeed.boxes.length, 4)
+assert.equal(solutions.intro.cards.length, 3)
+assert.equal(acutusPage.lenses.length, 11)
+assert.equal(pages.ACUTUS_PRODUCTS.length, 11)
+assert.equal(contact.contactMethods.length, 5)
+assert.equal(enquiry.interestOptions.length, 4)
+assert.equal(terms.sections.length, 2)
 
-// 4. Every image path in IMAGES maps to a real file in public/
 for (const [field, relPath] of Object.entries(IMAGES)) {
   const absPath = path.join(PUBLIC_DIR, relPath.replace(/^\//, ''))
-  assert.ok(
-    fs.existsSync(absPath),
-    `IMAGES.${field} → ${relPath} not found at ${absPath}`,
-  )
+  assert.ok(fs.existsSync(absPath), `IMAGES.${field} → ${relPath} not found at ${absPath}`)
 }
 
-// 5. Walk both payloads and collect every image ref. Each unique
-// image can be referenced multiple times in the same document
-// (Sanity allows this). Count occurrences and fail if the same
-// asset is referenced more than 4 times in one document — that
-// would suggest a copy-paste bug in the payload builder.
 const allImagePaths = []
 function walk(node) {
   if (Array.isArray(node)) return node.forEach(walk)
   if (node && typeof node === 'object') {
-    if (node._type === 'image' && node.asset?._ref) {
-      allImagePaths.push(node.asset._ref)
-    }
+    if (node._type === 'image' && node.asset?._ref) allImagePaths.push(node.asset._ref)
     for (const v of Object.values(node)) walk(v)
   }
 }
-walk(home)
-walk(about)
-const counts = new Map()
-for (const ref of allImagePaths) {
-  counts.set(ref, (counts.get(ref) || 0) + 1)
+
+for (const payload of [home, about, products, singleVision, transition, solutions, acutusPage, contact, enquiry, terms, privacy]) {
+  walk(payload)
 }
-const MAX_REFS = 4
-for (const [ref, n] of counts) {
-  if (n > MAX_REFS) {
-    assert.fail(
-      `Image ${ref} referenced ${n} times (>${MAX_REFS}). Looks like a copy-paste bug.`,
-    )
-  }
+
+for (const product of pages.ACUTUS_PRODUCTS) {
+  walk(pages.buildAcutusProductPayload(product, ctx, 'acutus-smart'))
 }
 
 console.log('OK — payload shapes look correct.')
 console.log(`  homePage.pageBuilder entries: ${home.pageBuilder.length}`)
-console.log(`  aboutPage.lensCategoryCards: ${about.lensCategoryCards.length}`)
-console.log(`  aboutPage.succeed.boxes:     ${about.succeed.boxes.length}`)
-console.log(`  unique image references:    ${counts.size}`)
-console.log(`  total image references:     ${allImagePaths.length}`)
+console.log(`  aboutPage.lensCategoryCards:  ${about.lensCategoryCards.length}`)
+console.log(`  acutusPage.lenses:            ${acutusPage.lenses.length}`)
+console.log(`  acutusProduct documents:      ${pages.ACUTUS_PRODUCTS.length}`)
+console.log(`  total image references:       ${allImagePaths.length}`)

@@ -31,12 +31,13 @@ export const succeed = defineType({
       validation: (rule) => rule.max(280),
     }),
     defineField({
-      name: 'videoUrl',
-      title: 'Video URL',
-      type: 'url',
-      description: 'Direct URL to the .mp4 played in the center of the section.',
-      validation: (rule) =>
-        rule.uri({ scheme: ['http', 'https'] }),
+      name: 'videoFile',
+      title: 'Video File',
+      type: 'file',
+      options: {
+        accept: 'video/mp4,video/webm',
+      },
+      description: 'Upload an .mp4 or .webm video to play in the center of the section.',
     }),
     defineField({
       name: 'boxes',

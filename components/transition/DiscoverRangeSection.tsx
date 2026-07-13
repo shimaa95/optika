@@ -25,7 +25,7 @@ export function DiscoverRangeSection({
     className = "",
 }: DiscoverRangeSectionProps) {
     return (
-        <section className={`bg-white w-full p-16 sm:py-20 lg:py-16 px-6 lg:px-20 xl:px-24 2xl:px-50 ${className}`}>
+        <section className={`bg-white w-full  px-6 lg:px-20 xl:px-24 2xl:px-50 ${className}`}>
             <div className="w-full">
                 <div className="flex flex-col lg:flex-row w-full items-center gap-12">
 
@@ -34,7 +34,7 @@ export function DiscoverRangeSection({
                         <h2 className="text-[32px] font-bold text-[#333333] tracking-wide uppercase mb-1">
                             {title}
                         </h2>
-                        <h3 className="font-bold text-[#555555] mb-8 text-[20px] tracking-[0.1em] leading-[28px]">
+                        <h3 className="font-bold text-[#555555] mb-8 text-[20px]  ">
                             {subtitle}
                         </h3>
 
@@ -44,7 +44,7 @@ export function DiscoverRangeSection({
                     </div>
 
                     {/* Image/Video block */}
-                    <div className={`relative w-full h-[80vh] flex items-center justify-center  ${reverseLayout ? 'order-1 lg:order-1' : 'order-1 lg:order-2'}`}>
+                    <div className={`relative w-full h-[80vh]  flex items-center justify-center  ${reverseLayout ? 'order-1 lg:order-1' : 'order-1 lg:order-2'}`}>
                         (
                         <Image
                             src={imageSrc}

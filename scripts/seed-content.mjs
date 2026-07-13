@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Seeds the homePage and aboutPage documents in Sanity with the
- * hardcoded React component content. See
- * docs/superpowers/specs/2026-07-12-seed-content-design.md.
+ * Seeds Sanity page documents with hardcoded React component content.
+ * Home + about are seeded by default only with --all (they may already exist).
  *
  * Usage:
  *   SANITY_API_WRITE_TOKEN=skXXX pnpm seed:content
  *   SANITY_API_WRITE_TOKEN=skXXX pnpm seed:content --force
+ *   SANITY_API_WRITE_TOKEN=skXXX pnpm seed:content --all
  */
 
 import fs from 'node:fs'
@@ -14,6 +14,23 @@ import path from 'node:path'
 import readline from 'node:readline/promises'
 import { stdin as input, stdout as output } from 'node:process'
 import { createClient } from '@sanity/client'
+import {
+  PAGE_IMAGES,
+  ACUTUS_PRODUCTS,
+  buildProductsPagePayload,
+  buildSingleVisionPagePayload,
+  buildTransitionPagePayload,
+  buildSolutionsPagePayload,
+  buildAcutusPagePayload,
+  buildAcutusProductPayload,
+  buildContactPagePayload,
+  buildEnquiryPagePayload,
+  buildTermsPagePayload,
+  buildPrivacyPolicyPagePayload,
+  buildTryOnPagePayload,
+  buildSolutionsGrid,
+  buildSharedFooter,
+} from './seed-payloads-pages.mjs'
 
 const PROJECT_ROOT = path.resolve(import.meta.dirname, '..')
 const PUBLIC_DIR = path.join(PROJECT_ROOT, 'public')
@@ -75,6 +92,53 @@ export const IMAGES = {
   aboutLensHigh: '/test.jpg',
   aboutLensCustomised: '/about-optika2.jpg',
   aboutContactBanner: '/contact.jpg',
+  ...PAGE_IMAGES,
+}
+
+export const VIDEOS = {
+  transition: '/transition2.mp4',
+  acutus: '/acutus.mp4',
+}
+
+/** When the write token is unavailable, reuse already-uploaded assets. */
+export const IMAGE_FALLBACKS = {
+  '/eyewear-group.jpg': '/whatwedo.jpeg',
+  '/hero.jpg': '/single-vision.jpeg',
+  '/solves.jpg': '/pr.jpeg',
+  '/Promis.jpg': '/about-hero.jpg',
+  '/choose.jpg': '/about-optika.jpg',
+  '/Workflow .jpg': '/workflow.png',
+  '/model1.png': '/about12345.png',
+  '/eye.jpg': '/about-hero.jpg',
+  '/acutusplus.jpeg': '/acutuss.jpg',
+  '/banner1.jpeg': '/about-hero.jpg',
+  '/Rectangle.png': '/Rectangle123.png',
+  '/1Black.svg': '/Transitions.svg',
+  '/46.png': '/about12345.png',
+  '/builtin.jpg': '/about-optika.jpg',
+  '/custom-form.png': '/about12345.png',
+  '/eye-view.png': '/about-optika.jpg',
+  '/eye-power.png': '/about-optika.jpg',
+  '/actushero.png': '/about-hero.jpg',
+  '/acutus-plus.png': '/acutuss.jpg',
+  '/Lens1.png': '/about12345.png',
+  '/contact.jpeg': '/contact.jpg',
+  '/form.png': '/contact.jpg',
+}
+
+export function resolveImageAssetId(publicPath, cache) {
+  if (cache[publicPath]) return cache[publicPath]
+  const fallback = IMAGE_FALLBACKS[publicPath]
+  if (fallback && cache[fallback]) return cache[fallback]
+  throw new Error(
+    `No cached asset for ${publicPath}` +
+      (fallback ? ` (fallback ${fallback} also missing)` : ''),
+  )
+}
+
+export function resolveFileAssetId(publicPath, cache) {
+  if (cache[publicPath]) return cache[publicPath]
+  throw new Error(`No cached file asset for ${publicPath}`)
 }
 
 export function getImagePath(publicPath) {
@@ -112,7 +176,7 @@ function img(publicPath, imageAssetId) {
  *   public path to a Sanity asset _id. In tests, returns a fake id.
  *   In production, returns the result of client.assets.upload(...).
  */
-export function buildAboutPagePayload({ imageAssetId }) {
+export function buildAboutPagePayload({ imageAssetId, fileAssetId }) {
   return {
     seo: {
       title: 'About — Optika',
@@ -176,7 +240,7 @@ export function buildAboutPagePayload({ imageAssetId }) {
       heading: 'Everything You Need To Succeed',
       subheading:
         'Our integrated platform streamlines every aspect of lens ordering, production, and delivery.',
-      videoUrl: '/acutus.mp4',
+      videoFile: { _type: 'file', asset: { _type: 'reference', _ref: fileAssetId(VIDEOS.acutus) } },
       boxes: [
         {
           _key: 'box-0',
@@ -510,6 +574,19 @@ async function uploadImage(client, publicPath, cache) {
   return asset._id
 }
 
+async function uploadFile(client, publicPath, cache) {
+  if (cache[publicPath]) {
+    return cache[publicPath]
+  }
+  const abs = getImagePath(publicPath)
+  const buffer = fs.readFileSync(abs)
+  const asset = await client.assets.upload('file', buffer, {
+    filename: path.basename(publicPath),
+  })
+  cache[publicPath] = asset._id
+  return asset._id
+}
+
 async function main() {
   const envLocal = loadEnvLocal()
   const projectId =
@@ -520,11 +597,15 @@ async function main() {
     process.env.NEXT_PUBLIC_SANITY_DATASET ||
     envLocal.NEXT_PUBLIC_SANITY_DATASET ||
     'production'
-  const token = process.env.SANITY_API_WRITE_TOKEN
+  const token =
+    process.env.SANITY_API_WRITE_TOKEN ||
+    process.env.WRITE_TOKEN ||
+    envLocal.SANITY_API_WRITE_TOKEN ||
+    envLocal.WRITE_TOKEN
 
   if (!token) {
     console.error(
-      'Missing SANITY_API_WRITE_TOKEN. Set it in your shell before running this script.',
+      'Missing write token. Set SANITY_API_WRITE_TOKEN or WRITE_TOKEN in the shell or .env.local.',
     )
     console.error(
       'Create one at https://sanity.io/manage/project/' +
@@ -554,9 +635,14 @@ async function main() {
 
   let uploaded = 0
   let cached = 0
+  let fallbackUsed = 0
   for (const publicPath of referenced) {
     if (cache[publicPath]) {
       cached++
+      continue
+    }
+    if (IMAGE_FALLBACKS[publicPath] && cache[IMAGE_FALLBACKS[publicPath]]) {
+      fallbackUsed++
       continue
     }
     process.stdout.write(`  ↑ ${publicPath} ... `)
@@ -564,33 +650,107 @@ async function main() {
     process.stdout.write(`→ ${id}\n`)
     uploaded++
   }
-  saveCache(cache)
-  console.log(`  done. uploaded=${uploaded}, cached=${cached}`)
 
-  // Now build payloads with the real (cache-backed) imageAssetId.
-  const realImageAssetId = (publicPath) => {
-    if (!cache[publicPath]) {
-      throw new Error(`No asset id cached for ${publicPath} — was the upload step skipped?`)
+  const referencedFiles = new Set(Object.values(VIDEOS))
+  console.log(`\nUploading ${referencedFiles.size} files...`)
+  let filesUploaded = 0
+  let filesCached = 0
+  for (const publicPath of referencedFiles) {
+    if (cache[publicPath]) {
+      filesCached++
+      continue
     }
-    return cache[publicPath]
+    process.stdout.write(`  ↑ ${publicPath} ... `)
+    const id = await uploadFile(client, publicPath, cache)
+    process.stdout.write(`→ ${id}\n`)
+    filesUploaded++
   }
-  const homePayload = {
-    _id: 'homePage',
-    _type: 'homePage',
-    title: 'Home Page',
-    ...buildHomePagePayload({ imageAssetId: realImageAssetId }),
+
+  saveCache(cache)
+  console.log(`  done. images: uploaded=${uploaded}, cached=${cached}, fallback=${fallbackUsed}`)
+  console.log(`  done. files: uploaded=${filesUploaded}, cached=${filesCached}`)
+
+  const realImageAssetId = (publicPath) => resolveImageAssetId(publicPath, cache)
+  const realFileAssetId = (publicPath) => resolveFileAssetId(publicPath, cache)
+
+  const ctx = { imageAssetId: realImageAssetId, fileAssetId: realFileAssetId, IMAGES, VIDEOS }
+  const seedAll = process.argv.includes('--all')
+
+  const jobs = []
+
+  if (seedAll) {
+    jobs.push({
+      label: 'homePage',
+      payload: {
+        _id: 'homePage',
+        _type: 'homePage',
+        title: 'Home Page',
+        ...buildHomePagePayload(ctx),
+      },
+    })
+    jobs.push({
+      label: 'aboutPage',
+      payload: {
+        _id: 'aboutPage',
+        _type: 'aboutPage',
+        title: 'About Page',
+        ...buildAboutPagePayload(ctx),
+      },
+    })
   }
-  const aboutPayload = {
-    _id: 'aboutPage',
-    _type: 'aboutPage',
-    title: 'About Page',
-    ...buildAboutPagePayload({ imageAssetId: realImageAssetId }),
+
+  // ACUTUS products first (acutusPage references them)
+  for (let i = 0; i < ACUTUS_PRODUCTS.length; i++) {
+    const product = ACUTUS_PRODUCTS[i]
+    const nextSlug = ACUTUS_PRODUCTS[(i + 1) % ACUTUS_PRODUCTS.length].slug
+    jobs.push({
+      label: `acutusProduct:${product.slug}`,
+      payload: {
+        _id: `acutusProduct-${product.slug}`,
+        _type: 'acutusProduct',
+        ...buildAcutusProductPayload(product, ctx, nextSlug),
+      },
+    })
   }
+
+  const singletons = [
+    ['productsPage', 'Products Page', buildProductsPagePayload],
+    ['singleVisionPage', 'Single Vision Page', buildSingleVisionPagePayload],
+    ['transitionPage', 'Transition Page', buildTransitionPagePayload],
+    ['solutionsPage', 'Solutions Page', buildSolutionsPagePayload],
+    ['acutusPage', 'ACUTUS Page', buildAcutusPagePayload],
+    ['contactPage', 'Contact Page', buildContactPagePayload],
+    ['enquiryPage', 'Enquiry Page', buildEnquiryPagePayload],
+    ['termsPage', 'Terms Page', buildTermsPagePayload],
+    ['privacyPolicyPage', 'Privacy Policy Page', buildPrivacyPolicyPagePayload],
+    ['tryOnPage', 'Try-On Page', buildTryOnPagePayload],
+  ]
+
+  for (const [id, title, builder] of singletons) {
+    jobs.push({
+      label: id,
+      payload: { _id: id, _type: id, title, ...builder(ctx) },
+    })
+  }
+
+  jobs.push({
+    label: 'sharedSolutionsGrid',
+    payload: { _id: 'sharedSolutionsGrid', _type: 'sharedSolutionsGrid', ...buildSolutionsGrid(ctx) },
+  })
+
+  jobs.push({
+    label: 'sharedFooter',
+    payload: { _id: 'sharedFooter', _type: 'sharedFooter', ...buildSharedFooter(ctx) },
+  })
 
   console.log('\nAbout to write:')
-  console.log(`  homePage.pageBuilder: ${homePayload.pageBuilder.length} entries`)
-  console.log(`  aboutPage.lensCategoryCards: ${aboutPayload.lensCategoryCards.length}`)
-  console.log(`  aboutPage.succeed.boxes: ${aboutPayload.succeed.boxes.length}`)
+  if (!seedAll) {
+    console.log('  (skipping homePage + aboutPage — use --all to include them)')
+  }
+  for (const job of jobs) {
+    console.log(`  ${job.label}`)
+  }
+  console.log(`  Total documents: ${jobs.length}`)
   console.log(`  Total image assets: ${referenced.size}`)
 
   if (!force) {
@@ -603,15 +763,13 @@ async function main() {
     }
   }
 
-  console.log('\nWriting homePage...')
-  const homeResult = await client.createOrReplace(homePayload)
-  console.log(`  → ${homeResult._id} (rev: ${homeResult._rev ? homeResult._rev.slice(0, 8) : 'created'})`)
+  for (const job of jobs) {
+    console.log(`\nWriting ${job.label}...`)
+    const result = await client.createOrReplace(job.payload)
+    console.log(`  → ${result._id}`)
+  }
 
-  console.log('Writing aboutPage...')
-  const aboutResult = await client.createOrReplace(aboutPayload)
-  console.log(`  → ${aboutResult._id} (rev: ${aboutResult._rev ? aboutResult._rev.slice(0, 8) : 'created'})`)
-
-  console.log('\nDone. Open https://optika.sanity.studio/ to verify.')
+  console.log('\nDone. Open /studio to verify.')
 }
 
 // Only invoke main() when this file is run directly (`node seed-content.mjs`).

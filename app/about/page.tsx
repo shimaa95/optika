@@ -2,8 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from "react";
 
-import { Footer } from "@/components/footer"
-import { ContactSection } from "@/components/contact-section";
+import { SharedFooter } from "@/components/shared-footer";
 import AboutHero from "@/components/AboutHero";
 import { faqs, FaqSection } from "@/components/faq-section";
 import BehindOptika from "@/components/behind-optika";
@@ -55,21 +54,18 @@ export default function AboutPage() {
     }
 
     return (
-        <div className="relative  min-h-screen w-full bg-white overflow-x-hidden">
-            <AboutHero />
-            <BehindOptika />
-            <GenniusBanner />            <LensCategoriesSection cardVariant="constrained" bgClassName="bg-[#f4f6f8]" border="border-white/5 shadow-[0_1px_4px_rgba(f,f,f,f.1)] " categories={DEFAULT_CATEGORIES} bgCards="bg-white " />
+        <div className="relative gap-32 flex flex-col min-h-screen w-full bg-white overflow-x-hidden">
+        <div className="flex flex-col gap-32 bg-[#f4f6f8] ">    <AboutHero />
+            <BehindOptika />                 <LensCategoriesSection cardVariant="constrained" bgClassName="bg-[#f4f6f8]" border="border-white/5 shadow-[0_1px_4px_rgba(f,f,f,f.1)] " categories={DEFAULT_CATEGORIES} bgCards="bg-white " />
+</div>
 
          
-            <Succeed />
+            <Succeed  />
             <PerformanceSection />
 
             <FaqSection faqs={faqs} />
 
-            <ContactSection />
-
-
-            <Footer />
+  <SharedFooter />
 
         </div>
     )

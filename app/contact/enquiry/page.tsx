@@ -120,7 +120,7 @@ export default function EnquiryFormPage() {
           <p>© 2024 Optika Lenses</p>
           <div className="flex gap-4 mt-4 sm:mt-0">
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
