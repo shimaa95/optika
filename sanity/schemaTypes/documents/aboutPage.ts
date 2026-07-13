@@ -6,7 +6,7 @@ import { DocumentIcon } from '@sanity/icons'
  *
  * Field order matches the render order of `app/about/page.tsx` so the
  * Studio form reads top-to-bottom in the same direction as the page.
- * Reuses 5 existing object types (seo, hero, performance, faq, contact)
+ * Reuses 4 existing object types (seo, hero, performance, faq)
  * and 4 new inline objects (behindOptika, succeed, succeedBox, lensCategory).
  * Content only — no styling, no layout.
  */
@@ -62,11 +62,6 @@ export const aboutPage = defineType({
       name: 'faq',
       title: 'FAQ',
       type: 'faq',
-    }),
-    defineField({
-      name: 'contact',
-      title: 'Contact',
-      type: 'contact',
     }),
   ],
   preview: {
