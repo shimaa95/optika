@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 function FacebookIcon({ className }: { className?: string }) {
@@ -21,7 +22,13 @@ function InstagramIcon({ className }: { className?: string }) {
 }
 
 export default function ContactPage() {
+  const [now, setNow] = useState<Date | null>(null)
+  useEffect(() => {
+    setNow(new Date())
+  }, [])
+
   return (
+    <>
     <section className="flex flex-col  lg:flex-row h-[calc(100vh-50px)] xl:h-[calc(100vh-75px)] overflow-hidden ">
       {/* Left Side - Contact Image */}
       <div className="relative lg:w-1/2 h-[40vh] lg:h-full overflow-hidden shrink-0">
@@ -149,5 +156,15 @@ export default function ContactPage() {
         </div>
       </div>
     </section>
+    <footer className="flex flex-col sm:flex-row justify-between items-center text-[10px] text-neutral-400 tracking-widest mt-6 px-6 md:px-12 lg:px-20 xl:px-50 py-6 font-inter">
+      <p suppressHydrationWarning>
+        © {now ? now.getFullYear() : new Date().getFullYear()} Optika Lenses
+      </p>
+      <div className="flex gap-4 mt-3 sm:mt-0">
+        <Link href="/terms" className="hover:text-gray-900 transition-colors">Terms</Link>
+        <Link href="/privacy-policy" className="hover:text-gray-900 transition-colors">Privacy Policy</Link>
+      </div>
+    </footer>
+    </>
   )
 }
