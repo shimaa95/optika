@@ -286,3 +286,36 @@ export const SHARED_FOOTER_QUERY = defineQuery(`
   }
 `)
 
+/**
+ * Enquiry form page content. Used by /contact/enquiry to render the
+ * editable form copy and interest options.
+ *
+ * - `formFields[]` is rendered by matching each entry's `name` to one of
+ *   `fullName` | `email` | `company` | `message`. Entries with an unknown
+ *   `name` are ignored — keeps the server-side validation shape stable.
+ * - `interestOptions[]` powers the checkbox group bound to `interests[]`.
+ * - All strings are coalesced to "" so the form component can rely on
+ *   string-typed props.
+ */
+export const ENQUIRY_PAGE_QUERY = defineQuery(`
+  *[_type == "enquiryPage"][0]{
+    "formTitle":       coalesce(formTitle, "ENQUIRY FORM"),
+    "introText":       coalesce(introText, ""),
+    "submitButtonLabel": coalesce(submitButtonLabel, "SUBMIT"),
+    "copyrightText":   coalesce(copyrightText, "© 2024 Optika Lenses"),
+    "sideImage":       sideImage,
+    "formFields": formFields[]{
+      _key,
+      "name":       coalesce(name, ""),
+      "label":      coalesce(label, ""),
+      "placeholder": coalesce(placeholder, ""),
+      "fieldType":  coalesce(fieldType, "text"),
+      required
+    },
+    "interestOptions": interestOptions[]{
+      _key,
+      "label": coalesce(label, "")
+    }
+  }
+`)
+

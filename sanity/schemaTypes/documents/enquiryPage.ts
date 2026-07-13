@@ -51,6 +51,20 @@ export const enquiryPage = defineType({
           name: 'formField',
           fields: [
             defineField({
+              name: 'name',
+              title: 'Submission Key',
+              description: 'Which form field this maps to. Must be one of: fullName, email, company, message.',
+              type: 'string',
+              options: {
+                list: [
+                  { title: 'Full Name', value: 'fullName' },
+                  { title: 'Email', value: 'email' },
+                  { title: 'Company', value: 'company' },
+                  { title: 'Message', value: 'message' },
+                ],
+              },
+            }),
+            defineField({
               name: 'label',
               title: 'Label',
               type: 'string',
