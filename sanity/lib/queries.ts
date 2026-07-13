@@ -319,3 +319,47 @@ export const ENQUIRY_PAGE_QUERY = defineQuery(`
   }
 `)
 
+/**
+ * FAQ block for the home page. Returns the first `faq` page-builder item
+ * on the home page singleton, or null if not present. Each block has
+ * `sectionTitle`, `subheading`, and `faqs[]` matching the FaqSection
+ * component's prop shape.
+ */
+export const HOME_FAQ_QUERY = defineQuery(`
+  *[_type == "homePage"][0]{
+    "faq": pageBuilder[_type == "faq"][0]{
+      "sectionTitle": coalesce(sectionTitle, ""),
+      "subheading":   coalesce(subheading, ""),
+      "faqs": faqs[]{
+        _key,
+        "question": coalesce(question, ""),
+        "answer":   coalesce(answer, "")
+      }
+    }
+  }
+`)
+
+/**
+ * Solutions block for the home page. Returns the first `solutions`
+ * page-builder item, or null. `blocks[]` maps to the Solutions
+ * component's `content` prop — note that in the component, `title` is
+ * ReactNode (allows line breaks), but in Sanity it's a plain string.
+ * Editors get single-line titles from Sanity; the existing JSX
+ * titles in DEFAULT_CONTENT are preserved as the fallback.
+ */
+export const HOME_SOLUTIONS_QUERY = defineQuery(`
+  *[_type == "homePage"][0]{
+    "solutions": pageBuilder[_type == "solutions"][0]{
+      "blocks": blocks[]{
+        _key,
+        "eyebrow":    coalesce(eyebrow, ""),
+        "title":      coalesce(title, ""),
+        "description": coalesce(description, ""),
+        "ctaLabel":   coalesce(ctaLabel, ""),
+        "ctaHref":    coalesce(ctaHref, ""),
+        "image":      image
+      }
+    }
+  }
+`)
+

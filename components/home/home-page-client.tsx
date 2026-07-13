@@ -2,12 +2,15 @@
 import dynamic from "next/dynamic";
 import { HeroSection } from "@/components/hero-section";
 
-import { faqs } from "@/components/faq-section";
+import { faqs as defaultFaqs } from "@/components/faq-section";
 import { Skeleton } from "@/components/ui/skeleton";
 import { GroupBanner } from '@/components/optika/group-banner'
 import { PartnersSection } from '@/components/optika/partners-section'
 import { AboutSection } from "@/components/about-final";
 import { SharedFooter } from "@/components/shared-footer";
+import { urlFor } from '@/sanity/lib/image'
+import type { SolutionsBlock } from '@/components/Solutions'
+
 const SectionSkeleton = () => <Skeleton className="w-full h-[50vh] rounded-none bg-zinc-900/50" />;
 
 const heroSectionConfig = {
@@ -31,11 +34,7 @@ const heroSectionConfig = {
   alignLeft: false,
   showScrollIndicator: true,
 };
-// const LAYOUT_DEFAULTS = {
-//   sectionClassName: 'relative min-h-[70vh] h-[100vh] w-full overflow-hidden bg-white',
-//   gridClassName: 'grid h-full w-full grid-cols-12 gap-6 items-center px-6 lg:px-[46px]',
-//   textColClassName: 'col-span-12 lg:col-span-5 lg:col-start-7 z-10',
-// };
+
 const LensCategoriesSection = dynamic(() =>
   import("@/components/lens-categories-section").then(
     (mod) => mod.LensCategoriesSection,
@@ -59,8 +58,57 @@ const FaqSection = dynamic(() =>
   { loading: SectionSkeleton }
 );
 
+type FaqData = {
+  sectionTitle: string
+  subheading: string
+  faqs: { _key: string; question: string; answer: string }[]
+} | null
 
-export default function HomePageClient() {
+type SolutionsBlockFromSanity = {
+  _key: string
+  eyebrow: string
+  title: string
+  description: string
+  ctaLabel: string
+  ctaHref: string
+  image: unknown
+}
+
+type SolutionsData = {
+  blocks: SolutionsBlockFromSanity[]
+} | null
+
+export default function HomePageClient({
+  faq,
+  solutions,
+}: {
+  faq?: FaqData
+  solutions?: SolutionsData
+}) {
+  // FAQ: prefer Sanity data; fall back to the hardcoded constant if
+  // the editor hasn't populated the home page's faq page-builder item.
+  const faqItems = (faq?.faqs?.length ?? 0) > 0 ? faq!.faqs : defaultFaqs
+  const faqSubheading =
+    faq?.subheading?.trim() ||
+    'Find answers to questions about our lenses and ordering process.'
+
+  // Solutions: prefer Sanity data when blocks are present. Sanity's
+  // `title` is a plain string (no JSX line breaks), so wrap in a span
+  // to satisfy the SolutionsBlock `title: ReactNode` shape.
+  const solutionsContent: SolutionsBlock[] | undefined =
+    (solutions?.blocks?.length ?? 0) > 0
+      ? solutions!.blocks.map((b) => ({
+          id: b._key,
+          eyebrow: b.eyebrow,
+          title: <span>{b.title}</span>,
+          description: b.description,
+          ctaLabel: b.ctaLabel,
+          ctaHref: b.ctaHref,
+          imageSrc: b.image ? urlFor(b.image).width(1200).url() : '',
+          imageAlt: b.title,
+        }))
+      : undefined
+
   return (
     <>
       <HeroSection config={heroSectionConfig} />
@@ -77,10 +125,13 @@ export default function HomePageClient() {
       </div>
       <LensCategoriesSection />
 
-      <Solutions className="px-6 lg:px-20 xl:px-24 2xl:px-50 py-32" /> <div className="flex flex-col mb-32 gap-32">
+      <Solutions
+        className="px-6 lg:px-20 xl:px-24 2xl:px-50 py-32"
+        {...(solutionsContent ? { content: solutionsContent } : {})}
+      /> <div className="flex flex-col mb-32 gap-32">
       <PerformanceSection />
-      <FaqSection faqs={faqs} />  </div> 
+      <FaqSection faqs={faqItems} subheading={faqSubheading} />  </div>
       <SharedFooter />
     </>
-  );
+  )
 }
