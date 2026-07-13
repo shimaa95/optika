@@ -14,6 +14,7 @@ import { enquiryPage } from './documents/enquiryPage'
 import { tryOnPage } from './documents/tryOnPage'
 import { sharedSolutionsGrid } from './documents/sharedSolutionsGrid'
 import { sharedFooter } from './documents/sharedFooter'
+import { enquirySubmission } from './documents/enquirySubmission'
 
 // Section objects (used as array items in the homePage page builder)
 import { hero } from './objects/hero'
@@ -79,6 +80,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     solutionsPage,
     sharedSolutionsGrid,
     sharedFooter,
+    enquirySubmission,
     // Section objects
     hero,
     about,
