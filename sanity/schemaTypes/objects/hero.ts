@@ -18,11 +18,21 @@ export const hero = defineType({
     }),
     defineField({
       name: 'headline',
-      title: 'Headline',
+      title: 'Headline (legacy, single line)',
       type: 'string',
       description:
-        'Main hero copy. Line breaks and stacked words are styled by the component.',
-      validation: (rule) => rule.required().max(160),
+        'Single-line fallback. Prefer Headline Lines for the stacked visual.',
+      hidden: true,
+      validation: (rule) => rule.max(160),
+    }),
+    defineField({
+      name: 'headlineLines',
+      title: 'Headline Lines',
+      type: 'array',
+      of: [{ type: 'string' }],
+      description:
+        'One entry per line. Renders as stacked lines with a <br/> between each, matching the current visual.',
+      validation: (rule) => rule.min(1).max(8),
     }),
     defineField({
       name: 'description',

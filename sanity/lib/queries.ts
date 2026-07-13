@@ -365,17 +365,19 @@ export const HOME_SOLUTIONS_QUERY = defineQuery(`
 
 /**
  * Hero block for the home page. Returns the first `hero` page-builder
- * item, or null. Maps to HeroSection's `config` prop. `headline` is a
- * plain string in Sanity (no JSX line breaks) — the component renders
- * it as a single line. The existing JSX title is the fallback.
+ * item, or null. Maps to HeroSection's `config` prop. `headlineLines`
+ * is the preferred field — each entry renders as a stacked line with
+ * a <br/> between them. The legacy `headline` string is kept as a
+ * fallback for any data populated before headlineLines existed.
  */
 export const HOME_HERO_QUERY = defineQuery(`
   *[_type == "homePage"][0]{
     "hero": pageBuilder[_type == "hero"][0]{
-      "tagline":     coalesce(tagline, ""),
-      "headline":    coalesce(headline, ""),
-      "description": coalesce(description, ""),
-      "image":       image
+      "tagline":        coalesce(tagline, ""),
+      "headline":       coalesce(headline, ""),
+      "headlineLines":  headlineLines[],
+      "description":    coalesce(description, ""),
+      "image":          image
     }
   }
 `)

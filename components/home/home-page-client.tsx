@@ -81,6 +81,7 @@ type SolutionsData = {
 type HeroData = {
   tagline: string
   headline: string
+  headlineLines: string[]
   description: string
   image: unknown
 } | null
@@ -106,9 +107,24 @@ export default function HomePageClient({
   if (hero?.tagline?.trim()) {
     heroConfig.tagline = hero.tagline
   }
-  if (hero?.headline?.trim()) {
-    // Sanity's `headline` is a plain string — wrap in a span so the
-    // existing JSX-styled Headline component receives a ReactNode.
+  if (hero?.headlineLines && hero.headlineLines.length > 0) {
+    // Each array entry becomes a stacked line, matching the existing
+    // JSX title visual. Empty entries are skipped.
+    const lines = hero.headlineLines.filter((l) => l && l.trim().length > 0)
+    if (lines.length > 0) {
+      heroConfig.title = (
+        <>
+          {lines.map((line, i) => (
+            <React.Fragment key={i}>
+              {i > 0 && <br />}
+              {line}
+            </React.Fragment>
+          ))}
+        </>
+      )
+    }
+  } else if (hero?.headline?.trim()) {
+    // Legacy fallback: single-line headline field.
     heroConfig.title = <span>{hero.headline}</span>
   }
   if (hero?.description?.trim()) {
