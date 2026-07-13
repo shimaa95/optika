@@ -4,11 +4,11 @@ import { DocumentIcon } from '@sanity/icons'
 /**
  * The home page — a single editable document with a page-builder array.
  *
- * Each item in `pageBuilder` is one of nine section objects (hero, about,
- * groupBanner, partners, lensCategories, solutions, performance, faq,
- * contact, footer). Editors can reorder, add, or remove sections; the
- * React app will continue to render its hardcoded content until data
- * fetching is wired up in a future change.
+ * Each item in `pageBuilder` is one of seven section objects (hero, about,
+ * groupBanner, partners, lensCategories, solutions, performance, faq).
+ * Editors can reorder, add, or remove sections; the React app will
+ * continue to render its hardcoded content until data fetching is wired
+ * up in a future change.
  */
 export const homePage = defineType({
   name: 'homePage',
@@ -43,8 +43,6 @@ export const homePage = defineType({
         defineArrayMember({ name: 'solutions', type: 'solutions' }),
         defineArrayMember({ name: 'performance', type: 'performance' }),
         defineArrayMember({ name: 'faq', type: 'faq' }),
-        defineArrayMember({ name: 'contact', type: 'contact' }),
-        defineArrayMember({ name: 'footer', type: 'footer' }),
       ],
       options: {
         insertMenu: {
@@ -60,11 +58,6 @@ export const homePage = defineType({
               name: 'media',
               title: 'Media',
               of: ['groupBanner'],
-            },
-            {
-              name: 'chrome',
-              title: 'Page chrome',
-              of: ['contact', 'footer'],
             },
           ],
         },
