@@ -50,6 +50,13 @@ export const structure: StructureResolver = (S) =>
             .items([
               singleton(S, 'contactPage', 'Contact Page'),
               singleton(S, 'enquiryPage', 'Enquiry Page'),
+              S.listItem()
+                .title('Enquiries')
+                .child(
+                  S.documentTypeList('enquirySubmission')
+                    .title('Enquiries')
+                    .defaultOrdering([{ field: 'submittedAt', direction: 'desc' }]),
+                ),
             ]),
         ),
       S.divider(),
