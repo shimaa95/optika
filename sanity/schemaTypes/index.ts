@@ -24,8 +24,6 @@ import { lensCategories } from './objects/lensCategories'
 import { solutions } from './objects/solutions'
 import { performance } from './objects/performance'
 import { faq } from './objects/faq'
-import { contact } from './objects/contact'
-import { footer } from './objects/footer'
 import { seo } from './objects/seo'
 import { productRange } from './objects/productRange'
 import { benefit } from './objects/benefit'
@@ -90,8 +88,6 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     solutions,
     performance,
     faq,
-    contact,
-    footer,
     seo,
     productRange,
     benefit,
