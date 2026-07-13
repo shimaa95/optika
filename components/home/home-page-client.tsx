@@ -78,13 +78,43 @@ type SolutionsData = {
   blocks: SolutionsBlockFromSanity[]
 } | null
 
+type HeroData = {
+  tagline: string
+  headline: string
+  description: string
+  image: unknown
+} | null
+
 export default function HomePageClient({
+  hero,
   faq,
   solutions,
 }: {
+  hero?: HeroData
   faq?: FaqData
   solutions?: SolutionsData
 }) {
+  // Hero: prefer Sanity data when present. Only override individual
+  // fields that the editor has actually populated; the rest of the
+  // existing config (imagePosition, alignLeft, showScrollIndicator,
+  // custom JSX title, etc.) is preserved as the default.
+  const heroConfig = { ...heroSectionConfig }
+  if (hero?.image) {
+    heroConfig.imageSrc = urlFor(hero.image).width(2400).url()
+    heroConfig.imageAlt = hero.headline || heroSectionConfig.imageAlt
+  }
+  if (hero?.tagline?.trim()) {
+    heroConfig.tagline = hero.tagline
+  }
+  if (hero?.headline?.trim()) {
+    // Sanity's `headline` is a plain string — wrap in a span so the
+    // existing JSX-styled Headline component receives a ReactNode.
+    heroConfig.title = <span>{hero.headline}</span>
+  }
+  if (hero?.description?.trim()) {
+    heroConfig.description = hero.description
+  }
+
   // FAQ: prefer Sanity data; fall back to the hardcoded constant if
   // the editor hasn't populated the home page's faq page-builder item.
   const faqItems = (faq?.faqs?.length ?? 0) > 0 ? faq!.faqs : defaultFaqs
@@ -111,7 +141,7 @@ export default function HomePageClient({
 
   return (
     <>
-      <HeroSection config={heroSectionConfig} />
+      <HeroSection config={heroConfig} />
 
       <div className="relative min-h-screen text-white">
         <div className="relative z-10 flex flex-col  bg-white gap-32 ">

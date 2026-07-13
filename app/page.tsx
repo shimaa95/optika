@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
 import {
   HOME_SEO_QUERY,
+  HOME_HERO_QUERY,
   HOME_FAQ_QUERY,
   HOME_SOLUTIONS_QUERY,
 } from '@/sanity/lib/queries'
@@ -60,13 +61,15 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function HomePage() {
   // Fetch in parallel; each falls back to null on miss, and HomePageClient
   // uses its existing hardcoded data when null.
-  const [faqResult, solutionsResult] = await Promise.all([
+  const [heroResult, faqResult, solutionsResult] = await Promise.all([
+    client.fetch(HOME_HERO_QUERY, {}, { next: { revalidate: 60 } }),
     client.fetch(HOME_FAQ_QUERY, {}, { next: { revalidate: 60 } }),
     client.fetch(HOME_SOLUTIONS_QUERY, {}, { next: { revalidate: 60 } }),
   ])
 
   return (
     <HomePageClient
+      hero={heroResult?.hero ?? null}
       faq={faqResult?.faq ?? null}
       solutions={solutionsResult?.solutions ?? null}
     />
