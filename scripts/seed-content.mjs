@@ -342,24 +342,6 @@ export function buildAboutPagePayload({ imageAssetId, fileAssetId }) {
         },
       ],
     },
-    // from components/contact-section.tsx (default props at line 14)
-    contact: {
-      bannerImage: img(IMAGES.aboutContactBanner, imageAssetId),
-      bannerTitle: 'Still have questions?',
-      bannerSubtitle: 'Questions about lenses or ordering or even about us?',
-      contactCard: {
-        title: 'Contact us',
-        description:
-          'Reach out straight to our mail and our teams will reach back right away',
-        buttonLabel: 'Contact Us',
-      },
-      enquiryCard: {
-        title: 'Enquiry Form',
-        description:
-          'Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.',
-        buttonLabel: 'Fill Form',
-      },
-    },
   }
 }
 
@@ -511,28 +493,6 @@ export function buildHomePagePayload({ imageAssetId }) {
           { _key: 'q-7', _type: 'item', question: 'How does ordering work?', answer: 'Every lens passes through strict quality controls at every production stage. We test what matters and only ship what meets our standards. Your patients will notice the difference immediately.' },
         ],
       },
-      // 9. Contact — from components/contact-section.tsx
-      {
-        _key: 'pb-contact',
-        _type: 'contact',
-        bannerImage: img(IMAGES.homeContactBanner, imageAssetId),
-        bannerTitle: 'Still have questions?',
-        bannerSubtitle: 'Questions about lenses or ordering or even about us?',
-        contactCard: {
-          title: 'Contact us',
-          description:
-            'Reach out straight to our mail and our teams will reach back right away',
-          buttonLabel: 'Contact Us',
-        },
-        enquiryCard: {
-          title: 'Enquiry Form',
-          description:
-            'Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.',
-          buttonLabel: 'Fill Form',
-        },
-      },
-      // Footer is intentionally omitted — the site footer is rendered
-      // globally via the root layout, not edited per page.
     ],
   }
 }

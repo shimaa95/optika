@@ -302,13 +302,6 @@ export function buildSolutionsPagePayload({ imageAssetId, IMAGES }) {
       headline: 'Designed to perform well today and remain adaptable tomorrow.',
       backgroundImage: img(IMAGES.homePerformanceBackground, imageAssetId),
     },
-    contact: {
-      bannerImage: img(IMAGES.homeContactBanner, imageAssetId),
-      bannerTitle: 'Still have questions?',
-      bannerSubtitle: 'Questions about lenses or ordering or even about us?',
-      contactCard: { title: 'Contact us', description: 'Reach out straight to our mail and our teams will reach back right away', buttonLabel: 'Contact Us' },
-      enquiryCard: { title: 'Enquiry Form', description: 'Fill out our enquiry and select from our pre defined categories and specify your requirements, so we deliver faster, more precise response to your Enquiry.', buttonLabel: 'Fill Form' },
-    },
   }
 }
 
