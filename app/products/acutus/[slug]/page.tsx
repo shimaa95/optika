@@ -17,6 +17,13 @@ interface AcutusProductPageProps {
   params: Promise<{ slug: string }>
 }
 
+// Render on demand instead of pre-rendering. The static-paths worker that
+// runs `generateStaticParams` is a jest-worker child process which has crashed
+// with "exceeding retry limit" errors in dev when env vars are missing.
+// `sanityFetch` is still cached by the Next.js data cache, so the Sanity
+// round-trip happens once per cache window, not on every request.
+export const dynamic = "force-dynamic"
+
 export async function generateStaticParams() {
   const data = await client.fetch<{ slug: string }[]>(ACUTUS_PRODUCT_SLUGS_QUERY)
   if (Array.isArray(data) && data.length > 0) {
