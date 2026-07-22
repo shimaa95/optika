@@ -58,6 +58,50 @@ export const singleVisionPage = defineType({
       validation: (rule) => rule.min(1),
     }),
     defineField({
+      name: 'discoverRange',
+      title: 'Discover Range Section',
+      type: 'discoverRange',
+      description:
+        'Split section with title, subtitle, description, image, and optional video. Reuses the same `discoverRange` object as the transition page.',
+    }),
+    defineField({
+      name: 'oneForAllLightsBanner',
+      title: 'One-For-All-Lights Banner',
+      type: 'object',
+      description:
+        'Full-bleed image banner shown after the benefits section.',
+      fields: [
+        defineField({
+          name: 'image',
+          title: 'Banner Image',
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            defineField({
+              name: 'alt',
+              title: 'Alt text',
+              type: 'string',
+              validation: (rule) => rule.max(180),
+            }),
+          ],
+        }),
+      ],
+    }),
+    defineField({
+      name: 'partners',
+      title: 'Partners Section',
+      type: 'partners',
+      description:
+        'Dark split section with tagline, headline, body, image, and a CTA. Reuses the shared `partners` object.',
+    }),
+    defineField({
+      name: 'faqs',
+      title: 'FAQ Section',
+      type: 'faq',
+      description:
+        'FAQ block — section title, subheading, and Q&A list. Reuses the shared `faq` object.',
+    }),
+    defineField({
       name: 'ctaLabel',
       title: 'CTA Label',
       type: 'string',

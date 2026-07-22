@@ -53,7 +53,7 @@ function renderField(
         name={field.name}
         placeholder={field.placeholder}
         required={field.required}
-        rows={4}
+        rows={3}
         className={textareaClass}
       />
     )
@@ -94,22 +94,22 @@ export function EnquiryForm({
   }, [state])
 
   const inputClass =
-    'w-full bg-transparent border border-neutral-600 px-4 py-3.5 text-[11px] uppercase tracking-wider text-white placeholder-neutral-400 focus:outline-none focus:border-white transition-colors rounded-none'
+    'w-full bg-transparent border border-neutral-600 px-4 py-3 text-[11px] uppercase tracking-wider text-white placeholder-neutral-400 focus:outline-none focus:border-white transition-colors rounded-none'
   const textareaClass =
-    'w-full bg-transparent border border-neutral-600 px-4 py-3.5 text-[11px] uppercase tracking-wider text-white placeholder-neutral-400 focus:outline-none focus:border-white transition-colors resize-none rounded-none'
+    'w-full bg-transparent border border-neutral-600 px-4 py-3 text-[11px] uppercase tracking-wider text-white placeholder-neutral-400 focus:outline-none focus:border-white transition-colors resize-none rounded-none'
 
   return (
     <>
-      <h1 className="text-[32px] font-bold tracking-tight mb-2 uppercase leading-tight">
+      <h1 className="text-[28px] font-bold tracking-tight mb-2 uppercase leading-tight">
         {formTitle}
       </h1>
       {introText ? (
-        <p className="text-[12px] md:text-[13px] text-neutral-400 mb-10">
+        <p className="text-[12px] md:text-[13px] text-neutral-400 mb-8">
           {introText}
         </p>
       ) : null}
 
-      <form ref={formRef} action={formAction} className="space-y-6">
+      <form ref={formRef} action={formAction} className="space-y-5">
         {/* Honeypot — hidden, real users never fill it. */}
         <input
           type="text"
@@ -133,10 +133,10 @@ export function EnquiryForm({
 
         {interestOptions.length > 0 && (
           <div>
-            <p className="text-[11px] uppercase tracking-wider text-neutral-400 mb-4 text-left">
+            <p className="text-[11px] uppercase tracking-wider text-neutral-400 mb-3 text-left">
               Area of Interest *
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 gap-x-4">
               {interestOptions.map((opt) => (
                 <label
                   key={opt._key}
@@ -176,15 +176,15 @@ export function EnquiryForm({
         <button
           type="submit"
           disabled={isPending}
-          className="w-full bg-black text-white text-[11px] font-bold uppercase tracking-wider py-4 hover:bg-neutral-950 transition-colors rounded-none mt-2 disabled:opacity-60 disabled:cursor-not-allowed"
+          className="w-full bg-black text-white text-[11px] font-bold uppercase tracking-wider py-3.5 hover:bg-neutral-950 transition-colors rounded-none mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {isPending ? 'Sending…' : submitButtonLabel}
         </button>
       </form>
 
-      <div className="flex flex-col sm:flex-row justify-between items-center text-[10px] text-neutral-500 tracking-widest mt-8">
+      <div className="flex flex-col sm:flex-row justify-between items-center text-[10px] text-neutral-500 tracking-widest mt-6">
         <p>{copyrightText}</p>
-        <div className="flex gap-4 mt-4 sm:mt-0">
+        <div className="flex gap-4 mt-2 sm:mt-0">
           <Link href="/terms" className="hover:text-white transition-colors">
             Terms
           </Link>

@@ -398,7 +398,7 @@ export function buildHomePagePayload({ imageAssetId }) {
         body:
           "Optika supports business partners with automated solutions that are designed to perform well today and adaptable tomorrow. Whether it's distribution, specification, or tailored support, we help partners move faster and to serve better.",
         ctaLabel: 'Become a Partner',
-        ctaHref: '#',
+        ctaHref: 'https://rx.optikalenses.com/auth',
         image: img(IMAGES.homePartnersImage, imageAssetId),
       },
       // 5. LensCategories — from lib/lens-categories.config.ts
@@ -451,7 +451,7 @@ export function buildHomePagePayload({ imageAssetId }) {
             description:
               'We provide partners with End to End Solutions and Custom Lenses that meet different and wide ranges of Use-Cases, Taste, and style.',
             ctaLabel: 'Become a Partner',
-            ctaHref: '',
+            ctaHref: 'https://rx.optikalenses.com/auth',
             image: img(IMAGES.homeSolutionsWorkflow, imageAssetId),
           },
           {

@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { stegaClean } from "@sanity/client/stega";
 import Tagline from "@/components/Tagline";
 import Headline from "@/components/Headline";
 import Description from "@/components/Description";
@@ -79,7 +80,9 @@ interface RowProps {
 }
 
 function SolutionDetailRow({ config }: RowProps) {
-  const isLeft = config.imagePosition === "left";
+  // stegaClean because config.imagePosition is a Sanity-sourced string
+  // and would carry invisible Visual Editing characters in draft mode.
+  const isLeft = stegaClean(config.imagePosition) === "left";
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-12 lg:gap-24 xl:gap-32">
       <div className={isLeft ? "w-full order-1 lg:order-2" : "w-full order-1 lg:order-1"}>
@@ -239,7 +242,7 @@ function WorkflowPanel({ title, description, steps, applyLabel, applyHref, image
           <ul className="flex flex-col gap-1">
             {listItems.map((step: string, i: number) => (
               <li key={i} className="text-white font-sans text-[14px] xl:text-[16px]">
-                {i + 1}. {step === "Order input" ? "Order Input" : step}
+                {i + 1}. {stegaClean(step) === "Order input" ? "Order Input" : step}
               </li>
             ))}
           </ul>
@@ -266,12 +269,15 @@ export function SolutionsGridSection({ data }: { data?: any }) {
   const heading = data?.heading || "Solutions for partners";
   const subheading = data?.subheading || "Exceptional optical solutions for partners who need more than products.";
 
-  // Grab panels by their variant, or undefined if they don't exist in data
+  // Grab panels by their variant, or undefined if they don't exist in data.
+  // `p.variant` is a Sanity-sourced string, so we stegaClean it before
+  // comparison — otherwise Visual Editing's invisible characters would
+  // break the panel lookup in draft mode.
   const panels = data?.panels || [];
-  const solvesPanel = panels.find((p: any) => p.variant === "solves") || {};
-  const promisePanel = panels.find((p: any) => p.variant === "promise") || {};
-  const whyPartnersPanel = panels.find((p: any) => p.variant === "whyPartners") || {};
-  const workflowPanel = panels.find((p: any) => p.variant === "workflow") || {};
+  const solvesPanel = panels.find((p: any) => stegaClean(p.variant) === "solves") || {};
+  const promisePanel = panels.find((p: any) => stegaClean(p.variant) === "promise") || {};
+  const whyPartnersPanel = panels.find((p: any) => stegaClean(p.variant) === "whyPartners") || {};
+  const workflowPanel = panels.find((p: any) => stegaClean(p.variant) === "workflow") || {};
 
   return (
     <section className="w-full px-5 lg:px-20 xl:px-24 2xl:px-50  bg-white">

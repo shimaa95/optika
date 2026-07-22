@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { draftMode } from 'next/headers'
+import { VisualEditing } from 'next-sanity/visual-editing'
+import { SanityLive } from '@/sanity/lib/live'
 import './globals.css'
 import { Navigation } from '@/components/navigation';
 import AssistlyChatWidget from '@/components/AssistlyChatWidget';
@@ -36,7 +39,7 @@ export const metadata: Metadata = {
   },
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
@@ -60,15 +63,16 @@ export default function RootLayout({
       {/* Apply the font variables to the body so they can be accessed anywhere */}
       <body className={`${inter.className}  ${playfair.variable} antialiased`} suppressHydrationWarning>
         <Navigation />
-        {children} 
+        {children}
         <AssistlyChatWidget
           chatbotId={ASSISTLY.chatbotId}
           origin={ASSISTLY.origin}
           logoUrl={ASSISTLY.logoUrl}
           primaryColor={ASSISTLY.primaryColor}
-        /> 
+        />
         <Analytics />
-
+        <SanityLive />
+        {(await draftMode()).isEnabled && <VisualEditing />}
       </body>
     </html>
   )

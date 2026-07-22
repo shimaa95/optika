@@ -1,10 +1,16 @@
 import type { Metadata } from 'next'
 import { client } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/live'
 import {
   HOME_SEO_QUERY,
   HOME_HERO_QUERY,
   HOME_FAQ_QUERY,
   HOME_SOLUTIONS_QUERY,
+  HOME_ABOUT_QUERY,
+  HOME_GROUP_BANNER_QUERY,
+  HOME_PARTNERS_QUERY,
+  HOME_LENS_CATEGORIES_QUERY,
+  HOME_PERFORMANCE_QUERY,
 } from '@/sanity/lib/queries'
 import { urlFor } from '@/sanity/lib/image'
 import HomePageClient from '@/components/home/home-page-client'
@@ -18,6 +24,9 @@ const FALLBACK = {
 
 export async function generateMetadata(): Promise<Metadata> {
   // stega: false is critical — stega characters in <title> destroy SEO.
+  // SEO fetches intentionally go through the un-tokenized `client` rather
+  // than `sanityFetch` so they can never accidentally leak the read token
+  // or include stega characters in the rendered <head>.
   const seo = await client.fetch(
     HOME_SEO_QUERY,
     {},
@@ -59,19 +68,39 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function HomePage() {
-  // Fetch in parallel; each falls back to null on miss, and HomePageClient
-  // uses its existing hardcoded data when null.
-  const [heroResult, faqResult, solutionsResult] = await Promise.all([
-    client.fetch(HOME_HERO_QUERY, {}, { next: { revalidate: 60 } }),
-    client.fetch(HOME_FAQ_QUERY, {}, { next: { revalidate: 60 } }),
-    client.fetch(HOME_SOLUTIONS_QUERY, {}, { next: { revalidate: 60 } }),
+  // sanityFetch is the live-aware fetcher: subscribed to <SanityLive /> in
+  // the root layout, and reads drafts when Draft Mode is on. Each call
+  // returns { data }, not the raw payload — destructured below.
+  const [
+    { data: hero },
+    { data: faq },
+    { data: solutions },
+    { data: about },
+    { data: groupBanner },
+    { data: partners },
+    { data: lensCategories },
+    { data: performance },
+  ] = await Promise.all([
+    sanityFetch({ query: HOME_HERO_QUERY }),
+    sanityFetch({ query: HOME_FAQ_QUERY }),
+    sanityFetch({ query: HOME_SOLUTIONS_QUERY }),
+    sanityFetch({ query: HOME_ABOUT_QUERY }),
+    sanityFetch({ query: HOME_GROUP_BANNER_QUERY }),
+    sanityFetch({ query: HOME_PARTNERS_QUERY }),
+    sanityFetch({ query: HOME_LENS_CATEGORIES_QUERY }),
+    sanityFetch({ query: HOME_PERFORMANCE_QUERY }),
   ])
 
   return (
     <HomePageClient
-      hero={heroResult?.hero ?? null}
-      faq={faqResult?.faq ?? null}
-      solutions={solutionsResult?.solutions ?? null}
+      hero={hero?.hero ?? null}
+      faq={faq?.faq ?? null}
+      solutions={solutions?.solutions ?? null}
+      about={about?.about ?? null}
+      groupBanner={groupBanner?.groupBanner ?? null}
+      partners={partners?.partners ?? null}
+      lensCategories={lensCategories?.lensCategories ?? null}
+      performance={performance?.performance ?? null}
     />
   )
 }

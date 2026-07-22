@@ -12,9 +12,42 @@ interface LensMobileCardProps {
   index: number;
   isCompactTitle?: boolean;
   titleClassName?: string;
+  descriptionClassName?: string;
+  /**
+   * Background color for the card body. Defaults to a translucent
+   * off-black to match the home page; the about page passes `bg-white`
+   * to make the mobile card match the desktop variant and the light
+   * section background.
+   */
+  bgCards?: string;
+  /**
+   * Border color for the card. Defaults to a faint white. The about
+   * page passes a near-invisible white to match the desktop look.
+   */
+  border?: string;
 }
 
-export function LensMobileCard({ category, transformStyle, index, isCompactTitle, titleClassName }: LensMobileCardProps) {
+export function LensMobileCard({
+  category,
+  transformStyle,
+  index,
+  isCompactTitle,
+  titleClassName,
+  descriptionClassName,
+  bgCards = "bg-[#111111]/80",
+  border = "border-white/10",
+}: LensMobileCardProps) {
+  // Light cards (about page) need dark text so titles and copy remain
+  // legible; dark cards (home page) keep the original white palette.
+  const isLight = bgCards.includes("white")
+  const textPrimary = isLight ? "text-black" : "text-white"
+  const textSecondary = isLight ? "text-black/70" : "text-white/80"
+  const textMuted = isLight ? "text-black/55" : "text-white/70"
+  const contentBg = isLight ? "bg-white/70" : "bg-[#111111]/40"
+  const shadow = isLight
+    ? "shadow-[0_8px_32px_rgba(0,0,0,0.08)]"
+    : "shadow-[0_16px_64px_rgba(0,0,0,0.6)]"
+
   return (
     <div
       className="absolute left-1/2 top-1/2 transition-transform transition-opacity duration-500 ease-out will-change-transform"
@@ -24,9 +57,9 @@ export function LensMobileCard({ category, transformStyle, index, isCompactTitle
       }}
     >
       {/* Card with solid translucent fill (no backdrop blur — perf) */}
-      <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#111111]/80 shadow-[0_16px_64px_rgba(0,0,0,0.6)]">
+      <div className={`overflow-hidden rounded-[16px] border ${border} ${bgCards} ${shadow}`}>
         {/* Image — composited entrance animation, no clipPath */}
-        <div className="lens-image relative w-full overflow-hidden" style={{ aspectRatio: "6/7" }}>
+        <div className="lens-image relative w-full overflow-hidden aspect-11/12">
           <Image
             src={category.image}
             alt={category.imageAlt}
@@ -38,8 +71,8 @@ export function LensMobileCard({ category, transformStyle, index, isCompactTitle
         </div>
 
         {/* Content */}
-        <div className="flex flex-col items-center px-6 py-8 text-center bg-[#111111]/40">
-          <div className="h-12 w-auto relative mb-4">
+        <div className={`flex flex-col items-center px-6 py-8 text-center ${contentBg}`}>
+          <div className="h-12 w-auto relative ">
             {category.logo ? (
               <Image
                 src={category.logo}
@@ -53,7 +86,8 @@ export function LensMobileCard({ category, transformStyle, index, isCompactTitle
                 <span
                   className={cn(
                     isCompactTitle ? "text-lg" : "text-3xl",
-                    "font-black  tracking-tight text-white",
+                    "font-black tracking-tight",
+                    textPrimary,
                     category.isItalic && "italic",
                     category.titleClassName,
                     category.fontClass,
@@ -63,21 +97,24 @@ export function LensMobileCard({ category, transformStyle, index, isCompactTitle
                   {category.logoText}
                 </span>
                 {category.logoSubscript && (
-                  <span className="ml-1 text-xs font-medium  text-white/70">
+                  <span className={`ml-1 text-xs font-medium ${textMuted}`}>
                     {category.logoSubscript}
                   </span>
                 )}
               </h3>
             )}
           </div>
-          <p className="mt-8 mb-4 text-sm text-center font-light tracking-wide text-white/80">
+          <p className={cn("mt-4 mb-4  text-sm text-center font-light tracking-wide", textSecondary, category.descriptionClassName, descriptionClassName)}>
             {category.description}
           </p>
           {category.link && (
-            <PrimaryButton 
-              onClick={category.link} 
-              bgColor="bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
-              className="mt-8"
+            <PrimaryButton
+              onClick={category.link}
+              bgColor={isLight
+                ? "bg-black/5 hover:bg-black hover:text-white text-black border border-black/10"
+                : "bg-white/5 hover:bg-white hover:text-[#111111] text-white border border-white/10"
+              }
+              className="mt-4"
             >
               View Lenses
             </PrimaryButton>

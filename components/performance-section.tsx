@@ -1,13 +1,39 @@
 import Image from "next/image"
+import { Fragment } from "react"
+import { urlFor } from "@/sanity/lib/image"
 
-export function PerformanceSection() {
+export function PerformanceSection({
+  headline,
+  backgroundImage,
+}: {
+  headline?: string
+  backgroundImage?: unknown
+} = {}) {
+  const defaultHeadline =
+    "Designed to perform\nwell today and\nremain adaptable\ntomorrow."
+  const resolvedHeadline = headline?.trim() || defaultHeadline
+  const imageSrc = backgroundImage
+    ? urlFor(backgroundImage).width(2000).url()
+    : "/pr.jpeg"
+  const imageAlt =
+    backgroundImage != null
+      ? "Performance section background"
+      : "Professional team in a modern office boardroom"
+
+  // Mobile and desktop variants of the headline: when there are
+  // explicit newlines, render them as <br/> on desktop; on mobile,
+  // collapse to a single line. When the string is a single line
+  // (no newlines), use it as-is on both.
+  const desktopLines = resolvedHeadline.split("\n")
+  const mobileLine = resolvedHeadline.replace(/\n/g, " ")
+
   return (
     <section className="relative h-[60vh]   w-full overflow-hidden flex items-center justify-center bg-black">
       {/* Background Image with Dark Overlay */}
       <div className="absolute inset-0">
         <Image
-          src="/pr.jpeg"
-          alt="Professional team in a modern office boardroom"
+          src={imageSrc}
+          alt={imageAlt}
           fill
           sizes="100vw"
           className="object-cover opacity-60"
@@ -24,13 +50,14 @@ export function PerformanceSection() {
                      leading-[1.1]"
           style={{ textShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
         >
-          Designed to perform
-          <br className="hidden sm:block" />
-          well today and
-          <br className="hidden sm:block" />
-          remain adaptable
-          <br className="hidden sm:block" />
-          tomorrow.
+          {desktopLines.map((line, i) => (
+            <Fragment key={i}>
+              {line}
+              {i < desktopLines.length - 1 && (
+                <br className="hidden sm:block" />
+              )}
+            </Fragment>
+          ))}
         </h2>
       </div>
 
@@ -42,7 +69,7 @@ export function PerformanceSection() {
                      leading-[1.1]"
           style={{ textShadow: "0 4px 12px rgba(0,0,0,0.3)" }}
         >
-          Designed to perform well today and remain adaptable tomorrow.
+          {mobileLine}
         </h2>
       </div>
     </section>

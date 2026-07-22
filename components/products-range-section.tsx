@@ -4,8 +4,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { urlFor } from "@/sanity/lib/image";
 
-const PRODUCTS = [
+export type ProductRangeItem = {
+  id: string;
+  label: string;
+  description: string;
+  href: string;
+  image?: unknown;
+  imageAlt?: string;
+};
+
+type ProductsRangeSectionProps = {
+  eyebrow?: string;
+  headline?: string;
+  ranges?: ProductRangeItem[];
+};
+
+const FALLBACK_RANGES: ProductRangeItem[] = [
   {
     id: "acutus-lens-family",
     label: "ACUTUS LENS FAMILY",
@@ -32,10 +48,37 @@ const PRODUCTS = [
   },
 ];
 
-export function ProductsRangeSection() {
-  const [activeId, setActiveId] = useState<string>(PRODUCTS[0].id);
+const resolveImageSrc = (item: ProductRangeItem): string => {
+  if (typeof item.image === "string") return item.image;
 
-  const activeProduct = PRODUCTS.find((p) => p.id === activeId) ?? PRODUCTS[0];
+  if (item.image) {
+    try {
+      return urlFor(item.image as Parameters<typeof urlFor>[0]).url();
+    } catch {
+      // fall through to fallback below
+    }
+  }
+
+  const fallbackImage = FALLBACK_RANGES.find((f) => f.id === item.id)?.image;
+  return typeof fallbackImage === "string" ? fallbackImage : "/eyewear-group.jpg";
+};
+
+const resolveImageAlt = (item: ProductRangeItem, idx: number): string => {
+  if (item.imageAlt && item.imageAlt.length > 0) return item.imageAlt;
+  return FALLBACK_RANGES[idx]?.imageAlt ?? item.label;
+};
+
+export function ProductsRangeSection({
+  eyebrow = "OUR PRODUCTS",
+  headline = "Discover Optika's \nWide Range of Lenses",
+  ranges,
+}: ProductsRangeSectionProps) {
+  const items: ProductRangeItem[] =
+    ranges && ranges.length > 0 ? ranges : FALLBACK_RANGES;
+
+  const [activeId, setActiveId] = useState<string>(items[0]?.id ?? "");
+
+  const activeProduct = items.find((p) => p.id === activeId) ?? items[0];
 
   return (
     <section
@@ -44,16 +87,16 @@ export function ProductsRangeSection() {
     >
       {/* ── Left Column: Full-bleed Photo with crossfade ─────── */}
       <div className="w-full lg:w-[50%] relative flex justify-center min-h-[50vh] items-center lg:h-full overflow-hidden">
-        {PRODUCTS.map((product) => (
+        {items.map((product, idx) => (
           <Image
             key={product.id}
-            src={product.image}
-            alt={product.imageAlt}
+            src={resolveImageSrc(product)}
+            alt={resolveImageAlt(product, idx)}
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className={`object-cover object-center transition-opacity duration-700 ease-in-out ${activeId === product.id ? "opacity-100" : "opacity-0"
               }`}
-            priority={product.id === PRODUCTS[0].id}
+            priority={idx === 0}
           />
         ))}
       </div>
@@ -62,23 +105,28 @@ export function ProductsRangeSection() {
       <div className="w-full lg:w-[50%] flex flex-col justify-center lg:pl-20  ">
         {/* Eyebrow */}
         <p className="text-[10px] sm:text-[11px] tracking-[0.25em] font-medium uppercase text-gray-400 mb-4 font-inter">
-          OUR PRODUCTS
+          {eyebrow}
         </p>
 
         {/* Headline */}
-        <h2 className="font-inter text-[32px] xl:text-[64px] font-semibold leading-[1.2] tracking-tight text-gray-900 mb-10 ">
-          Discover Optika&apos;s <br /> Wide Range of Lenses
+        <h2 className="font-inter text-[32px] xl:text-[64px] font-semibold leading-[1.2] tracking-tight text-gray-900 mb-10 max-w-7xl">
+          {headline.split("\n").map((line, i, arr) => (
+            <span key={i}>
+              {line}
+              {i < arr.length - 1 && <br />}
+            </span>
+          ))}
         </h2>
 
         {/* Product list */}
         <div className="flex flex-col">
-          {PRODUCTS.map((product, idx) => {
+          {items.map((product, idx) => {
             const isActive = activeId === product.id;
             return (
               <div
                 key={product.id}
                 onMouseEnter={() => setActiveId(product.id)}
-                className={`group py-6  transition-all duration-300 ${idx < PRODUCTS.length - 1 ? "border-b border-gray-200" : ""
+                className={`group py-6  transition-all duration-300 ${idx < items.length - 1 ? "border-b border-gray-200" : ""
                   }`}
               >
                 <div

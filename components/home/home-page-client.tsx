@@ -1,6 +1,7 @@
 "use client";
 import { Fragment } from "react";
 import dynamic from "next/dynamic";
+import { stegaClean } from "@sanity/client/stega";
 import { HeroSection } from "@/components/hero-section";
 
 import { faqs as defaultFaqs } from "@/components/faq-section";
@@ -11,6 +12,7 @@ import { AboutSection } from "@/components/about-final";
 import { SharedFooter } from "@/components/shared-footer";
 import { urlFor } from '@/sanity/lib/image'
 import type { SolutionsBlock } from '@/components/Solutions'
+import type { LensCategory } from '@/lib/lens-categories.config'
 
 const SectionSkeleton = () => <Skeleton className="w-full h-[50vh] rounded-none bg-zinc-900/50" />;
 
@@ -34,6 +36,7 @@ const heroSectionConfig = {
 
   alignLeft: false,
   showScrollIndicator: true,
+  headlineClassName: 'max-w-7xl whitespace-nowrap',
 };
 
 const LensCategoriesSection = dynamic(() =>
@@ -87,14 +90,65 @@ type HeroData = {
   image: unknown
 } | null
 
+type AboutData = {
+  eyebrow: string
+  title: string
+  description: string
+  image: unknown
+} | null
+
+type GroupBannerData = {
+  image: unknown
+} | null
+
+type PartnersData = {
+  tagline: string
+  headline: string
+  body: string
+  ctaLabel: string
+  ctaHref: string
+  image: unknown
+} | null
+
+type LensCategoryFromSanity = {
+  id: string
+  image: unknown
+  logoText: string
+  logoSubscript: string
+  logo: unknown
+  description: string
+  link: string
+}
+
+type LensCategoriesData = {
+  viewAllLabel: string
+  viewAllHref: string
+  categories: LensCategoryFromSanity[]
+} | null
+
+type PerformanceData = {
+  headline: string
+  backgroundImage: unknown
+} | null
+
 export default function HomePageClient({
   hero,
   faq,
   solutions,
+  about,
+  groupBanner,
+  partners,
+  lensCategories,
+  performance,
 }: {
   hero?: HeroData
   faq?: FaqData
   solutions?: SolutionsData
+  about?: AboutData
+  groupBanner?: GroupBannerData
+  partners?: PartnersData
+  lensCategories?: LensCategoriesData
+  performance?: PerformanceData
 }) {
   // Hero: prefer Sanity data when present. Only override individual
   // fields that the editor has actually populated; the rest of the
@@ -103,7 +157,8 @@ export default function HomePageClient({
   const heroConfig = { ...heroSectionConfig }
   if (hero?.image) {
     heroConfig.imageSrc = urlFor(hero.image).width(2400).url()
-    heroConfig.imageAlt = hero.headline || heroSectionConfig.imageAlt
+    heroConfig.imageAlt = hero.headline
+     || heroSectionConfig.imageAlt
   }
   if (hero?.tagline?.trim()) {
     heroConfig.tagline = hero.tagline
@@ -126,7 +181,7 @@ export default function HomePageClient({
     }
   } else if (hero?.headline?.trim()) {
     // Legacy fallback: single-line headline field.
-    heroConfig.title = <span>{hero.headline}</span>
+    heroConfig.title = <span className="max-w-xs">{hero.headline}</span>
   }
   if (hero?.description?.trim()) {
     heroConfig.description = hero.description
@@ -156,27 +211,63 @@ export default function HomePageClient({
         }))
       : undefined
 
+  // LensCategories: prefer Sanity data when categories are present.
+  // Each Sanity `image` and `logo` is resolved to a URL. Otherwise the
+  // LensCategoriesSection component falls back to its hardcoded
+  // `lensCategories` array in `lib/lens-categories.config.ts`.
+  const lensCategoryItems: LensCategory[] | undefined =
+    (lensCategories?.categories?.length ?? 0) > 0
+      ? lensCategories!.categories
+          .filter((c) => c.id && c.logoText)
+          .map((c) => ({
+            id: c.id,
+            image: c.image ? urlFor(c.image).width(1200).url() : '',
+            imageAlt: c.logoText,
+            logoText: c.logoText,
+            logoSubscript: c.logoSubscript || undefined,
+            logo: c.logo ? urlFor(c.logo).width(240).url() : undefined,
+            description: c.description,
+            link: c.link || undefined,
+            isItalic: stegaClean(c.id) === 'transitions',
+          }))
+      : undefined
+
   return (
     <>
       <HeroSection config={heroConfig} />
 
       <div className="relative min-h-screen text-white">
         <div className="relative z-10 flex flex-col  bg-white gap-32 ">
-          <AboutSection />
+          <AboutSection
+            eyebrow={about?.eyebrow}
+            title={about?.title}
+            description={about?.description}
+            image={about?.image}
+          />
 
           <div className="flex flex-col gap-32 bg-white   ">
-            <GroupBanner />
-            <PartnersSection />
+            <GroupBanner image={groupBanner?.image} />
+            <PartnersSection
+              tagline={partners?.tagline}
+              headline={partners?.headline}
+              body={partners?.body}
+              ctaLabel={partners?.ctaLabel}
+              ctaHref={partners?.ctaHref}
+              image={partners?.image}
+            />
           </div>
         </div>
       </div>
-      <LensCategoriesSection />
+      <LensCategoriesSection {...(lensCategoryItems ? { categories: lensCategoryItems } : {})} />
 
       <Solutions
         className="px-6 lg:px-20 xl:px-24 2xl:px-50 py-32"
         {...(solutionsContent ? { content: solutionsContent } : {})}
       /> <div className="flex flex-col mb-32 gap-32">
-      <PerformanceSection />
+      <PerformanceSection
+        headline={performance?.headline}
+        backgroundImage={performance?.backgroundImage}
+      />
       <FaqSection faqs={faqItems} subheading={faqSubheading} />  </div>
       <SharedFooter />
     </>

@@ -16,7 +16,7 @@ const enquirySchema = z.object({
   email: z.string().email().max(200),
   company: z.string().min(1).max(200),
   interests: z.array(z.string().min(1)).min(1).max(10),
-  message: z.string().min(10).max(5000),
+  message: z.string().min(1).max(5000),
   website: z.string().optional(), // honeypot
 })
 

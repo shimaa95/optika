@@ -44,7 +44,10 @@ export function ProductOverview({
             <span className="text-[12px] font-semibold uppercase tracking-[0.12em] text-text-dark sm:text-[13px]">
               {meter.label}
             </span>
-            <div className="h-[18px] border bg-white p-[2px]" style={{ borderColor: themeColor }}>
+            <div
+              className="h-[18px] bg-white p-[2px]"
+              style={{ border: `1px solid ${themeColor}` }}
+            >
               <div
                 className="h-full"
                 style={{ width: `${meter.value}%`, backgroundColor: themeColor }}

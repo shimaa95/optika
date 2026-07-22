@@ -19,6 +19,8 @@ export interface ProductDetailData {
     /** Full-bleed hero background — swap per lens/product (Sanity-ready) */
     backgroundSrc: string
     backgroundAlt: string
+    /** CSS `object-position` (e.g. "center 65%"). Optional. */
+    backgroundPosition?: string
   }
   /** Lens overlay graphic — swap per lens/product (Sanity-ready) */
   lensGraphic: {
@@ -62,7 +64,7 @@ export function getAcutusProductPath(slug: string): string {
   return `${ACUTUS_PRODUCT_BASE_PATH}/${slug}`
 }
 
-const actusDuePlus: ProductDetailData = {
+export const actusDuePlus: ProductDetailData = {
   slug: ACUTUS_PRODUCT_DETAIL_SLUG,
   name: "ACUTUS PLUS",
   subtitle: "ORGANIC RX PROGRESSIVE",
@@ -81,10 +83,10 @@ const actusDuePlus: ProductDetailData = {
   characteristics:
     "The individual modern design and premium quality of ExactDS Duo+ progressive lenses is based on the revolutionary Camber technology. This innovative progressive lens provides an above standard comfort zone at all distances, near, far and medium distance vision.",
   meters: [
-    { label: "FAR", value: 95 },
-    { label: "INTERMEDIATE", value: 95 },
-    { label: "NEAR", value: 95 },
-    { label: "COMFORT", value: 95 },
+    { label: "FAR", value: 80 },
+    { label: "INTERMEDIATE", value: 80 },
+    { label: "NEAR", value: 80 },
+    { label: "COMFORT", value: 80 },
   ],
   specs: [
     { label: "Technology", value: "Freeform", variant: "green" },

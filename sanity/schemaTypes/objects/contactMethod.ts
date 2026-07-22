@@ -7,7 +7,7 @@ export const contactMethod = defineType({
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Say Hello',
       type: 'string',
       validation: (rule) => rule.required().max(80),
     }),
@@ -16,7 +16,7 @@ export const contactMethod = defineType({
       title: 'Description',
       type: 'text',
       rows: 3,
-      validation: (rule) => rule.required().max(240),
+      validation: (rule) => rule.max(240),
     }),
     defineField({
       name: 'linkLabel',

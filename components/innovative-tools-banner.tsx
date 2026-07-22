@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 
-export function InnovativeToolsBanner() {
+export function InnovativeToolsBanner({
+  headline = "Innovative Tools for Eye Care Professional Who Demand Accuracy",
+}: {
+  headline?: string;
+} = {}) {
   return (
     <section className="w-full bg-[#f4f6f8] px-6 lg:px-20 xl:px-24 2xl:px-50 py-12 md:py-16">
       <div className="relative w-full overflow-hidden  bg-[#ebf1f6] min-h-[350px] sm:min-h-[400px] md:min-h-[450px] flex flex-col md:flex-row items-center">
         {/* Left Side Text Content */}
         <div className="w-full md:w-1/2 p-8 sm:p-12 md:p-16 z-10 flex flex-col justify-center">
           <h2 className="font-inter text-[32px] font-bold leading-[1.25] tracking-tight text-gray-900 uppercase max-w-md">
-            Innovative Tools for Eye Care Professional Who Demand Accuracy
+            {headline}
           </h2>
         </div>
 

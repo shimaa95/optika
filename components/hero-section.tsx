@@ -96,7 +96,7 @@ export function HeroSection({
         <div className={textColClassName}>
           <div className={textAlignClass}>
             {props.tagline && <Tagline text={props.tagline} theme={props.theme} className={props.TaglineclassaName} />}
-            {props.title && <Headline theme={props.theme} className='' >{props.title}</Headline>}
+            {props.title && <Headline theme={props.theme} className={props.headlineClassName ?? ''} >{props.title}</Headline>}
             {props.description && <Description text={props.description} theme={props.theme} className='max-w-xs' size='sm' />}
             {props.customCta}
             {!props.customCta && props.ctaText && (

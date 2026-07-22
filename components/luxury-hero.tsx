@@ -23,6 +23,7 @@ export function LuxuryHero({
   // Pin the text block to bottom-left, left edge aligns with navbar logo
   containerClassName = 'absolute bottom-0 left-0 w-full px-6 lg:px-20 xl:px-24 2xl:px-50 pb-0',
   textContainerClassName = 'z-10 flex  flex-col items-start',
+  headlineClassName = 'max-w-7xl whitespace-nowrap',
 
   title = (
     <>
@@ -38,6 +39,7 @@ export function LuxuryHero({
 
 }: Partial<HeroProps>) {
   return (
-    <HeroSection config={{ imageSrc, imageAlt, imagePosition, tagline, title, description, heroLayout, sectionClassName, overlayClassName, theme, containerClassName, textContainerClassName, }} />
+    <HeroSection config={{ imageSrc, imageAlt, imagePosition, tagline, title, description, heroLayout, sectionClassName, overlayClassName, theme, containerClassName, textContainerClassName, headlineClassName }} />
   );
 }
+

@@ -7,6 +7,7 @@ interface LensDesktopCardProps {
   category: LensCategory;
   isCompactTitle?: boolean;
   titleClassName?: string;
+  descriptionClassName?: string;
   bgCards?: string;
   cardsHover?: string; border?: string;
   /**
@@ -25,7 +26,7 @@ interface LensDesktopCardProps {
   imageMinHeight?: string;
 }
 
-export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80', variant = 'original', imageMinHeight = 'min-h-[300px]' }: LensDesktopCardProps) {
+export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleClassName, descriptionClassName, bgCards = 'bg-[#111111]', border = 'border-black/20 shadow-[0_16px_64px_rgba(0,0,0,0.6)] bg-[#111111]/80', variant = 'original', imageMinHeight = 'min-h-[300px]' }: LensDesktopCardProps) {
   const isConstrained = variant === 'constrained';
 
   return (
@@ -86,7 +87,7 @@ export function LensDesktopCard({ category, cardsHover, isCompactTitle, titleCla
             </h3>
           )}
         </div>
-        <p className={cn(isConstrained ? 'line-clamp-4' : '', " text-sm font-light tracking-wide text-white/50", category.descriptionClassName)}>
+        <p className={cn(isConstrained ? 'line-clamp-4' : '', " text-sm font-light tracking-wide text-white/50", category.descriptionClassName, descriptionClassName)}>
           {category.description}
         </p>
         {category.link && (

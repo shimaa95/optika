@@ -6,7 +6,13 @@ import { useRouter } from 'next/navigation';
 import { ArrowDown } from 'lucide-react';
 import { cardsData } from '@/app/products/acutus/series-section';
 
-export default function FilterLensesSection() {
+export default function FilterLensesSection({
+  title = "Find your right Lens",
+  subtitle = "Filter Lenses Using Built-in Technologies",
+}: {
+  title?: string;
+  subtitle?: string;
+} = {}) {
   const [technology, setTechnology] = useState('');
   const [lens, setLens] = useState('');
   const router = useRouter();
@@ -33,9 +39,9 @@ export default function FilterLensesSection() {
       <div className="relative z-10 w-full  mx-auto px-6  lg:px-20 xl:px-24 2xl:px-50 flex flex-col justify-center min-h-[400px]">
         {/* Texts */}
         <div className="mb-12  mx-auto ">
-          <p className="text-black/80 text-lg mb-2 font-light tracking-wide text-center">Find your right Lens</p>
+          <p className="text-black/80 text-lg mb-2 font-light tracking-wide text-center">{title}</p>
           <h2 className="text-black/80 text-[32px] font-bold  leading-[1.1] tracking-tight">
-            Filter Lenses Using Built-in Technologies          </h2>
+            {subtitle}          </h2>
         </div>
         <div
           className="h-px w-full bg-black/20 mx-auto mb-12 filter-divider"

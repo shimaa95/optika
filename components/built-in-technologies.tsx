@@ -1,49 +1,78 @@
 "use client"
 
 import Image from "next/image"
-import { useState } from "react"
+import { useState, Fragment } from "react"
 
-const tabs = [
+export type BuiltInTab = {
+  id: string
+  label: string
+  image: string
+  imageAlt?: string
+  characteristics: string
+}
+
+const FALLBACK_TABS: BuiltInTab[] = [
   {
     id: "smooth-optics",
     label: "SMOOTH OPTICS",
     image: "/builtin.jpg",
-    characteristics:
-      <>
-Smooth Optics is the stand out innovation in the lens sector. The process for creating Smooth Optics designs starts by defining the lens surface in terms of its optical properties.
-<br/> <br/>
-This PATENTED approach reverses the normal design process, so rather than create a surface and analyze to determine its optical performance, the starting point is describing the mean power required by the eye at all points of the lens and then deriving the surface to match this ideal. The mean power profile is more even and smoother, not only in the principal viewing zones, but also the peripheral areas. </>,
+    characteristics: [
+      "Smooth Optics is the stand out innovation in the lens sector. The process for creating Smooth Optics designs starts by defining the lens surface in terms of its optical properties.",
+      "This PATENTED approach reverses the normal design process, so rather than create a surface and analyze to determine its optical performance, the starting point is describing the mean power required by the eye at all points of the lens and then deriving the surface to match this ideal. The mean power profile is more even and smoother, not only in the principal viewing zones, but also the peripheral areas.",
+    ].join("\n\n"),
   },
   {
     id: "custom-form",
     label: "CUSTOM FORM",
     image: "/custom-form.png",
     characteristics:
-      <>
-CustomFORM is a cohesive approach to lens design, which considers aprogressivelens asasingleentity ratherthananaccumulationof individualpoints . It utilizes geometric building blocks (continuous splines and ellipses instead of separate points) at the time of creation to define the whole lens surface rather than simply minimizing distortion in primary parts of the lens.
-</>,
+      "CustomFORM is a cohesive approach to lens design, which considers a progressive lens as a single entity rather than an accumulation of individual points. It utilizes geometric building blocks (continuous splines and ellipses instead of separate points) at the time of creation to define the whole lens surface rather than simply minimizing distortion in primary parts of the lens.",
   },
   {
     id: "eye-view",
     label: "EYE VIEW",
     image: "/eye-view.png",
     characteristics:
-      <>
-        Ophthalmic lenses have power errors when viewing away from the optical center of the lens. EyeViewtechnologyusesspecially developedsoftwarewhichmodifiestheentirelenstocorrectpower errors. Each lens is customized to the prescription.
-      </>,
+      "Ophthalmic lenses have power errors when viewing away from the optical center of the lens. EyeView technology uses specially developed software which modifies the entire lens to correct power errors. Each lens is customized to the prescription.",
   },
   {
     id: "eye-power",
     label: "EYE POWER",
     image: "/eye-power.png",
     characteristics:
-      <>
-        EyePower provides an excellent visual experience, sharper vision and higher resolution thanks to the maximum individualization of the wearer‘s parameters. This built-in technology combines the demands of individual vision needs and everyday habits.
-      </>,
+      "EyePower provides an excellent visual experience, sharper vision and higher resolution thanks to the maximum individualization of the wearer's parameters. This built-in technology combines the demands of individual vision needs and everyday habits.",
   },
 ]
 
-export function BuiltInTechnologies() {
+/**
+ * Renders a multi-line string with `\n` → single break and `\n\n` → paragraph break.
+ * Used as the bridge between Sanity's plain-string `characteristics` and the
+ * JSX output expected by the section's typography.
+ */
+const renderCharacteristics = (text: string) => {
+  const paragraphs = text.split(/\n\n+/)
+  return paragraphs.map((paragraph, pIdx) => (
+    <span key={pIdx} className="block">
+      {paragraph.split("\n").map((line, lIdx, arr) => (
+        <Fragment key={lIdx}>
+          {line}
+          {lIdx < arr.length - 1 && <br />}
+        </Fragment>
+      ))}
+    </span>
+  ))
+}
+
+export function BuiltInTechnologies({
+  sectionTitle = "Built-In Technologies",
+  sectionSubtitle = "Optika equips lenses with advanced Built-In technologies",
+  tabs,
+}: {
+  sectionTitle?: string
+  sectionSubtitle?: string
+  tabs?: BuiltInTab[]
+} = {}) {
+  const tabList: BuiltInTab[] = tabs && tabs.length > 0 ? tabs : FALLBACK_TABS
   const [activeIndex, setActiveIndex] = useState(0)
   const [isTransitioning, setIsTransitioning] = useState(false)
 
@@ -56,17 +85,17 @@ export function BuiltInTechnologies() {
     }, 200)
   }
 
-  const current = tabs[activeIndex]
+  const current = tabList[activeIndex]
 
   return (
     <section className="w-full bg-[#f4f6f8] ">
       {/* Section heading */}
       <div className="text-center mb-10 md:mb-16">
         <h2 className="text-[32px] font-bold text-black tracking-tight font-inter">
-          Built-In Technologies
+          {sectionTitle}
         </h2>
         <p className="text-[16px] xl:text-[20px] text-black mt-4 xl:mt-8 font-inter">
-          Optika equips lenses with advanced Built-In technologies
+          {sectionSubtitle}
         </p>
       </div>
 
@@ -78,7 +107,7 @@ export function BuiltInTechnologies() {
           className="flex justify-center border-b border-gray-200 overflow-x-auto tab-bar-scroll"
           role="tablist"
         >
-          {tabs.map((tab, idx) => (
+          {tabList.map((tab, idx) => (
             <button
               key={tab.id}
               id={`tab-${tab.id}`}
@@ -129,7 +158,7 @@ export function BuiltInTechnologies() {
             >
               <Image
                 src={current.image}
-                alt={current.label}
+                alt={current.imageAlt || current.label}
                 width={800}
                 height={800}
                 className="w-full h-full object-cover p-[60.5px] pointer-events-none"
@@ -145,11 +174,8 @@ export function BuiltInTechnologies() {
             >
               {/* Characteristics */}
               <div className="mb-8">
-                {/* <h4 className="text-[20px] font-bold font-inter text-black mb-2">
-                  Characteristics
-                </h4> */}
                 <p className="text-gray-600 text-[14px] xl:text-[18px] leading-relaxed font-inter max-w-sm">
-                  {current.characteristics}
+                  {renderCharacteristics(current.characteristics)}
                 </p>
               </div>
             </div>

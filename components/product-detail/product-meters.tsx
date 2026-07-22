@@ -10,9 +10,10 @@ ensureGsap()
 
 interface ProductMetersProps {
   meters: ProductDetailData["meters"]
+  themeColor: string
 }
 
-export function ProductMeters({ meters }: ProductMetersProps) {
+export function ProductMeters({ meters, themeColor }: ProductMetersProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const rowRefs = useRef<(HTMLDivElement | null)[]>([])
   const barRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -92,7 +93,8 @@ export function ProductMeters({ meters }: ProductMetersProps) {
               ref={(el) => {
                 barRefs.current[index] = el
               }}
-              className="h-full w-0 bg-primary-green"
+              className="h-full w-0"
+              style={{ backgroundColor: themeColor }}
             />
           </div>
         </div>

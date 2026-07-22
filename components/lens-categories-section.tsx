@@ -10,6 +10,7 @@ import { PrimaryButton } from "./PrimaryButton";
 interface LensCategoriesSectionProps {
   categories?: LensCategory[]
   titleClassName?: string;
+  descriptionClassName?: string;
   isCompactTitle?: boolean;
   bgClassName?: string;
   bgCards?: string;
@@ -21,10 +22,10 @@ interface LensCategoriesSectionProps {
    *   fills the rest, descriptions clamp to 4 lines, button
    *   pinned to the bottom (used by the about page).
    */
-  cardVariant?: 'original' | 'constrained';
+  cardVariant?: 'original' | 'constrained'; LensCarouselControlsVariant?: 'dark' | 'light';
 }
 
-export function LensCategoriesSection({ categories = defaultCategories, titleClassName, border, cardsHover = 'white', isCompactTitle, bgCards = 'bg-[#111111]', bgClassName = "bg-black", cardVariant = 'original' }: LensCategoriesSectionProps) {
+export function LensCategoriesSection({ categories = defaultCategories, LensCarouselControlsVariant = 'dark', titleClassName, descriptionClassName, border, cardsHover = 'white', isCompactTitle, bgCards = 'bg-[#111111]', bgClassName = "bg-black", cardVariant = 'original' }: LensCategoriesSectionProps) {
   const {
     activeIndex,
     hasCompletedCarousel,
@@ -49,6 +50,7 @@ export function LensCategoriesSection({ categories = defaultCategories, titleCla
                 category={category}
                 isCompactTitle={isCompactTitle} border={border}
                 titleClassName={titleClassName}
+                descriptionClassName={descriptionClassName}
                 bgCards={bgCards} cardsHover={cardsHover}
                 variant={cardVariant}
               />
@@ -60,9 +62,9 @@ export function LensCategoriesSection({ categories = defaultCategories, titleCla
       {/* ═══════════════════════════════════════════════════════════════
           MOBILE & TABLET: Stacked card carousel on off-black background
       ═════════════════════════════════════════════════════════════════ */}
-      <div className="block lg:hidden pt-16">
-        <div className="px-4 pb-24 pt-24 md:px-8 lg:px-20 mx-auto max-w-7xl">
-          <div className="mx-auto flex max-w-md flex-col items-center">
+      <div className="block lg:hidden  ">
+        <div className="px-4 pb-24 pt-12  md:px-8 lg:px-20 mx-auto max-w-7xl">
+          <div className="mx-auto flex  max-w-md flex-col items-center justify-between">
             {/* Stack container */}
             <div
               className="relative w-full"
@@ -76,26 +78,23 @@ export function LensCategoriesSection({ categories = defaultCategories, titleCla
                   transformStyle={getCardTransform(index)}
                   isCompactTitle={isCompactTitle}
                   titleClassName={titleClassName}
+                  descriptionClassName={descriptionClassName}
+                  bgCards={bgCards}
+                  border={border} 
                 />
               ))}
             </div>
 
-            <div className="flex flex-col items-center gap-8 mt-36">
+            <div className="flex flex-col items-center gap-8 mt-16 ">
               <LensCarouselControls
                 activeIndex={activeIndex}
                 total={total}
                 hasCompletedCarousel={hasCompletedCarousel}
                 goToNext={goToNext}
-                goToPrevious={goToPrevious}
+                goToPrevious={goToPrevious} variant={LensCarouselControlsVariant}
               />
 
-              <PrimaryButton
-                onClick="products"
-                bgColor="bg-[#0a0a0a] hover:bg-zinc-800 text-white border-transparent"
-                className="mt-0 font-inter"
-              >
-                View All Lenses
-              </PrimaryButton>
+           
             </div>
           </div>
         </div>

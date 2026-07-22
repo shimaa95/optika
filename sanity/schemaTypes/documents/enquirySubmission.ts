@@ -50,7 +50,7 @@ export const enquirySubmission = defineType({
       title: 'Message',
       type: 'text',
       rows: 6,
-      validation: (rule) => rule.required().min(10),
+      validation: (rule) => rule.required().min(1),
     }),
     defineField({
       name: 'status',

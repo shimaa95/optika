@@ -44,7 +44,7 @@ interface SolutionsIntroSectionProps {
   description?: string;
   ctaText?: string;
   ctaHref?: string;
-  cards?: boolean;
+  cards?: boolean | LensCategory[];
   bottomImage?: boolean;
   /**
    * Extra classes appended to the section wrapper.
@@ -64,6 +64,10 @@ export function SolutionsIntroSection({
   bottomImage = false,
   className = "",
 }: SolutionsIntroSectionProps) {
+  const cardList: LensCategory[] = Array.isArray(cards) && cards.length > 0
+    ? cards
+    : SOLUTION_CARDS
+
   return (
     <section
       aria-label="Solutions introduction"
@@ -109,7 +113,7 @@ export function SolutionsIntroSection({
     
       {cards && (
         <div className="grid pt-16   grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 w-full max-w-full">
-          {SOLUTION_CARDS.map((card) => (
+          {cardList.map((card) => (
             <SolutionFeatureCard key={card.id} category={card} />
           ))}
         </div>

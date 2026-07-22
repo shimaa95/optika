@@ -1,5 +1,5 @@
 {
-  "createdAt": "2026-07-12T18:26:00.252Z",
+  "createdAt": "2026-07-18T18:07:39.944Z",
   "studioVersion": "6.4.0",
   "version": 3,
   "workspaces": [
@@ -13,9 +13,9 @@
       },
       "name": "studio",
       "projectId": "mg9t164n",
-      "schema": "4a1b5f47.create-schema.json",
+      "schema": "4f76e57b.create-schema.json",
       "title": "Optika",
-      "tools": "ef87c8fe.create-tools.json"
+      "tools": "c8991d52.create-tools.json"
     }
   ]
 }

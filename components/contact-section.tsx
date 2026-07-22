@@ -95,7 +95,17 @@ export function ContactSection({
                                 {cDesc}
                             </p>
                         </div>
-                        <PrimaryButton onClick="contact" className="mt-8">{cBtn}</PrimaryButton>
+                        <PrimaryButton
+                            onClick="contact"
+                            className="mt-8"
+                            restBg={themeColor ?? "#000000"}
+                            hoverBg={themeColor ?? "#000000"}
+                            hoverColor="#ffffff"
+                            restColor="#ffffff"
+                            hoverBorder={themeColor ?? "rgba(0,0,0,0.8)"}
+                        >
+                            {cBtn}
+                        </PrimaryButton>
                     </div>
 
                     {/* Enquiry form */}
@@ -109,7 +119,17 @@ export function ContactSection({
                                 {eDesc}
                             </p>
                         </div>
-                        <PrimaryButton onClick="/contact/enquiry" className="mt-8">{eBtn}</PrimaryButton>
+                        <PrimaryButton
+                            onClick="/contact/enquiry"
+                            className="mt-8"
+                            restBg={themeColor ?? "#000000"}
+                            hoverBg={themeColor ?? "#000000"}
+                            hoverColor="#ffffff"
+                            restColor="#ffffff"
+                            hoverBorder={themeColor ?? "rgba(0,0,0,0.8)"}
+                        >
+                            {eBtn}
+                        </PrimaryButton>
                     </div>
                 </div>
             </section>

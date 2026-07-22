@@ -14,7 +14,8 @@ const acutusConfig: HeroProps = {
   theme: 'dark',
   // Pin the text block to bottom-left, left edge aligns with navbar logo
   containerClassName: 'absolute bottom-0 left-0 w-full px-6 lg:px-20 xl:px-24 2xl:px-50 pb-10',
-  textContainerClassName: 'z-10 flex flex-col items-start', TaglineclassaName:'max-w-xs' 
+  textContainerClassName: 'z-10 flex flex-col items-start', TaglineclassaName:'max-w-xs',
+  headlineClassName: 'max-w-7xl whitespace-nowrap',
 }
 const heroLayout = {
   sectionClassName: 'relative h-[75vh] w-full overflow-hidden',
